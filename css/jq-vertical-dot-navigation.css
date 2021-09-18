@@ -1,0 +1,31 @@
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+.vertical-dot-nav {
+	position: fixed;
+    list-style-type:none;
+    background-color:red;
+    padding: 0 10px 10px 10px;
+    opacity:.8;
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 0px;
+}
+
+.vertical-dot-nav .dot {
+    background-color: transparent;
+    border-width: 2px;
+    border-style: solid;
+    padding:2px;
+    margin-top:10px;
+    margin-left:10px;
+    cursor:pointer;
+}
+
+
+
+ 
+

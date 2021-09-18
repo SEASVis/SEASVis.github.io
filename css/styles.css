@@ -1,0 +1,40 @@
+rect {
+	cursor: pointer;
+}
+
+.label {
+	fill: white;
+	font-size: 9px;
+	font-family: sans-serif;
+	pointer-events: none;
+}
+
+.link {
+	fill: none;
+	stroke-width: 1px;
+}
+
+.activeFaculty {
+	fill: #ed1b34;
+	stroke: #ed1b34;
+}
+
+.activeLink {
+	fill: none;
+	stroke-width: 2px;
+}
+
+.repressNode {
+	fill: #CCC;
+	stroke: #CCC;
+}
+
+.repressLink {
+	stroke: #CCC;
+	stroke-width: 0px;
+}
+
+.departmentNode {
+	stroke: black;
+	stroke-width: 2px;
+}

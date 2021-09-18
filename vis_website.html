@@ -1,0 +1,629 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<title>Interdisciplinary @ Harvard SEAS</title>
+
+	<!--including bootstrap for demo purposes only-->
+	<link rel="stylesheet" href="css/bootstrap.css">
+
+	<!--styles needed for demo-->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+	<!--required stylesheet for plugin-->
+	<link rel="stylesheet" type="text/css" href="css/onepage-scroll.css" />
+
+	<!--leaflet stylesheet-->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+		  integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+		  crossorigin=""/>
+
+	<!-- fade effects stylesheet -->
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+	<!-- bootstrap -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+	<!-- one page scroll -->
+	<script type="text/javascript" src="js/libraries/jquery.onepage-scroll.js"></script>
+
+	<!-- fade effects -->
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+
+	<script type="text/javascript">
+		function removeDiv(btn){
+			((btn.parentNode).parentNode).removeChild(btn.parentNode);
+		}
+	</script>
+
+	<!-- Our style sheet -->
+	<link rel="stylesheet" href="css/styles.css">
+
+	<!-- GOOGLE FONTS -->
+	<link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="main">
+	<section id="section-1" class="section row">
+		<div class="col-xs-12">
+			<h1 data-aos="fade" data-aos-duration="1000">Interdisciplinary @ Harvard SEAS</h1>
+			<h3 data-aos="fade" data-aos-duration="1000">A tool for prospective students, industry, and academic collaborators</h3>
+		</div>
+	</section>
+
+	<section id="section-faculty-dots-blurb" class="section row">
+		<div class="container-fluid center-blurb container-caption">
+			<div class="text-block">
+				<p>
+					Harvard John A. Paulson School of Engineering and Applied Sciences (SEAS) consists of 148 faculty
+					engaged in teaching and research across eight academic areas and 47 research areas.
+				</p>
+			</div>
+
+			<div class="student student-intro">
+				<img src="img/girl.png" style="height: 150px; width: 150px;">
+				<p>
+					This is Rachel. She recently graduated from the UC Berkley College of Engineering.
+					<br><br>
+					She has experience in electrical engineering, computer science, and mechanical engineering and
+					she wants to do research at Harvard that combines all these areas.
+					<br><br>
+					Follow along as she uses this tool to find a faculty advisor!
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section id="section-faculty-dots" class="section row">
+		<!-- WRAPPER -->
+		<div class="container-fluid" style="height: 100vh; padding-top: 1vh">
+			<div class="row">
+				<div class="col-10 offset-1">
+
+					<!-- HEADING -->
+					<div class="row d-flex justify-content-center" style="height: 10vh; padding: 0;">
+						<div class="align-self-center">
+							<h1>SEAS Faculty in Groups</h1>
+						</div>
+					</div>
+					<!-- CONTENT -->
+					<div class="row" style="height: 90vh; padding: 0;">
+
+						<div class="col-12">
+							<div class="row" style="height: 10vh; padding-left: 0vh; padding-bottom: 1vh; padding-right: 1vh; padding-top: 1vh">
+								<div class="col">
+									<div class="row" style="height: 100%">
+										<div class="col-8">
+											<div class="row justify-content-center" style="height: 100%">
+
+												<select  id='faculty-dots-group-selector' class="custom-select align-self-center" style="width: 50%" onchange="groupFacultyDotsSelector()">
+													<option value="teachingAreas">Teaching Area</option>
+													<option value="officeBuilding">Office Location</option>
+
+												</select>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row justify-content-center" style="height: 80vh; padding-left: 0vh; padding-bottom: 1vh; padding-right: 1vh; padding-top: 0vh">
+								<div class="align-self-center" style="height: 100%; width:100%;">
+									<div class="row justify-content-center" style="height: 100%; width: 100%">
+										<div id="faculty-dots" style="height: 100%; width:95%;">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="student">
+			<button id='close' onclick='this.parentNode.parentNode.removeChild(this.parentNode); return false;'>x</button>
+			<img src="img/girl.png" style="height: 150px; width: 150px;">
+			<p>
+				From the dot visualization, Rachel notices from the academic clusters that Harvard SEAS has a large cluster
+				of faculty in computer science (included electrical engineering), and faculty clusters in materials science
+				and mechanical engineering and applied physics. This is encouraging.
+				<br><br>
+				Through the office location dropdown she notices the faculty clusters in two buildings, Maxwell Dworkin
+				and Pierce Hall, and makes a mental note to learn more about these locations.
+			</p>
+		</div>
+
+	</section>
+
+	<section id="section-faculty-interest-table-blurb" class="section row">
+		<div class="container-fluid center-blurb container-caption">
+			<div class="text-block">
+				<p>
+					At Harvard SEAS, we have academic areas instead of a traditional academic departments structure.
+					Our faculty have a diversity of research interests within their academic areas. More importantly,
+					they frequently conduct research across the boundaries of a wide range of academic areas.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section id="section-faculty-interest-table" class="section row">
+		<!-- WRAPPER -->
+		<div class="container-fluid" style="height: 100vh; padding-top: 1vh">
+			<div class="row">
+				<div class="col-10 offset-1">
+
+					<!-- HEADING -->
+					<div class="row d-flex justify-content-center" style="height: 10vh; padding: 0;">
+						<div class="align-self-center">
+							<h1>Faculty Research Interests</h1>
+						</div>
+					</div>
+					<!-- CONTENT -->
+					<div class="row" style="height: 90vh; padding: 0;">
+
+						<div class="col-12">
+							<div class="row" style="height: 10vh; padding-left: 0vh; padding-bottom: 0vh; padding-right: 1vh; padding-top: 0vh">
+								<div class="col">
+									<div class="row" style="height: 100%">
+										<div class="col-4">
+											<div class="row justify-content-center" style="height: 100%">
+												<!-- the select-->
+												<select  id='faculty-table-filter-selector' class="custom-select align-self-center" onchange="filterChangeFacultyTable()">
+													<option value="All">Include All</option>
+
+												</select>
+											</div>
+										</div>
+										<div class="col-4">
+											<div class="row justify-content-center" style="height: 100%">
+												<!-- the select-->
+												<select id='faculty-table-faculty-sort-selector' class="custom-select align-self-center" onchange="sortFacultyChangeFacultyTable()">
+													<option value="name" selected>Sort Faculty: Default Ordering</option>
+													<option value="teachingAreas">Sort Faculty: By Teaching Area</option>
+													<option value="numResearchInterests">Sort Faculty: By Most Research Interests</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-4">
+											<div class="row justify-content-center" style="height: 100%">
+												<!-- the select-->
+												<select id='faculty-table-research-sort-selector' class="custom-select align-self-center" onchange="sortResearchChangeFacultyTable()">
+													<option value="researchInterest" selected>Sort Research Interests: Default Ordering</option>
+													<option value="interestedFaculty">Sort Research Interests: By Number of Interested Faculty</option>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row justify-content-center" style="height: 90vh; padding-left: 0vh; padding-bottom: 1vh; padding-right: 1vh; padding-top: 0vh">
+								<div class="align-self-center" style="height: 100%; width:100%;">
+									<div class="row justify-content-center" style="height: 100%; width: 100%">
+										<div id="faculty-interest-table" style="height: 100%; width:95%;">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+		<div class="student">
+			<button id='close' onclick='this.parentNode.parentNode.removeChild(this.parentNode); return false;'>x</button>
+			<img src="img/girl.png" style="height: 150px; width: 150px;">
+			<p>
+				From the filter dropdown menu, Rachel selects the research interest Bioinspired Robotics and Computing.
+				She compares the ten faculty in the results, and makes note of the four faculty who are also researching
+				artificial intelligence, Robert Wood, Cengiz Pehlevan, Demba Ba, and Radhika Nagpal. She hovers over their
+				red grid elements and notes their web address and full lists of research interests.
+				<br><br>
+				Next she filters the faculty by Computer Science and notes the large number of Computer Science faculty
+				researching artificial intelligence.
+			</p>
+		</div>
+	</section>
+
+	<section id="relationship-blurb" class="section row">
+		<div class="container-fluid center-blurb container-caption">
+			<div class="text-block">
+				<p>
+					Faculty at SEAS collaborate with, or are members of, seven of Harvard’s professional schools,
+					Harvard’s Faculty of Arts and Sciences, and other local universities such as MIT.
+					They are also affiliated with a large number of local institutes, centers, and initiatives.
+					These complex relationships create a highly interdisciplinary environment, allowing for insight
+					and innovation.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section id="relationship-section" class="section row">
+		<div class="col-12">
+			<div class="row">
+				<div id="relationshipDiv" style="height: 100vh; width: 100%; text-align:center;"></div>
+			</div>
+		</div>
+
+		<div class="student">
+			<button id='close' onclick='this.parentNode.parentNode.removeChild(this.parentNode); return false;'>x</button>
+			<img src="img/girl.png" style="height: 150px; width: 150px;">
+			<p>
+				Rachel searches the list of faculty for the four faculty that caught her attention in previously,
+				and compares their affiliations. She notices that, of the four, Robert Wood and Radhika Nagpal have
+				affiliations with several centers and institutes. She looks to see which other faculty are also affiliated
+				with those same centers and institutes. She has heard of the Wyss Institute and makes a note of it for
+				future reference.
+				<br><br>
+				Rachel selects Computer Science from the side menu and is surprised and excited by how highly connected
+				that academic areas is with other schools and centers at Harvard.
+				<br><br>
+				Rachel clicks on Robotics at Harvard and notes the four academic areas affiliated with that initiative.
+			</p>
+		</div>
+
+	</section>
+
+	<section id="section-faculty-adj-blurb" class="section row">
+		<div class="container-fluid center-blurb container-caption">
+			<div class="text-block">
+				<p>
+					The interdisciplinary work at Harvard SEAS is evident from the co-authorship of publications both
+					within and across academic areas.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section id="section-faculty-adj" class="section row">
+
+		<!-- WRAPPER -->
+		<div class="container-fluid" style="height: 100vh; padding-top: 1vh">
+			<div class="row">
+				<div class="col-10 offset-1">
+
+					<!-- HEADING -->
+					<div class="row d-flex justify-content-center" style="height: 10vh; padding: 0;">
+						<div class="align-self-center">
+							<h1>Faculty Coauthor Matrix</h1>
+						</div>
+					</div>
+					<!-- CONTENT -->
+					<div class="row" style="height: 86vh; padding: 0;">
+						<!-- LEFT -->
+						<div class="col-8" style="padding: 0;">
+							<div class="row" style="padding: 0;">
+
+								<div class="col" style="padding: 0;">
+									<div class="row" style="height: 86vh; padding: 0vh; width: 100%">
+										<div id="faculty-adj-matrix" style="overflow-y: scroll; height: 100%; width:100%;">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- RIGHT -->
+						<div class="col-4">
+							<div class="row" style="height: 10vh; padding-left: 0vh; padding-bottom: 1vh; padding-right: 1vh; padding-top: 1vh">
+								<div class="col">
+									<div class="row" style="height: 100%">
+										<div class="col-4">
+											<div class="row justify-content-center" style="height: 100%">
+												<select id='faculty-adj-sort-selector' class="custom-select align-self-center" onchange="sortChangeFacultyAdj()">
+													<option value="name" selected>Default Ordering</option>
+													<option value="teachingArea">Sort: By Teaching Area</option>
+													<option value="numCoauthors">Sort: By Number of Coauthors</option>
+													<option value="numPapers">Sort: By Number of Papers</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-8">
+											<div class="row justify-content-center" style="height: 100%">
+												<select id='faculty-adj-filter-selector' class="custom-select align-self-center" onchange="filterChangeFacultyAdj()">
+													<option value="All">Include All</option>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row justify-content-center" style="height: 70vh; padding-left: 0vh; padding-bottom: 1vh; padding-right: 1vh; padding-top: 0vh">
+								<div class="align-self-center" style="height: 100%; width:100%;">
+									<div class="row justify-content-center" style="height: 100%; width: 100%">
+										<div id="word-frequency-chart" style="height: 100%; width:95%;">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="student">
+			<button id='close' onclick='this.parentNode.parentNode.removeChild(this.parentNode); return false;'>x</button>
+			<img src="img/girl.png" style="height: 150px; width: 150px;">
+			<p>
+				Rachel selects the Robotics and Control from the filter dropdown menu.
+				She notices that Robert Wood has published papers with both Conor Walsh and David Clarke.
+				She clicks on the highlighted squares to see the number of papers they’ve published together, notes the
+				words that appeared most frequently in those articles.
+				<br><br>
+				By selecting the dark blue color at the intersection of Robert Woods’s name she can see that this faculty
+				member has published at least 201 papers.
+			</p>
+		</div>
+
+	</section>
+
+	<section id="network-blurb" class="section row">
+		<div class="container-fluid center-blurb container-caption">
+			<div class="text-block">
+				<p>
+					The collaborations between faculty at SEAS take place both formally and informally in the form of
+					joint teaching, research, publications, and group research efforts.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section id="section-6" class="section row">
+		<div class="container-fluid">
+			<div class="row justify-content-center" style="padding:20px;">
+				<div class="col-6">
+					<div id="network-legend" class="row justify-content-center">
+						<svg width="600" height="50" padding="10px">
+							<rect width="20" height="20" x=0 style="fill:#1b9e77;" />
+							<rect width="20" height="20" x = 100 style="fill:#d95f02;" />
+							<rect width="20" height="20" x = 200 style="fill:#7570b3;" />
+							<rect width="20" height="20" x = 300 style="fill:#e7298a;" />
+							<rect width="20" height="20" x = 400 style="fill:#4e88c7;" />
+							<text x = 25 y=15>News</text>
+							<text x = 125 y=15>Research</text>
+							<text x = 225 y=15>Center</text>
+							<text x = 325 y=15>School</text>
+							<text x = 425 y=15>Course</text>
+						</svg>
+					</div>
+					<div id="network-graph-wrapper">
+						<div id="network-graph" class="row justify-content-center"></div>
+						<div id="network-clicker" onclick="hideClicker()">
+							<p style="font-size: 20px;color:white;">
+								Hi! If you don't see me, I'm loading :)
+								<br><br>
+								<span style="font-weight: bold">You Can Interact With Me!</span>
+								<br>
+								Hover over a bar.
+								<br>
+								Select from the drop down menu.
+								<br>
+								Click on the faculty's picture.
+								<br>
+								Hover/click on nodes.
+								<br>
+								Click me to exit.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-6">
+					<div class="row">
+						<select id="network-selector" onchange="networkTableSelector()">
+							<option value=0>All Faculty</option>
+						</select>
+					</div>
+
+					<div id='network-summary' class="row">
+						<div id="network-pic" class="table col"></div>
+						<div id="network-table" class="table col"></div>
+					</div>
+
+					<div id="network-counts" class="row"></div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="student">
+			<button id='close' onclick='this.parentNode.parentNode.removeChild(this.parentNode); return false;'>x</button>
+			<img src="img/girl.png" style="height: 150px; width: 150px;">
+			<p>
+				Rachel uses the network diagram to explore the relationships between Robert Wood, Radhika Nagpal,
+				Conor Walsh, and David Clark. She notices how well-connected Robert Wood is to other faculty through joint
+				membership in initiatives as well as through joint research efforts.
+				<br><br>
+				She decides to apply to a  PhD program at Harvard SEAS with Robert Wood as her faculty advisor!
+				She clicks his photo and is directed to this professor’s contact information on the school website.
+			</p>
+		</div>
+	</section>
+
+	<section id="map-blurb" class="section row">
+		<div class="container-fluid center-blurb">
+			<div class="text-block">
+				<p>
+					Find your professor on the map!
+				</p>
+
+			</div>
+
+		</div>
+	</section>
+
+	<section id="section-7" class="section row">
+		<div class="container-fluid">
+			<div class="row justify content center">
+				<div class="col-6">
+					<p style="margin-top: 10px; font-size:14px;font-family: 'Russo One'">
+						Search For a Faculty and Click Go to Office!
+					</p>
+					<form id="map-form" autocomplete="off">
+						<!--Make sure the form has the autocomplete function switched off:-->
+						<div class="autocomplete" style="width:80%;padding-left:40px;">
+							<!-- Search form -->
+							<input id="myInput" type="text" name="search" placeholder="Faculty" onkeypress="zoomMap()">
+						</div>
+						<input type="submit" value="Go to Office!" onclick="zoomMap()">
+					</form>
+					<div id="location-chord" style="height:700px"></div>
+				</div>
+				<div class="col-6">
+					<div id="faculty-map" style="height:100vh; width:100%"></div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+	<section id="end-blurb" class="section row blurb-row">
+		<div class="container-fluid center-blurb">
+			<div class="text-block">
+				<h1>
+					Fin! Thank you for reading!
+				</h1>
+				<div class="row profile-row">
+					<div class="col profile">
+						<img src="img/NhanHuynh.jpg">
+						<div class="profile-info">
+							<span style="font-size:24px;">Nhan Huynh</span>
+							<br>
+							<span style="font-size:14px;">Research Assistant at MIT</span>
+						</div>
+					</div>
+					<div class="col profile">
+						<img src="img/TylerPiazza.jpg">
+						<div class="profile-info">
+							<span style="font-size:24px;">Tyler Piazza</span>
+							<br>
+							<span style="font-size:14px;">Math and Computer Science '21</span>
+						</div>
+					</div>
+					<div class="col profile">
+						<img src="img/BarbaraBai.jpg">
+						<div class="profile-info">
+							<span style="font-size:24px;">Barbara Bai</span>
+							<br>
+							<span style="font-size:14px;">Data Scientist at HMS</span>
+						</div>
+					</div>
+					<div class="col profile">
+						<img src="img/ElizaGrinnell.jpg">
+						<div class="profile-info">
+							<span style="font-size:24px;">Eliza Grinnell</span>
+							<br>
+							<span style="font-size:14px;">Director of Visual Communications <br>and New Media at Harvard SEAS</span>
+						</div>
+					</div>
+				</div>
+				<div class="end-text">
+					<p>
+						We created this data story for Harvard's COMPSCI 171: Visualization course in Fall 2020.
+						All the code and data can be found in our <a href="https://github.com/TPiazza21/CS171FinalProject">
+						GitHub repo</a>. We would like to thank Jeff Licht for providing a dataset of faculty information
+						from the <a href="https://www.seas.harvard.edu/">Harvard SEAS website</a>. Data for faculty publications
+						were scraped from <a href="https://pubmed.ncbi.nlm.nih.gov/">PubMed</a>. Photos are courtesy of
+						the <a href="https://www.flickr.com/photos/grinnell/">Harvard SEAS Flickr account</a>.
+					</p>
+					<p style="font-size: 12px;">
+						P.S. As you can see in the background pic, the new campus in Allston looks amazing...
+						<a href="https://www.google.com/maps/dir//112-108+Western+Ave+Boston+MA+02163">
+							go check it out!
+						</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+
+
+	<!-- instantiate fullpage scroll -->
+	<script>
+		$(".main").onepage_scroll({
+			sectionContainer: "section",     // sectionContainer accepts any kind of selector in case you don't want to use section
+			easing: "ease",                  // Easing options accepts the CSS3 easing animation such "ease", "linear", "ease-in",
+											 // "ease-out", "ease-in-out", or even cubic bezier value such as "cubic-bezier(0.175, 0.885, 0.420, 1.310)"
+			animationTime: 1000,             // AnimationTime let you define how long each section takes to animate
+			pagination: true,                // You can either show or hide the pagination. Toggle true for show, false for hide.
+			updateURL: false,                // Toggle this true if you want the URL to be updated automatically when the user scroll to each page.
+			beforeMove: function(index) {},  // This option accepts a callback function. The function will be called before the page moves.
+			afterMove: function(index) {},   // This option accepts a callback function. The function will be called after the page moves.
+			loop: false,                     // You can have the page loop back to the top/bottom when the user navigates at up/down on the first/last page.
+			keyboard: true,                  // You can activate the keyboard controls
+			responsiveFallback: false,        // You can fallback to normal page scroll by defining the width of the browser in which
+			// you want the responsive fallback to be triggered. For example, set this to 600 and whenever
+			// the browser's width is less than 600, the fallback will kick in.
+			direction: "vertical"            // You can now define the direction of the One Page Scroll animation. Options available are "vertical" and "horizontal". The default value is "vertical".
+		});
+	</script>
+
+	<script>
+		AOS.init();
+	</script>
+
+</div>
+
+	<!-- instantiate fullpage scroll -->
+	<script>
+		$(".main").onepage_scroll({
+			sectionContainer: "section",     // sectionContainer accepts any kind of selector in case you don't want to use section
+			easing: "ease",                  // Easing options accepts the CSS3 easing animation such "ease", "linear", "ease-in",
+											 // "ease-out", "ease-in-out", or even cubic bezier value such as "cubic-bezier(0.175, 0.885, 0.420, 1.310)"
+			animationTime: 1000,             // AnimationTime let you define how long each section takes to animate
+			pagination: true,                // You can either show or hide the pagination. Toggle true for show, false for hide.
+			updateURL: false,                // Toggle this true if you want the URL to be updated automatically when the user scroll to each page.
+			beforeMove: function(index) {},  // This option accepts a callback function. The function will be called before the page moves.
+			afterMove: function(index) {},   // This option accepts a callback function. The function will be called after the page moves.
+			loop: false,                     // You can have the page loop back to the top/bottom when the user navigates at up/down on the first/last page.
+			keyboard: true,                  // You can activate the keyboard controls
+			responsiveFallback: false,        // You can fallback to normal page scroll by defining the width of the browser in which
+			// you want the responsive fallback to be triggered. For example, set this to 600 and whenever
+			// the browser's width is less than 600, the fallback will kick in.
+			direction: "vertical"            // You can now define the direction of the One Page Scroll animation. Options available are "vertical" and "horizontal". The default value is "vertical".
+		});
+	</script>
+
+	<script>
+		AOS.init();
+	</script>
+
+	<!-- d3 -->
+	<script src="https://d3js.org/d3.v6.min.js"></script>
+
+	<!-- leaflet -->
+	<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+			integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+			crossorigin=""></script>
+
+	<!-- d3-force-reuse -->
+	<script src="js/libraries/d3-force-reuse.js"></script>
+
+	<!-- our custom scripts-->
+	<script src="js/wordBarVis.js"></script>
+	<script src="js/adjMatrixVis.js"></script>
+	<script src="js/manyTableVis.js"></script>
+	<script src="js/groupDotsVis.js"></script>
+	<script src="js/relationshipVis.js"></script>
+	<script src="js/nodeData.js"></script>
+	<script src="js/network.js"></script>
+	<script src="js/networkBarVis.js"></script>
+	<script src="js/mapVis.js"></script>
+	<script src="js/chordViz.js"></script>
+	<!-- Main file (put visualization classes above this) -->
+	<script src="js/main.js"></script>
+</body>
+</html>
