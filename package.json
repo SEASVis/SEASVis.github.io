@@ -1,0 +1,14 @@
+{
+  "name": "@d3/arc-diagram",
+  "main": "5bdfd79e1ffdc48c@277.js",
+  "version": "277.0.0",
+  "homepage": "https://observablehq.com/@d3/arc-diagram",
+  "author": {
+    "name": "D3",
+    "url": "https://observablehq.com/@d3"
+  },
+  "type": "module",
+  "peerDependencies": {
+    "@observablehq/runtime": "4"
+  }
+}

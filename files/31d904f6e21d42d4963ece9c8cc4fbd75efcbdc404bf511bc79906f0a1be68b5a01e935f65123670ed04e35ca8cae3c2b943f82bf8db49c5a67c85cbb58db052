@@ -1,0 +1,1480 @@
+{
+    "nodes": [
+        {
+            "id": "Amir Yacoby",
+            "group": 1
+        },
+        {
+            "id": "Ann Pearson",
+            "group": 5
+        },
+        {
+            "id": "Ariel Procaccia",
+            "group": 3
+        },
+        {
+            "id": "Boaz Barak",
+            "group": 3
+        },
+        {
+            "id": "Boris Kozinsky",
+            "group": 6
+        },
+        {
+            "id": "Brian F. Farrell",
+            "group": 5
+        },
+        {
+            "id": "Cengiz Pehlevan",
+            "group": 0
+        },
+        {
+            "id": "Christin Y. Sander",
+            "group": 2
+        },
+        {
+            "id": "Christopher Rycroft",
+            "group": 0
+        },
+        {
+            "id": "Conor J Walsh",
+            "group": 6
+        },
+        {
+            "id": "Cynthia Dwork",
+            "group": 3
+        },
+        {
+            "id": "Cynthia Friend",
+            "group": 6
+        },
+        {
+            "id": "Daniel J. Jacob",
+            "group": 5
+        },
+        {
+            "id": "Daniel P. Schrag",
+            "group": 5
+        },
+        {
+            "id": "David A. Weitz",
+            "group": 1
+        },
+        {
+            "id": "David Brooks",
+            "group": 3
+        },
+        {
+            "id": "David C. Bell",
+            "group": 1
+        },
+        {
+            "id": "David Clarke",
+            "group": 6
+        },
+        {
+            "id": "David Keith",
+            "group": 5
+        },
+        {
+            "id": "David Mooney",
+            "group": 2
+        },
+        {
+            "id": "David Parkes",
+            "group": 3
+        },
+        {
+            "id": "David R. Nelson",
+            "group": 1
+        },
+        {
+            "id": "Demba Ba",
+            "group": 4
+        },
+        {
+            "id": "Doeke Romke Hekstra",
+            "group": 1
+        },
+        {
+            "id": "Donald Elliot Ingber",
+            "group": 2
+        },
+        {
+            "id": "Eddie Kohler",
+            "group": 3
+        },
+        {
+            "id": "Efthimios Kaxiras",
+            "group": 1
+        },
+        {
+            "id": "Elena Leah Glassman",
+            "group": 3
+        },
+        {
+            "id": "Eli Tziperman",
+            "group": 5
+        },
+        {
+            "id": "Elsie M Sunderland",
+            "group": 5
+        },
+        {
+            "id": "Eric Mazur",
+            "group": 1
+        },
+        {
+            "id": "Federico Capasso",
+            "group": 1
+        },
+        {
+            "id": "Flavio P. Calmon",
+            "group": 4
+        },
+        {
+            "id": "Gu-Yeon Wei",
+            "group": 4
+        },
+        {
+            "id": "H.T. Kung",
+            "group": 3
+        },
+        {
+            "id": "Hanspeter Pfister",
+            "group": 3
+        },
+        {
+            "id": "James H. Waldo",
+            "group": 3
+        },
+        {
+            "id": "James Mickens",
+            "group": 3
+        },
+        {
+            "id": "James R. Rice",
+            "group": 6
+        },
+        {
+            "id": "Jennifer Lewis",
+            "group": 6
+        },
+        {
+            "id": "Jenny Hoffman",
+            "group": 1
+        },
+        {
+            "id": "Jerry X. Mitrovica",
+            "group": 5
+        },
+        {
+            "id": "Jia Liu",
+            "group": 2
+        },
+        {
+            "id": "Joanna Aizenberg",
+            "group": 6
+        },
+        {
+            "id": "John H. Shaw",
+            "group": 5
+        },
+        {
+            "id": "Jonathan Zittrain",
+            "group": 3
+        },
+        {
+            "id": "Joost J. Vlassak",
+            "group": 6
+        },
+        {
+            "id": "Julia A. Mundy",
+            "group": 1
+        },
+        {
+            "id": "Kaighin A McColl",
+            "group": 5
+        },
+        {
+            "id": "Karen Brennan",
+            "group": 3
+        },
+        {
+            "id": "Katia Bertoldi",
+            "group": 6
+        },
+        {
+            "id": "Kit Parker",
+            "group": 2
+        },
+        {
+            "id": "Krzysztof Z Gajos",
+            "group": 3
+        },
+        {
+            "id": "L Mahadevan",
+            "group": 0
+        },
+        {
+            "id": "Madhu Sudan",
+            "group": 3
+        },
+        {
+            "id": "Marianna Katherine Linz",
+            "group": 5
+        },
+        {
+            "id": "Marko Loncar",
+            "group": 1
+        },
+        {
+            "id": "Markus Thomas Basan",
+            "group": 1
+        },
+        {
+            "id": "Maurice Smith",
+            "group": 2
+        },
+        {
+            "id": "Maxim Prigozhin",
+            "group": 1
+        },
+        {
+            "id": "Michael D. Mitzenmacher",
+            "group": 3
+        },
+        {
+            "id": "Michael D. Smith",
+            "group": 3
+        },
+        {
+            "id": "Michael J. Aziz",
+            "group": 6
+        },
+        {
+            "id": "Michael P. Brenner",
+            "group": 0
+        },
+        {
+            "id": "Milind Tambe",
+            "group": 3
+        },
+        {
+            "id": "Minlan Yu",
+            "group": 3
+        },
+        {
+            "id": "Na Li",
+            "group": 4
+        },
+        {
+            "id": "Nada Amin",
+            "group": 3
+        },
+        {
+            "id": "Peter John Huybers",
+            "group": 5
+        },
+        {
+            "id": "Philip Kim",
+            "group": 1
+        },
+        {
+            "id": "Philippe Cluzel",
+            "group": 1
+        },
+        {
+            "id": "Prineha Narang",
+            "group": 6
+        },
+        {
+            "id": "Radhika Nagpal",
+            "group": 3
+        },
+        {
+            "id": "Richard McCullough",
+            "group": 6
+        },
+        {
+            "id": "Robert J. Wood",
+            "group": 6
+        },
+        {
+            "id": "Robert M. Westervelt",
+            "group": 1
+        },
+        {
+            "id": "Robin Wordsworth",
+            "group": 5
+        },
+        {
+            "id": "Salil P. Vadhan",
+            "group": 3
+        },
+        {
+            "id": "Samir Mitragotri",
+            "group": 2
+        },
+        {
+            "id": "Scot T. Martin",
+            "group": 5
+        },
+        {
+            "id": "Stephanie Gil",
+            "group": 3
+        },
+        {
+            "id": "Stephen Chong",
+            "group": 3
+        },
+        {
+            "id": "Steven C. Wofsy",
+            "group": 5
+        },
+        {
+            "id": "Steven J. Gortler",
+            "group": 3
+        },
+        {
+            "id": "Stratos Idreos",
+            "group": 3
+        },
+        {
+            "id": "Stuart M. Shieber",
+            "group": 3
+        },
+        {
+            "id": "Susan A Murphy",
+            "group": 3
+        },
+        {
+            "id": "Todd Zickler",
+            "group": 4
+        },
+        {
+            "id": "Venkatesh Narayanamurti",
+            "group": 1
+        },
+        {
+            "id": "Vijay Janapa Reddi",
+            "group": 4
+        },
+        {
+            "id": "Vinothan N. Manoharan",
+            "group": 1
+        },
+        {
+            "id": "Xin Li",
+            "group": 6
+        },
+        {
+            "id": "Yaron Singer",
+            "group": 3
+        },
+        {
+            "id": "Yiling Chen",
+            "group": 3
+        },
+        {
+            "id": "Yue Lu",
+            "group": 4
+        },
+        {
+            "id": "Zhigang Suo",
+            "group": 6
+        }
+    ],
+    "links": [
+        {
+            "source": "Amir Yacoby",
+            "target": "Marko Loncar",
+            "value": 13
+        },
+        {
+            "source": "Amir Yacoby",
+            "target": "Philip Kim",
+            "value": 17
+        },
+        {
+            "source": "Amir Yacoby",
+            "target": "Efthimios Kaxiras",
+            "value": 5
+        },
+        {
+            "source": "Amir Yacoby",
+            "target": "Federico Capasso",
+            "value": 1
+        },
+        {
+            "source": "Efthimios Kaxiras",
+            "target": "Federico Capasso",
+            "value": 1
+        },
+        {
+            "source": "Amir Yacoby",
+            "target": "Prineha Narang",
+            "value": 1
+        },
+        {
+            "source": "Amir Yacoby",
+            "target": "David C. Bell",
+            "value": 3
+        },
+        {
+            "source": "David C. Bell",
+            "target": "Philip Kim",
+            "value": 3
+        },
+        {
+            "source": "Efthimios Kaxiras",
+            "target": "Philip Kim",
+            "value": 9
+        },
+        {
+            "source": "Amir Yacoby",
+            "target": "Robert M. Westervelt",
+            "value": 1
+        },
+        {
+            "source": "Ann Pearson",
+            "target": "Daniel P. Schrag",
+            "value": 2
+        },
+        {
+            "source": "Ann Pearson",
+            "target": "Peter John Huybers",
+            "value": 2
+        },
+        {
+            "source": "Ariel Procaccia",
+            "target": "David Parkes",
+            "value": 7
+        },
+        {
+            "source": "Ariel Procaccia",
+            "target": "Yiling Chen",
+            "value": 4
+        },
+        {
+            "source": "David Parkes",
+            "target": "Yiling Chen",
+            "value": 10
+        },
+        {
+            "source": "Ariel Procaccia",
+            "target": "Krzysztof Z Gajos",
+            "value": 1
+        },
+        {
+            "source": "David Parkes",
+            "target": "Krzysztof Z Gajos",
+            "value": 4
+        },
+        {
+            "source": "Krzysztof Z Gajos",
+            "target": "Yiling Chen",
+            "value": 2
+        },
+        {
+            "source": "Ariel Procaccia",
+            "target": "Milind Tambe",
+            "value": 6
+        },
+        {
+            "source": "Robert J. Wood",
+            "target": "Todd Zickler",
+            "value": 1
+        },
+        {
+            "source": "Boaz Barak",
+            "target": "Salil P. Vadhan",
+            "value": 3
+        },
+        {
+            "source": "Boaz Barak",
+            "target": "Michael D. Mitzenmacher",
+            "value": 1
+        },
+        {
+            "source": "Boris Kozinsky",
+            "target": "Cynthia Friend",
+            "value": 3
+        },
+        {
+            "source": "Boris Kozinsky",
+            "target": "Jia Liu",
+            "value": 1
+        },
+        {
+            "source": "Boris Kozinsky",
+            "target": "Zhigang Suo",
+            "value": 1
+        },
+        {
+            "source": "Jia Liu",
+            "target": "Zhigang Suo",
+            "value": 3
+        },
+        {
+            "source": "Boris Kozinsky",
+            "target": "Efthimios Kaxiras",
+            "value": 1
+        },
+        {
+            "source": "Cynthia Friend",
+            "target": "Efthimios Kaxiras",
+            "value": 44
+        },
+        {
+            "source": "Cengiz Pehlevan",
+            "target": "L Mahadevan",
+            "value": 1
+        },
+        {
+            "source": "Christopher Rycroft",
+            "target": "L Mahadevan",
+            "value": 3
+        },
+        {
+            "source": "Christopher Rycroft",
+            "target": "Katia Bertoldi",
+            "value": 1
+        },
+        {
+            "source": "Conor J Walsh",
+            "target": "Robert J. Wood",
+            "value": 52
+        },
+        {
+            "source": "Conor J Walsh",
+            "target": "Katia Bertoldi",
+            "value": 11
+        },
+        {
+            "source": "Katia Bertoldi",
+            "target": "Robert J. Wood",
+            "value": 4
+        },
+        {
+            "source": "Conor J Walsh",
+            "target": "Jennifer Lewis",
+            "value": 2
+        },
+        {
+            "source": "Conor J Walsh",
+            "target": "David Mooney",
+            "value": 17
+        },
+        {
+            "source": "David Mooney",
+            "target": "Katia Bertoldi",
+            "value": 2
+        },
+        {
+            "source": "Conor J Walsh",
+            "target": "Radhika Nagpal",
+            "value": 2
+        },
+        {
+            "source": "Radhika Nagpal",
+            "target": "Robert J. Wood",
+            "value": 20
+        },
+        {
+            "source": "Conor J Walsh",
+            "target": "David A. Weitz",
+            "value": 1
+        },
+        {
+            "source": "Conor J Walsh",
+            "target": "Zhigang Suo",
+            "value": 1
+        },
+        {
+            "source": "Conor J Walsh",
+            "target": "Krzysztof Z Gajos",
+            "value": 1
+        },
+        {
+            "source": "Conor J Walsh",
+            "target": "Joost J. Vlassak",
+            "value": 1
+        },
+        {
+            "source": "Joost J. Vlassak",
+            "target": "Robert J. Wood",
+            "value": 2
+        },
+        {
+            "source": "Conor J Walsh",
+            "target": "Maurice Smith",
+            "value": 1
+        },
+        {
+            "source": "Cynthia Dwork",
+            "target": "Salil P. Vadhan",
+            "value": 1
+        },
+        {
+            "source": "Cynthia Friend",
+            "target": "Eric Mazur",
+            "value": 6
+        },
+        {
+            "source": "Cynthia Friend",
+            "target": "Scot T. Martin",
+            "value": 3
+        },
+        {
+            "source": "Cynthia Friend",
+            "target": "Joost J. Vlassak",
+            "value": 1
+        },
+        {
+            "source": "Joost J. Vlassak",
+            "target": "Scot T. Martin",
+            "value": 1
+        },
+        {
+            "source": "Cynthia Friend",
+            "target": "Joanna Aizenberg",
+            "value": 9
+        },
+        {
+            "source": "Efthimios Kaxiras",
+            "target": "Joanna Aizenberg",
+            "value": 1
+        },
+        {
+            "source": "Cynthia Friend",
+            "target": "David C. Bell",
+            "value": 6
+        },
+        {
+            "source": "David C. Bell",
+            "target": "Efthimios Kaxiras",
+            "value": 16
+        },
+        {
+            "source": "Cynthia Friend",
+            "target": "Michael J. Aziz",
+            "value": 1
+        },
+        {
+            "source": "Daniel J. Jacob",
+            "target": "Steven C. Wofsy",
+            "value": 56
+        },
+        {
+            "source": "Daniel J. Jacob",
+            "target": "Elsie M Sunderland",
+            "value": 29
+        },
+        {
+            "source": "Daniel J. Jacob",
+            "target": "Scot T. Martin",
+            "value": 4
+        },
+        {
+            "source": "Daniel J. Jacob",
+            "target": "Daniel P. Schrag",
+            "value": 2
+        },
+        {
+            "source": "Daniel J. Jacob",
+            "target": "David Keith",
+            "value": 1
+        },
+        {
+            "source": "Daniel P. Schrag",
+            "target": "David Keith",
+            "value": 4
+        },
+        {
+            "source": "Daniel J. Jacob",
+            "target": "Eli Tziperman",
+            "value": 1
+        },
+        {
+            "source": "Daniel P. Schrag",
+            "target": "Eli Tziperman",
+            "value": 8
+        },
+        {
+            "source": "Daniel P. Schrag",
+            "target": "Steven C. Wofsy",
+            "value": 1
+        },
+        {
+            "source": "Eli Tziperman",
+            "target": "Steven C. Wofsy",
+            "value": 2
+        },
+        {
+            "source": "Daniel J. Jacob",
+            "target": "Peter John Huybers",
+            "value": 1
+        },
+        {
+            "source": "Peter John Huybers",
+            "target": "Steven C. Wofsy",
+            "value": 1
+        },
+        {
+            "source": "Daniel P. Schrag",
+            "target": "Michael J. Aziz",
+            "value": 8
+        },
+        {
+            "source": "Daniel P. Schrag",
+            "target": "Jerry X. Mitrovica",
+            "value": 2
+        },
+        {
+            "source": "David A. Weitz",
+            "target": "L Mahadevan",
+            "value": 13
+        },
+        {
+            "source": "David A. Weitz",
+            "target": "Donald Elliot Ingber",
+            "value": 7
+        },
+        {
+            "source": "David A. Weitz",
+            "target": "Kit Parker",
+            "value": 4
+        },
+        {
+            "source": "Donald Elliot Ingber",
+            "target": "Kit Parker",
+            "value": 23
+        },
+        {
+            "source": "Donald Elliot Ingber",
+            "target": "L Mahadevan",
+            "value": 2
+        },
+        {
+            "source": "Kit Parker",
+            "target": "L Mahadevan",
+            "value": 5
+        },
+        {
+            "source": "David A. Weitz",
+            "target": "David R. Nelson",
+            "value": 7
+        },
+        {
+            "source": "David A. Weitz",
+            "target": "Robert M. Westervelt",
+            "value": 3
+        },
+        {
+            "source": "David A. Weitz",
+            "target": "Jennifer Lewis",
+            "value": 1
+        },
+        {
+            "source": "David A. Weitz",
+            "target": "David Mooney",
+            "value": 12
+        },
+        {
+            "source": "David A. Weitz",
+            "target": "Joanna Aizenberg",
+            "value": 2
+        },
+        {
+            "source": "David A. Weitz",
+            "target": "Vinothan N. Manoharan",
+            "value": 4
+        },
+        {
+            "source": "David A. Weitz",
+            "target": "David C. Bell",
+            "value": 1
+        },
+        {
+            "source": "David A. Weitz",
+            "target": "Steven C. Wofsy",
+            "value": 1
+        },
+        {
+            "source": "David A. Weitz",
+            "target": "Katia Bertoldi",
+            "value": 2
+        },
+        {
+            "source": "David A. Weitz",
+            "target": "Zhigang Suo",
+            "value": 2
+        },
+        {
+            "source": "David A. Weitz",
+            "target": "Federico Capasso",
+            "value": 2
+        },
+        {
+            "source": "David A. Weitz",
+            "target": "Michael J. Aziz",
+            "value": 2
+        },
+        {
+            "source": "Federico Capasso",
+            "target": "Katia Bertoldi",
+            "value": 1
+        },
+        {
+            "source": "David Brooks",
+            "target": "Gu-Yeon Wei",
+            "value": 143
+        },
+        {
+            "source": "David Brooks",
+            "target": "Vijay Janapa Reddi",
+            "value": 19
+        },
+        {
+            "source": "Gu-Yeon Wei",
+            "target": "Vijay Janapa Reddi",
+            "value": 17
+        },
+        {
+            "source": "David Brooks",
+            "target": "Michael D. Smith",
+            "value": 10
+        },
+        {
+            "source": "Gu-Yeon Wei",
+            "target": "Michael D. Smith",
+            "value": 10
+        },
+        {
+            "source": "Michael D. Smith",
+            "target": "Vijay Janapa Reddi",
+            "value": 8
+        },
+        {
+            "source": "David Brooks",
+            "target": "Robert J. Wood",
+            "value": 5
+        },
+        {
+            "source": "Gu-Yeon Wei",
+            "target": "Robert J. Wood",
+            "value": 14
+        },
+        {
+            "source": "David Brooks",
+            "target": "Michael D. Mitzenmacher",
+            "value": 2
+        },
+        {
+            "source": "Gu-Yeon Wei",
+            "target": "Michael D. Mitzenmacher",
+            "value": 2
+        },
+        {
+            "source": "David C. Bell",
+            "target": "Federico Capasso",
+            "value": 8
+        },
+        {
+            "source": "David C. Bell",
+            "target": "Robert M. Westervelt",
+            "value": 7
+        },
+        {
+            "source": "Efthimios Kaxiras",
+            "target": "Robert M. Westervelt",
+            "value": 6
+        },
+        {
+            "source": "David C. Bell",
+            "target": "Michael J. Aziz",
+            "value": 4
+        },
+        {
+            "source": "David C. Bell",
+            "target": "Venkatesh Narayanamurti",
+            "value": 1
+        },
+        {
+            "source": "Federico Capasso",
+            "target": "Venkatesh Narayanamurti",
+            "value": 8
+        },
+        {
+            "source": "David C. Bell",
+            "target": "David Clarke",
+            "value": 1
+        },
+        {
+            "source": "David Clarke",
+            "target": "Katia Bertoldi",
+            "value": 12
+        },
+        {
+            "source": "David Clarke",
+            "target": "Zhigang Suo",
+            "value": 15
+        },
+        {
+            "source": "David Clarke",
+            "target": "Federico Capasso",
+            "value": 5
+        },
+        {
+            "source": "David Clarke",
+            "target": "Robert J. Wood",
+            "value": 13
+        },
+        {
+            "source": "David Clarke",
+            "target": "Radhika Nagpal",
+            "value": 3
+        },
+        {
+            "source": "David Clarke",
+            "target": "Jennifer Lewis",
+            "value": 2
+        },
+        {
+            "source": "David Clarke",
+            "target": "Kit Parker",
+            "value": 1
+        },
+        {
+            "source": "Kit Parker",
+            "target": "Zhigang Suo",
+            "value": 1
+        },
+        {
+            "source": "Katia Bertoldi",
+            "target": "Zhigang Suo",
+            "value": 5
+        },
+        {
+            "source": "David Clarke",
+            "target": "Eric Mazur",
+            "value": 1
+        },
+        {
+            "source": "Eric Mazur",
+            "target": "Zhigang Suo",
+            "value": 1
+        },
+        {
+            "source": "David Mooney",
+            "target": "Joost J. Vlassak",
+            "value": 5
+        },
+        {
+            "source": "David Mooney",
+            "target": "Zhigang Suo",
+            "value": 9
+        },
+        {
+            "source": "Joost J. Vlassak",
+            "target": "Zhigang Suo",
+            "value": 47
+        },
+        {
+            "source": "David Mooney",
+            "target": "Donald Elliot Ingber",
+            "value": 17
+        },
+        {
+            "source": "David Mooney",
+            "target": "Michael P. Brenner",
+            "value": 1
+        },
+        {
+            "source": "David Mooney",
+            "target": "Eric Mazur",
+            "value": 2
+        },
+        {
+            "source": "David Mooney",
+            "target": "Joanna Aizenberg",
+            "value": 1
+        },
+        {
+            "source": "David Mooney",
+            "target": "L Mahadevan",
+            "value": 1
+        },
+        {
+            "source": "David Mooney",
+            "target": "Samir Mitragotri",
+            "value": 1
+        },
+        {
+            "source": "David Parkes",
+            "target": "Milind Tambe",
+            "value": 4
+        },
+        {
+            "source": "David Parkes",
+            "target": "Stuart M. Shieber",
+            "value": 1
+        },
+        {
+            "source": "David Parkes",
+            "target": "Salil P. Vadhan",
+            "value": 1
+        },
+        {
+            "source": "David Parkes",
+            "target": "Yaron Singer",
+            "value": 1
+        },
+        {
+            "source": "David Parkes",
+            "target": "Michael D. Mitzenmacher",
+            "value": 3
+        },
+        {
+            "source": "David R. Nelson",
+            "target": "Vinothan N. Manoharan",
+            "value": 1
+        },
+        {
+            "source": "David R. Nelson",
+            "target": "Joost J. Vlassak",
+            "value": 2
+        },
+        {
+            "source": "David R. Nelson",
+            "target": "Joanna Aizenberg",
+            "value": 2
+        },
+        {
+            "source": "Demba Ba",
+            "target": "Donald Elliot Ingber",
+            "value": 1
+        },
+        {
+            "source": "Demba Ba",
+            "target": "Steven C. Wofsy",
+            "value": 1
+        },
+        {
+            "source": "Donald Elliot Ingber",
+            "target": "Steven C. Wofsy",
+            "value": 1
+        },
+        {
+            "source": "Donald Elliot Ingber",
+            "target": "Eric Mazur",
+            "value": 8
+        },
+        {
+            "source": "Donald Elliot Ingber",
+            "target": "Robert M. Westervelt",
+            "value": 3
+        },
+        {
+            "source": "Donald Elliot Ingber",
+            "target": "Joanna Aizenberg",
+            "value": 8
+        },
+        {
+            "source": "Donald Elliot Ingber",
+            "target": "Radhika Nagpal",
+            "value": 3
+        },
+        {
+            "source": "Donald Elliot Ingber",
+            "target": "Katia Bertoldi",
+            "value": 1
+        },
+        {
+            "source": "Joanna Aizenberg",
+            "target": "Katia Bertoldi",
+            "value": 8
+        },
+        {
+            "source": "Donald Elliot Ingber",
+            "target": "Samir Mitragotri",
+            "value": 1
+        },
+        {
+            "source": "Eddie Kohler",
+            "target": "James Mickens",
+            "value": 1
+        },
+        {
+            "source": "Efthimios Kaxiras",
+            "target": "Joost J. Vlassak",
+            "value": 8
+        },
+        {
+            "source": "Efthimios Kaxiras",
+            "target": "Zhigang Suo",
+            "value": 4
+        },
+        {
+            "source": "Efthimios Kaxiras",
+            "target": "Michael J. Aziz",
+            "value": 5
+        },
+        {
+            "source": "Efthimios Kaxiras",
+            "target": "Jenny Hoffman",
+            "value": 2
+        },
+        {
+            "source": "Efthimios Kaxiras",
+            "target": "Prineha Narang",
+            "value": 1
+        },
+        {
+            "source": "Efthimios Kaxiras",
+            "target": "Eric Mazur",
+            "value": 1
+        },
+        {
+            "source": "Efthimios Kaxiras",
+            "target": "Hanspeter Pfister",
+            "value": 4
+        },
+        {
+            "source": "Eli Tziperman",
+            "target": "Peter John Huybers",
+            "value": 2
+        },
+        {
+            "source": "Eli Tziperman",
+            "target": "Marianna Katherine Linz",
+            "value": 2
+        },
+        {
+            "source": "Eric Mazur",
+            "target": "Michael J. Aziz",
+            "value": 12
+        },
+        {
+            "source": "Eric Mazur",
+            "target": "Marko Loncar",
+            "value": 29
+        },
+        {
+            "source": "Eric Mazur",
+            "target": "Joanna Aizenberg",
+            "value": 1
+        },
+        {
+            "source": "Eric Mazur",
+            "target": "Salil P. Vadhan",
+            "value": 4
+        },
+        {
+            "source": "Eric Mazur",
+            "target": "Todd Zickler",
+            "value": 1
+        },
+        {
+            "source": "Marko Loncar",
+            "target": "Michael J. Aziz",
+            "value": 2
+        },
+        {
+            "source": "Federico Capasso",
+            "target": "Vinothan N. Manoharan",
+            "value": 5
+        },
+        {
+            "source": "Federico Capasso",
+            "target": "Marko Loncar",
+            "value": 56
+        },
+        {
+            "source": "Federico Capasso",
+            "target": "Joanna Aizenberg",
+            "value": 5
+        },
+        {
+            "source": "Federico Capasso",
+            "target": "Michael J. Aziz",
+            "value": 6
+        },
+        {
+            "source": "Federico Capasso",
+            "target": "Philip Kim",
+            "value": 12
+        },
+        {
+            "source": "Federico Capasso",
+            "target": "Jennifer Lewis",
+            "value": 1
+        },
+        {
+            "source": "Federico Capasso",
+            "target": "Todd Zickler",
+            "value": 1
+        },
+        {
+            "source": "Federico Capasso",
+            "target": "Kit Parker",
+            "value": 1
+        },
+        {
+            "source": "Gu-Yeon Wei",
+            "target": "Radhika Nagpal",
+            "value": 1
+        },
+        {
+            "source": "H.T. Kung",
+            "target": "Michael D. Smith",
+            "value": 1
+        },
+        {
+            "source": "H.T. Kung",
+            "target": "Stuart M. Shieber",
+            "value": 1
+        },
+        {
+            "source": "Hanspeter Pfister",
+            "target": "Stuart M. Shieber",
+            "value": 2
+        },
+        {
+            "source": "Hanspeter Pfister",
+            "target": "Krzysztof Z Gajos",
+            "value": 9
+        },
+        {
+            "source": "Hanspeter Pfister",
+            "target": "Todd Zickler",
+            "value": 2
+        },
+        {
+            "source": "Hanspeter Pfister",
+            "target": "Michael D. Mitzenmacher",
+            "value": 3
+        },
+        {
+            "source": "Hanspeter Pfister",
+            "target": "Radhika Nagpal",
+            "value": 1
+        },
+        {
+            "source": "Krzysztof Z Gajos",
+            "target": "Radhika Nagpal",
+            "value": 1
+        },
+        {
+            "source": "James Mickens",
+            "target": "Stephanie Gil",
+            "value": 1
+        },
+        {
+            "source": "James R. Rice",
+            "target": "Zhigang Suo",
+            "value": 1
+        },
+        {
+            "source": "Jennifer Lewis",
+            "target": "L Mahadevan",
+            "value": 2
+        },
+        {
+            "source": "Jennifer Lewis",
+            "target": "Robert J. Wood",
+            "value": 4
+        },
+        {
+            "source": "Jennifer Lewis",
+            "target": "Katia Bertoldi",
+            "value": 4
+        },
+        {
+            "source": "Jennifer Lewis",
+            "target": "Joanna Aizenberg",
+            "value": 2
+        },
+        {
+            "source": "Jennifer Lewis",
+            "target": "Joost J. Vlassak",
+            "value": 2
+        },
+        {
+            "source": "Jennifer Lewis",
+            "target": "Kit Parker",
+            "value": 1
+        },
+        {
+            "source": "Joost J. Vlassak",
+            "target": "Kit Parker",
+            "value": 3
+        },
+        {
+            "source": "Jennifer Lewis",
+            "target": "Michael J. Aziz",
+            "value": 1
+        },
+        {
+            "source": "Joanna Aizenberg",
+            "target": "Joost J. Vlassak",
+            "value": 2
+        },
+        {
+            "source": "Joanna Aizenberg",
+            "target": "Michael J. Aziz",
+            "value": 1
+        },
+        {
+            "source": "Joost J. Vlassak",
+            "target": "Michael J. Aziz",
+            "value": 2
+        },
+        {
+            "source": "Jerry X. Mitrovica",
+            "target": "Peter John Huybers",
+            "value": 25
+        },
+        {
+            "source": "Joanna Aizenberg",
+            "target": "L Mahadevan",
+            "value": 8
+        },
+        {
+            "source": "Joanna Aizenberg",
+            "target": "Marko Loncar",
+            "value": 16
+        },
+        {
+            "source": "Joanna Aizenberg",
+            "target": "Zhigang Suo",
+            "value": 5
+        },
+        {
+            "source": "Kit Parker",
+            "target": "Robert J. Wood",
+            "value": 2
+        },
+        {
+            "source": "Joost J. Vlassak",
+            "target": "L Mahadevan",
+            "value": 1
+        },
+        {
+            "source": "Kaighin A McColl",
+            "target": "Peter John Huybers",
+            "value": 1
+        },
+        {
+            "source": "Katia Bertoldi",
+            "target": "Kit Parker",
+            "value": 2
+        },
+        {
+            "source": "Krzysztof Z Gajos",
+            "target": "Stuart M. Shieber",
+            "value": 3
+        },
+        {
+            "source": "L Mahadevan",
+            "target": "Robert J. Wood",
+            "value": 1
+        },
+        {
+            "source": "Madhu Sudan",
+            "target": "Salil P. Vadhan",
+            "value": 11
+        },
+        {
+            "source": "Madhu Sudan",
+            "target": "Michael D. Mitzenmacher",
+            "value": 1
+        },
+        {
+            "source": "Madhu Sudan",
+            "target": "Radhika Nagpal",
+            "value": 1
+        },
+        {
+            "source": "Marianna Katherine Linz",
+            "target": "Steven C. Wofsy",
+            "value": 1
+        },
+        {
+            "source": "Marko Loncar",
+            "target": "Philip Kim",
+            "value": 2
+        },
+        {
+            "source": "Marko Loncar",
+            "target": "Venkatesh Narayanamurti",
+            "value": 1
+        },
+        {
+            "source": "Michael J. Aziz",
+            "target": "Venkatesh Narayanamurti",
+            "value": 7
+        },
+        {
+            "source": "Marko Loncar",
+            "target": "Robert M. Westervelt",
+            "value": 3
+        },
+        {
+            "source": "Michael D. Mitzenmacher",
+            "target": "Salil P. Vadhan",
+            "value": 2
+        },
+        {
+            "source": "Michael D. Mitzenmacher",
+            "target": "Minlan Yu",
+            "value": 2
+        },
+        {
+            "source": "Michael D. Mitzenmacher",
+            "target": "Milind Tambe",
+            "value": 1
+        },
+        {
+            "source": "Michael D. Mitzenmacher",
+            "target": "Yaron Singer",
+            "value": 1
+        },
+        {
+            "source": "Milind Tambe",
+            "target": "Yaron Singer",
+            "value": 1
+        },
+        {
+            "source": "Milind Tambe",
+            "target": "Minlan Yu",
+            "value": 1
+        },
+        {
+            "source": "Philip Kim",
+            "target": "Robert M. Westervelt",
+            "value": 9
+        },
+        {
+            "source": "Salil P. Vadhan",
+            "target": "Stephen Chong",
+            "value": 2
+        },
+        {
+            "source": "Salil P. Vadhan",
+            "target": "Yiling Chen",
+            "value": 2
+        },
+        {
+            "source": "Stephen Chong",
+            "target": "Yiling Chen",
+            "value": 1
+        },
+        {
+            "source": "Steven J. Gortler",
+            "target": "Todd Zickler",
+            "value": 14
+        }
+    ]
+}
