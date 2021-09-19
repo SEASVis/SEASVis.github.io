@@ -13,7 +13,7 @@ export default function define(runtime, observer) {
   const options = [
     {name: "Order by name", value: (a, b) => d3.ascending(a.id, b.id)},
     {name: "Order by teaching area", value: (a, b) => a.group - b.group || d3.ascending(a.id, b.id)},
-    {name: "Order by degree", value: (a, b) => d3.sum(b.sourceLinks, l => l.value) + d3.sum(b.targetLinks, l => l.value) - d3.sum(a.sourceLinks, l => l.value) - d3.sum(a.targetLinks, l => l.value) || d3.ascending(a.id, b.id)}
+    {name: "Order by collaborations", value: (a, b) => d3.sum(b.sourceLinks, l => l.value) + d3.sum(b.targetLinks, l => l.value) - d3.sum(a.sourceLinks, l => l.value) - d3.sum(a.targetLinks, l => l.value) || d3.ascending(a.id, b.id)}
   ];
   const form = html`<form style="display: flex; align-items: center; min-height: 33px;"><select name=i>${options.map(o => Object.assign(html`<option>`, {textContent: o.name}))}`;
   const timeout = setTimeout(() => {
