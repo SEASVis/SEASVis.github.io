@@ -1,6 +1,6 @@
 {
   "name": "@d3/arc-diagram",
-  "main": "5bdfd79e1ffdc48c@277.js",
+  "main": "vis_arc.js",
   "version": "277.0.0",
   "homepage": "https://observablehq.com/@d3/arc-diagram",
   "author": {
