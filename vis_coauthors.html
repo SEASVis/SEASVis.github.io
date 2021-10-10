@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Matrix Visualization: Faculty-Faculty Co-Authorship</title>
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+	<!-- Our style sheet -->
+	<link rel="stylesheet" href="css/styles_coauthors.css">
+
+	<!-- GOOGLE FONTS -->
+	<link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+	<div class="main">
+		<div class="container-fluid" style="height: 100vh; padding-top: 1vh">
+			<div class="row">
+				<div class="col-10 offset-1">
+
+					<!-- HEADING -->
+					<div class="row d-flex justify-content-center" style="height: 10vh; padding: 0;">
+						<div class="align-self-center">
+							<h1>Faculty Coauthor Matrix</h1>
+						</div>
+					</div>
+
+					<!-- CONTENT -->
+					<div class="row" style="height: 86vh; padding: 0;">
+
+						<!-- LEFT -->
+						<div class="col-8" style="padding: 0;">
+							<div class="row" style="padding: 0;">
+
+								<div class="col" style="padding: 0;">
+									<div class="row" style="height: 86vh; padding: 0vh; width: 100%">
+										<div id="faculty-adj-matrix" style="overflow-y: scroll; height: 100%; width:100%;">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- RIGHT -->
+						<div class="col-4">
+							<div class="row" style="height: 10vh; padding-left: 0vh; padding-bottom: 1vh; padding-right: 1vh; padding-top: 1vh">
+								<div class="col">
+									<div class="row" style="height: 100%">
+										<div class="col-4">
+											<div class="row justify-content-center" style="height: 100%">
+												<select id='faculty-adj-sort-selector' class="custom-select align-self-center" onchange="sortChangeFacultyAdj()">
+													<option value="name" selected>Default Ordering</option>
+													<option value="teachingArea">Sort: By Teaching Area</option>
+													<option value="numCoauthors">Sort: By Number of Coauthors</option>
+													<option value="numPapers">Sort: By Number of Papers</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-8">
+											<div class="row justify-content-center" style="height: 100%">
+												<select id='faculty-adj-filter-selector' class="custom-select align-self-center" onchange="filterChangeFacultyAdj()">
+													<option value="All">Include All</option>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row justify-content-center" style="height: 70vh; padding-left: 0vh; padding-bottom: 1vh; padding-right: 1vh; padding-top: 0vh">
+								<div class="align-self-center" style="height: 100%; width:100%;">
+									<div class="row justify-content-center" style="height: 100%; width: 100%">
+										<div id="word-frequency-chart" style="height: 100%; width:95%;">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- bootstrap -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+	<!-- d3 -->
+	<script src="https://d3js.org/d3.v6.min.js"></script>
+
+	<!-- our custom scripts-->
+	<script src="js/vis_coauthors.js"></script>
+	<script src="js/main_coauthors.js"></script>
+
+</body>
+
+</html>

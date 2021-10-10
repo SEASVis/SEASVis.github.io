@@ -1,0 +1,48 @@
+h1, h3, p {
+	text-align: center;
+}
+
+h1 {
+	font-size:52px;
+	font-family: 'Russo One';
+	margin-top:0;
+}
+
+#relationship-section {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+rect {
+	cursor: pointer;
+}
+
+.label {
+	fill: white;
+	pointer-events: none;
+}
+
+.link {
+	fill: none;
+	stroke-width: 1px;
+}
+
+.activeFaculty {
+	fill: #ed1b34;
+	stroke: #ed1b34;
+}
+
+.activeLink {
+	fill: none;
+	stroke-width: 3px;
+}
+
+.repressNode {
+	fill: #CCC;
+	stroke: #CCC;
+}
+
+.repressLink {
+	stroke: #CCC;
+	stroke-width: 0px;
+}
