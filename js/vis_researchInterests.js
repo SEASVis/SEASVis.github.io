@@ -2,24 +2,19 @@
 *      class visResearchInterests        *
 * * * * * * * * * * * * * */
 
-// TODO: maybe use an actual scale, instead of adjusting with scaling myself...
-// TODO: maybe have something interesting happen on click
-
 class visResearchInterests {
-    constructor(parentElement, peopleInfo, coursesInfo, latestPeopleInfo){
+    constructor(parentElement, peopleInfo, latestPeopleInfo){
         this.parentElement = parentElement;
         this.peopleInfo = peopleInfo;
-        this.coursesInfo = coursesInfo;
         this.latestPeopleInfo = latestPeopleInfo;
 
         this.initVis();
     }
 
-
     initVis(){
         let vis = this;
 
-        vis.margin = {top: 40, right: 60, bottom: 60, left: 60};
+        vis.margin = {top: 20, right: 5, bottom: 5, left: 5};
         vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right;
         vis.height = $("#" + vis.parentElement).height() - vis.margin.top - vis.margin.bottom;
 
@@ -29,7 +24,7 @@ class visResearchInterests {
             .attr("width", vis.width + vis.margin.left + vis.margin.right)
             .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
             .append('g')
-            .attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`);
+            .attr('transform', `translate (${vis.width/6}, ${vis.margin.top})`);
 
         // we seem to be narrowing who we include, so here it is
         vis.latestAllFaculty = vis.latestPeopleInfo.map((x) => x.Title);
@@ -108,7 +103,6 @@ class visResearchInterests {
 
         // actually create the squares (and labels)
         vis.wrangleData();
-
     }
 
     basicRelationData() {
@@ -123,7 +117,6 @@ class visResearchInterests {
         vis.peopleInfo.forEach((x) => {
             vis.allInfoMap[x["Title"]] = x;
         });
-
     }
 
     createMatrixData() {
@@ -244,7 +237,6 @@ class visResearchInterests {
 
         vis.cellWidth = d3.max([tempScaleShift,5]); // can I just increase the max?
         vis.displayLabelsBoolean = (vis.displayFaculty.length <= vis.displayLabelsThreshold);
-
     }
 
     wrangleData() {
@@ -254,7 +246,6 @@ class visResearchInterests {
         vis.createMatrixData();
 
         vis.updateVis();
-
     }
 
     updateVis(){
@@ -419,6 +410,5 @@ class visResearchInterests {
             //.attr("y", (d,i) => (vis.cellPadding + vis.cellWidth) * d.ypos + vis.yShift)
             .attr("width", vis.cellWidth)
             .attr("height", vis.cellWidth);
-
     }
 }
