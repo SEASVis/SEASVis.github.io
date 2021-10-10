@@ -10,7 +10,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="23bcef6d-e1bd-4bf5-b1ce-d811345eb949" name="Default Changelist" comment="pulled visualizations into stand-alone pages" />
+    <list default="true" id="23bcef6d-e1bd-4bf5-b1ce-d811345eb949" name="Default Changelist" comment="pulled visualizations into stand-alone pages">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/vis_coauthors.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vis_coauthors.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vis_coauthors.html" beforeDir="false" afterPath="$PROJECT_DIR$/vis_coauthors.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vis_researchInterests.html" beforeDir="false" afterPath="$PROJECT_DIR$/vis_researchInterests.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,7 +39,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="JavaScript Debug.index.html">
+  <component name="RunManager" selected="JavaScript Debug.vis_coauthors.html">
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/SEASVis.github.io/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -49,10 +54,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.vis_coauthors.html" />
+        <item itemvalue="JavaScript Debug.vis_researchInterests.html" />
         <item itemvalue="JavaScript Debug.index.html" />
         <item itemvalue="JavaScript Debug.vis_flow.html" />
-        <item itemvalue="JavaScript Debug.vis_researchInterests.html" />
-        <item itemvalue="JavaScript Debug.vis_coauthors.html" />
       </list>
     </recent_temporary>
   </component>
@@ -67,6 +72,7 @@
       <workItem from="1633111870570" duration="1558000" />
       <workItem from="1633822911553" duration="7478000" />
       <workItem from="1633891216812" duration="1794000" />
+      <workItem from="1633894536681" duration="1753000" />
     </task>
     <task id="LOCAL-00001" summary="pulled visualizations into stand-alone pages">
       <created>1633893015053</created>
@@ -103,11 +109,11 @@
       <screen x="0" y="25" width="1536" height="873" />
     </state>
     <state x="232" y="121" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.25.1920.1055/0.25.1536.873@0.25.1536.873" timestamp="1633826639190" />
-    <state x="469" y="216" width="597" height="490" key="find.popup" timestamp="1633892727598">
+    <state x="469" y="216" width="597" height="490" key="find.popup" timestamp="1633896554953">
       <screen x="0" y="25" width="1536" height="873" />
     </state>
     <state x="469" y="216" width="597" height="490" key="find.popup/-1600.25.1600.875/0.25.1536.873@0.25.1536.873" timestamp="1633840102136" />
-    <state x="469" y="216" width="597" height="490" key="find.popup/-1920.25.1920.1055/0.25.1536.873@0.25.1536.873" timestamp="1633892727598" />
+    <state x="469" y="216" width="597" height="490" key="find.popup/-1920.25.1920.1055/0.25.1536.873@0.25.1536.873" timestamp="1633896554953" />
     <state x="433" y="214" width="670" height="676" key="search.everywhere.popup" timestamp="1633840047041">
       <screen x="0" y="25" width="1536" height="873" />
     </state>
