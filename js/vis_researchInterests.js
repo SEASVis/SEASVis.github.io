@@ -47,7 +47,7 @@ class visResearchInterests {
         vis.allTeachingAreas.forEach((teachingArea) => {
             let opt = document.createElement('option');
             opt.value = teachingArea;
-            opt.innerHTML = "Filter: Teaching Area: " + teachingArea;
+            opt.innerHTML = "Filter: Academic Area: " + teachingArea;
             selectDiv.appendChild(opt);
         });
         vis.allResearchInterests.forEach((r) => {
@@ -394,7 +394,7 @@ class visResearchInterests {
                 if (d.isInterested) {
                     return "#ed1b34"; // SEAS red //"#a51c30"; // harvard crimson. used to be purple here
                 } else {
-                    return "gray";
+                    return "#E8E8E8";
                 }
             })
             .attr("opacity", function(d) {

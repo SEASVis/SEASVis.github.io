@@ -47,7 +47,7 @@ class visCoauthors {
         vis.allTeachingAreas.forEach((teachingArea) => {
             let opt = document.createElement('option');
             opt.value = teachingArea;
-            opt.innerHTML = "Filter: Teaching Area: " + teachingArea;
+            opt.innerHTML = "Filter: Academic Area: " + teachingArea;
             selectDiv.appendChild(opt);
         });
         vis.allResearchInterests.forEach((r) => {
@@ -355,7 +355,7 @@ class visCoauthors {
                             return vis.coauthorColorScale(d.valueLen);
                         }
                     } else {
-                        return "gray";
+                        return "#E8E8E8";
                     }
                 } else {
                     return "white";

@@ -11,12 +11,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="23bcef6d-e1bd-4bf5-b1ce-d811345eb949" name="Default Changelist" comment="pulled visualizations into stand-alone pages">
-      <change afterPath="$PROJECT_DIR$/files/faculty_collabPubs.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notebooks/.ipynb_checkpoints/createCollabJson-checkpoint.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notebooks/createCollabJson.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notebooks/test.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vis_arc.js" beforeDir="false" afterPath="$PROJECT_DIR$/vis_arc.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/vis_coauthors.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vis_coauthors.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/vis_researchInterests.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vis_researchInterests.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vis_coauthors.html" beforeDir="false" afterPath="$PROJECT_DIR$/vis_coauthors.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vis_researchInterests.html" beforeDir="false" afterPath="$PROJECT_DIR$/vis_researchInterests.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +40,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="JavaScript Debug.vis_arc.html">
+  <component name="RunManager" selected="JavaScript Debug.vis_researchInterests.html">
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/SEASVis.github.io/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -59,10 +58,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.vis_researchInterests.html" />
+        <item itemvalue="JavaScript Debug.vis_coauthors.html" />
         <item itemvalue="JavaScript Debug.vis_arc.html" />
         <item itemvalue="JavaScript Debug.vis_flow.html" />
-        <item itemvalue="JavaScript Debug.vis_coauthors.html" />
-        <item itemvalue="JavaScript Debug.vis_researchInterests.html" />
         <item itemvalue="JavaScript Debug.index.html" />
       </list>
     </recent_temporary>
@@ -176,10 +175,10 @@
     </state>
     <state width="1515" height="282" key="GridCell.Tab.2.right/-1600.25.1600.875/0.25.1536.873@0.25.1536.873" timestamp="1633930624930" />
     <state width="1515" height="282" key="GridCell.Tab.2.right/-1920.25.1920.1055/0.25.1536.873@0.25.1536.873" timestamp="1633899514352" />
-    <state x="543" y="168" key="RollbackChangesDialog" timestamp="1633979867418">
+    <state x="543" y="168" key="RollbackChangesDialog" timestamp="1633984111265">
       <screen x="0" y="25" width="1536" height="873" />
     </state>
-    <state x="543" y="168" key="RollbackChangesDialog/-1920.25.1920.1055/0.25.1536.873@0.25.1536.873" timestamp="1633979867418" />
+    <state x="543" y="168" key="RollbackChangesDialog/-1920.25.1920.1055/0.25.1536.873@0.25.1536.873" timestamp="1633984111265" />
     <state x="469" y="216" width="597" height="490" key="find.popup" timestamp="1633979442535">
       <screen x="0" y="25" width="1536" height="873" />
     </state>
