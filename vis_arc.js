@@ -12,11 +12,13 @@ export default function define(runtime, observer) {
 {
   const options = [
     {name: "Order by name", value: (a, b) => d3.ascending(a.id, b.id)},
-    {name: "Order by teaching area", value: (a, b) => a.group - b.group || d3.ascending(a.id, b.id)}
-    ];
+    {name: "Order by academic area", value: (a, b) => a.group - b.group || d3.ascending(a.id, b.id)},
+    {name: "Order by number of collaborations", value: (a, b) => d3.sum(b.sourceLinks, l => 1) + d3.sum(b.targetLinks, l => 1) - d3.sum(a.sourceLinks, l => 1) - d3.sum(a.targetLinks, l => 1) || d3.ascending(a.id, b.id)},
+    {name: "Order by number of joint publications", value: (a, b) => d3.sum(b.sourceLinks, l => l.value) + d3.sum(b.targetLinks, l => l.value) - d3.sum(a.sourceLinks, l => l.value) - d3.sum(a.targetLinks, l => l.value) || d3.ascending(a.id, b.id)}
+  ];
   const form = html`<form style="display: flex; align-items: center; min-height: 33px;"><select name=i>${options.map(o => Object.assign(html`<option>`, {textContent: o.name}))}`;
   const timeout = setTimeout(() => {
-    form.i.selectedIndex = 1;
+    // form.i.selectedIndex = 1;
     form.dispatchEvent(new CustomEvent("input"));
   }, 2000);
   form.onchange = () => {
@@ -41,7 +43,7 @@ export default function define(runtime, observer) {
   stroke: #ccc;
 }
 
-.hover text {
+.hover g text {
   fill: #ccc;
 }
 
@@ -80,10 +82,11 @@ export default function define(runtime, observer) {
       .style("fill", "#00aaad")
   svg.append("text")
       .attr("x", 25)
-      .attr("y", 19)
+      .attr("y", 21)
       .attr("font-family", "sans-serif")
-      .attr("font-size", 10)
+      .attr("font-size", 14)
       .attr("text-anchor", "start")
+      .attr("class", "legend")
       .text("Applied Mathematics")
 
   svg.append("rect")
@@ -94,86 +97,94 @@ export default function define(runtime, observer) {
       .style("fill", "#cbdb2a")
   svg.append("text")
       .attr("x", 25)
-      .attr("y", 39)
+      .attr("y", 41)
       .attr("font-family", "sans-serif")
-      .attr("font-size", 10)
+      .attr("font-size", 14)
       .attr("text-anchor", "start")
       .text("Applied Physics")
 
   svg.append("rect")
       .attr("width", 12)
       .attr("height", 12)
-      .attr("x", 125)
+      .attr("x", 165)
       .attr("y", 10)
       .style("fill", "#fcb315")
   svg.append("text")
-      .attr("x", 140)
-      .attr("y", 19)
+      .attr("x", 180)
+      .attr("y", 21)
       .attr("font-family", "sans-serif")
-      .attr("font-size", 10)
+      .attr("font-size", 14)
       .attr("text-anchor", "start")
       .text("Bioengineering")
 
   svg.append("rect")
       .attr("width", 12)
       .attr("height", 12)
-      .attr("x", 125)
+      .attr("x", 165)
       .attr("y", 30)
       .style("fill", "#4e88c7")
   svg.append("text")
-      .attr("x", 140)
-      .attr("y", 39)
+      .attr("x", 180)
+      .attr("y", 41)
       .attr("font-family", "sans-serif")
-      .attr("font-size", 10)
+      .attr("font-size", 14)
       .attr("text-anchor", "start")
       .text("Computer Science")
 
   svg.append("rect")
       .attr("width", 12)
       .attr("height", 12)
-      .attr("x", 230)
+      .attr("x", 305)
       .attr("y", 10)
       .style("fill", "#ffde2d")
   svg.append("text")
-      .attr("x", 245)
-      .attr("y", 19)
+      .attr("x", 320)
+      .attr("y", 21)
       .attr("font-family", "sans-serif")
-      .attr("font-size", 10)
+      .attr("font-size", 14)
       .attr("text-anchor", "start")
       .text("Electrical Engineering")
 
   svg.append("rect")
       .attr("width", 12)
       .attr("height", 12)
-      .attr("x", 230)
+      .attr("x", 305)
       .attr("y", 30)
       .style("fill", "#77ced9")
   svg.append("text")
-      .attr("x", 245)
-      .attr("y", 39)
+      .attr("x", 320)
+      .attr("y", 41)
       .attr("font-family", "sans-serif")
-      .attr("font-size", 10)
+      .attr("font-size", 14)
       .attr("text-anchor", "start")
       .text("Environmental Science & Engineering")
 
   svg.append("rect")
       .attr("width", 12)
       .attr("height", 12)
-      .attr("x", 350)
+      .attr("x", 470)
       .attr("y", 10)
       .style("fill", "#bb89ca")
   svg.append("text")
-      .attr("x", 365)
-      .attr("y", 19)
+      .attr("x", 485)
+      .attr("y", 21)
       .attr("font-family", "sans-serif")
-      .attr("font-size", 10)
+      .attr("font-size", 14)
       .attr("text-anchor", "start")
       .text("Materials Science & Mechanical Engineering")
 
+  svg.append("text")
+      .attr("x", 10)
+      .attr("y", 70)
+      .attr("font-family", "sans-serif")
+      .attr("font-size", 14)
+      .attr("font-weight", "bold")
+      .attr("text-anchor", "start")
+      .text("Click on any node to highlight the connections!")
 
   const label = svg.append("g")
       .attr("font-family", "sans-serif")
-      .attr("font-size", 10)
+      .attr("font-size", 14)
       .attr("text-anchor", "end")
     .selectAll("g")
     .data(graph.nodes)
@@ -269,13 +280,13 @@ function arc(d) {
 d3.scalePoint(graph.nodes.map(d => d.id).sort(d3.ascending), [margin.top, height - margin.bottom])
 )});
   main.variable().define("margin", function(){return(
-{top: 60, right: 20, bottom: 20, left: 150}
+{top: 95, right: 20, bottom: 20, left: 200}
 )});
   main.variable().define("height", ["data","step","margin"], function(data,step,margin){return(
 (data.nodes.length - 1) * step + margin.top + margin.bottom
 )});
   main.variable().define("step", function(){return(
-14
+20
 )});
   main.variable().define("color", ["d3","graph"], function(d3,graph){return(
 d3.scaleOrdinal(graph.nodes.map(d => d.group).sort(d3.ascending), ["#00aaad", "#cbdb2a", "#fcb315", "#4e88c7", "#ffde2d", "#77ced9", "#bb89ca", "#ed1b34"])
