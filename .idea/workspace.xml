@@ -12,10 +12,7 @@
   <component name="ChangeListManager">
     <list default="true" id="23bcef6d-e1bd-4bf5-b1ce-d811345eb949" name="Default Changelist" comment="pulled visualizations into stand-alone pages">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/vis_coauthors.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vis_coauthors.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/vis_researchInterests.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vis_researchInterests.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vis_coauthors.html" beforeDir="false" afterPath="$PROJECT_DIR$/vis_coauthors.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vis_researchInterests.html" beforeDir="false" afterPath="$PROJECT_DIR$/vis_researchInterests.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +37,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="JavaScript Debug.vis_researchInterests.html">
+  <component name="RunManager" selected="JavaScript Debug.index.html">
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/SEASVis.github.io/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -58,11 +55,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.index.html" />
         <item itemvalue="JavaScript Debug.vis_researchInterests.html" />
         <item itemvalue="JavaScript Debug.vis_coauthors.html" />
         <item itemvalue="JavaScript Debug.vis_arc.html" />
         <item itemvalue="JavaScript Debug.vis_flow.html" />
-        <item itemvalue="JavaScript Debug.index.html" />
       </list>
     </recent_temporary>
   </component>
