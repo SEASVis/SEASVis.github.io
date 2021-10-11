@@ -99,14 +99,15 @@ class visFlow {
     initVis(){
         let vis = this;
 
-        vis.margin = {top: 10, right: 10, bottom: 0, left: 10};
+        vis.margin = {top: 5, right: 5, bottom: 5, left: 5};
         vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right;
         vis.height = $("#" + vis.parentElement).height() - vis.margin.top - vis.margin.bottom;
 
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
-            .attr("width", vis.width)
-            .attr("height", vis.height)
-            .append("g");
+            .attr("width", vis.width+vis.margin.left+vis.margin.right)
+            .attr("height", vis.height+vis.margin.top+vis.margin.bottom)
+            .append('g')
+            .attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`);
 
         vis.svg.append("rect")
             .attr("width", vis.width)
@@ -263,24 +264,28 @@ class visFlow {
 
         vis.boxWidth = 150;
         vis.boxWidthArea = 220;
-        vis.boxWidthCenter = 300;
-        vis.gap = {width: (vis.width - (2*vis.boxWidthArea + 2*vis.boxWidth + vis.boxWidthCenter)) / (vis.lvlCount-1), height: 0};
+        vis.boxWidthCenter = 335;
+        vis.gap = {width: (vis.width - (2*vis.boxWidthArea + 2*vis.boxWidth + vis.boxWidthCenter)) / (vis.lvlCount-1), height: 1};
 
-        vis.boxHeight = 10;
+        // vis.boxHeight = 10;
+        vis.boxHeight = (vis.height - 10 - vis.facultyHalfCount*vis.gap.height) / vis.facultyHalfCount;
         vis.boxHeightArea = (vis.height - vis.areaCount*vis.gap.height) / vis.areaCount;
         //vis.boxHeightCenter = (vis.height - vis.centerCount*vis.gap.height) / vis.centerCount;
-        vis.boxHeightCenter = 14;
+        vis.boxHeightCenter = vis.boxHeight+5;
 
         vis.schoolOffset = 18;
-        if(vis.height < vis.facultyHalfCount * (vis.boxHeight + vis.gap.height)){
-            vis.facultyOffset1 = 0;
-            vis.facultyOffset2 = 0;
-            vis.centerOffset = 0;
-        }else{
-            vis.facultyOffset1 = (vis.height - (vis.facultyHalfCount * vis.boxHeight)) / 2;
-            vis.facultyOffset2 = (vis.height - ((vis.facultyCount - vis.facultyHalfCount) * vis.boxHeight)) / 2;
-            vis.centerOffset = (vis.height - (vis.centerCount * vis.boxHeightCenter) - vis.schoolOffset) / 2;
-        }
+        // if(vis.height < vis.facultyHalfCount * (vis.boxHeight + vis.gap.height)){
+        //     vis.facultyOffset1 = 0;
+        //     vis.facultyOffset2 = 0;
+        //     vis.centerOffset = 0;
+        // }else{
+        //     vis.facultyOffset1 = (vis.height - (vis.facultyHalfCount * vis.boxHeight)) / 2;
+        //     vis.facultyOffset2 = (vis.height - ((vis.facultyCount - vis.facultyHalfCount) * vis.boxHeight)) / 2;
+        //     vis.centerOffset = (vis.height - (vis.centerCount * vis.boxHeightCenter) - vis.schoolOffset) / 2;
+        // }
+        vis.facultyOffset1 = 5;
+        vis.facultyOffset2 = 5;
+        vis.centerOffset = (vis.height - (vis.boxHeightCenter+vis.gap.height)*(vis.centerCount+1)+20)/2;
 
         vis.schoolCount = 0;
         vis.Nodes.forEach(function (d, i) {
@@ -375,7 +380,7 @@ class visFlow {
 
         node.append("text")
             .attr("class", "label")
-            .attr("x", function (d) { return d.x + 14; })
+            .attr("x", function (d) { return d.x + 7; })
             .attr("y", function (d) {
                 if(d.lvl === 0 || d.lvl === 4){
                     return d.y + vis.boxHeightArea/2+3;
@@ -387,12 +392,81 @@ class visFlow {
             })
             .style("font-size", function(d){
                 if(d.lvl === 0 || d.lvl === 4){
-                    return "9px";
+                    return "10px";
                 }else{
-                    return "9px";
+                    return "10px";
                 }
             })
-            .text(function (d) { return d.name; });
+            .text(function (d) {
+                if(d.name !== "Environmental Science & Engineering" && d.name !== "Materials Science & Mechanical Engineering"){
+                    return d.name;
+                }
+            });
+
+        vis.nodes_ESE = vis.Nodes.filter(obj => {
+            return obj.name === "Environmental Science & Engineering"
+        })
+
+        let offset_wrap = 7
+        let ESE1 = vis.nodes_ESE[0]
+        vis.svg.append("text")
+            .attr("class", "label")
+            .attr("x", ESE1.x + 7 )
+            .attr("y", ESE1.y + vis.boxHeightArea/2+3 - offset_wrap)
+            .style("font-size", "10px")
+            .text("Environmental Science");
+        vis.svg.append("text")
+            .attr("class", "label")
+            .attr("x", ESE1.x + 7 )
+            .attr("y", ESE1.y + vis.boxHeightArea/2+3 + offset_wrap)
+            .style("font-size", "10px")
+            .text("& Engineering");
+
+        let ESE2 = vis.nodes_ESE[1]
+        vis.svg.append("text")
+            .attr("class", "label")
+            .attr("x", ESE2.x + 7 )
+            .attr("y", ESE2.y + vis.boxHeightArea/2+3 - offset_wrap)
+            .style("font-size", "10px")
+            .text("Environmental Science");
+        vis.svg.append("text")
+            .attr("class", "label")
+            .attr("x", ESE2.x + 7 )
+            .attr("y", ESE2.y + vis.boxHeightArea/2+3 + offset_wrap)
+            .style("font-size", "10px")
+            .text("& Engineering");
+
+        vis.nodes_MSME = vis.Nodes.filter(obj => {
+            return obj.name === "Materials Science & Mechanical Engineering"
+        })
+
+        let MSME1 = vis.nodes_MSME[0]
+        vis.svg.append("text")
+            .attr("class", "label")
+            .attr("x", MSME1.x + 7 )
+            .attr("y", MSME1.y + vis.boxHeightArea/2+3 - offset_wrap)
+            .style("font-size", "10px")
+            .text("Materials Science");
+        vis.svg.append("text")
+            .attr("class", "label")
+            .attr("x", MSME1.x + 7 )
+            .attr("y", MSME1.y + vis.boxHeightArea/2+3 + offset_wrap)
+            .style("font-size", "10px")
+            .text("& Mechanical Engineering");
+
+        let MSME2 = vis.nodes_MSME[1]
+        vis.svg.append("text")
+            .attr("class", "label")
+            .attr("x", MSME2.x + 7 )
+            .attr("y", MSME2.y + vis.boxHeightArea/2+3 - offset_wrap)
+            .style("font-size", "10px")
+            .text("Materials Science");
+        vis.svg.append("text")
+            .attr("class", "label")
+            .attr("x", MSME2.x + 7 )
+            .attr("y", MSME2.y + vis.boxHeightArea/2+3 + offset_wrap)
+            .style("font-size", "10px")
+            .text("& Mechanical Engineering");
 
         vis.Links.forEach(function (li) {
             vis.svg.append("path", "g")
