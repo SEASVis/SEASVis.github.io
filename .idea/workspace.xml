@@ -11,9 +11,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="23bcef6d-e1bd-4bf5-b1ce-d811345eb949" name="Default Changelist" comment="pulled visualizations into stand-alone pages">
+      <change afterPath="$PROJECT_DIR$/data_flow2/Data_AreasInterests.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data_flow2/Data_Faculty.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data_flow2/Data_FacultyAreas.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data_flow2/Data_FacultyCenters.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data_flow2/Data_FacultyInterests.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data_flow2/Data_FacultySchools.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/main_flow2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/vis_flow2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vis_flow2.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/vis_flow.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vis_flow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vis_flow.html" beforeDir="false" afterPath="$PROJECT_DIR$/vis_flow.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,14 +46,14 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="JavaScript Debug.vis_flow.html">
+  <component name="RunManager" selected="JavaScript Debug.index.html">
     <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/SEASVis.github.io/index.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="vis_arc.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/SEASVis.github.io/vis_arc.html" useBuiltInWebServerPort="true">
+    <configuration name="vis_coauthors.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/SEASVis.github.io/vis_coauthors.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="vis_coauthors.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/SEASVis.github.io/vis_coauthors.html" useBuiltInWebServerPort="true">
+    <configuration name="vis_flow2.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/SEASVis.github.io/vis_flow2.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="vis_flow.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/SEASVis.github.io/vis_flow.html" useBuiltInWebServerPort="true">
@@ -56,11 +64,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.vis_flow.html" />
         <item itemvalue="JavaScript Debug.index.html" />
+        <item itemvalue="JavaScript Debug.vis_flow2.html" />
+        <item itemvalue="JavaScript Debug.vis_flow.html" />
         <item itemvalue="JavaScript Debug.vis_researchInterests.html" />
         <item itemvalue="JavaScript Debug.vis_coauthors.html" />
-        <item itemvalue="JavaScript Debug.vis_arc.html" />
       </list>
     </recent_temporary>
   </component>
@@ -77,6 +85,7 @@
       <workItem from="1633891216812" duration="1794000" />
       <workItem from="1633894536681" duration="4174000" />
       <workItem from="1633976267559" duration="3638000" />
+      <workItem from="1633993012408" duration="4221000" />
     </task>
     <task id="LOCAL-00001" summary="pulled visualizations into stand-alone pages">
       <created>1633893015053</created>
