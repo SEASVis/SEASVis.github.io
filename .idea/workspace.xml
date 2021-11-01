@@ -11,6 +11,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="23bcef6d-e1bd-4bf5-b1ce-d811345eb949" name="Default Changelist" comment="pulled visualizations into stand-alone pages">
+      <change afterPath="$PROJECT_DIR$/js/main_flow3.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/vis_flow3.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notebooks/.ipynb_checkpoints/Untitled-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notebooks/checkIncorrectCollabs.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notebooks/df_listIncorrectCollabs.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notebooks/list_incorrectCollabs.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/notebooks/list_incorrectCollabs.xls" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vis_flow3.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
@@ -78,6 +86,7 @@
       <workItem from="1633976267559" duration="3638000" />
       <workItem from="1633993012408" duration="4302000" />
       <workItem from="1633999794751" duration="87000" />
+      <workItem from="1635691215823" duration="9732000" />
     </task>
     <task id="LOCAL-00001" summary="pulled visualizations into stand-alone pages">
       <created>1633893015053</created>
@@ -178,11 +187,11 @@
       <screen x="0" y="25" width="1536" height="873" />
     </state>
     <state x="543" y="168" key="RollbackChangesDialog/-1920.25.1920.1055/0.25.1536.873@0.25.1536.873" timestamp="1633984111265" />
-    <state x="469" y="216" width="597" height="490" key="find.popup" timestamp="1633979442535">
+    <state x="469" y="216" width="597" height="490" key="find.popup" timestamp="1635718986583">
       <screen x="0" y="25" width="1536" height="873" />
     </state>
     <state x="469" y="216" width="597" height="490" key="find.popup/-1600.25.1600.875/0.25.1536.873@0.25.1536.873" timestamp="1633840102136" />
-    <state x="469" y="216" width="597" height="490" key="find.popup/-1920.25.1920.1055/0.25.1536.873@0.25.1536.873" timestamp="1633979442535" />
+    <state x="469" y="216" width="597" height="490" key="find.popup/-1920.25.1920.1055/0.25.1536.873@0.25.1536.873" timestamp="1635718986583" />
     <state x="433" y="214" width="670" height="676" key="search.everywhere.popup" timestamp="1633840047041">
       <screen x="0" y="25" width="1536" height="873" />
     </state>
