@@ -11,10 +11,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="23bcef6d-e1bd-4bf5-b1ce-d811345eb949" name="Default Changelist" comment="pulled visualizations into stand-alone pages">
-      <change afterPath="$PROJECT_DIR$/js/main_radial.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/vis_radial.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vis_radial.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/vis_radial.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vis_radial.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +39,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../DataVisualization/OnTheNose_DataViz" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="JavaScript Debug.index.html">
@@ -82,7 +84,7 @@
       <workItem from="1633993012408" duration="4302000" />
       <workItem from="1633999794751" duration="87000" />
       <workItem from="1635691215823" duration="9732000" />
-      <workItem from="1635903393142" duration="18233000" />
+      <workItem from="1635903393142" duration="52110000" />
     </task>
     <task id="LOCAL-00001" summary="pulled visualizations into stand-alone pages">
       <created>1633893015053</created>
