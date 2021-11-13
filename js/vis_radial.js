@@ -66,6 +66,8 @@ class visRadial {
         vis.AreasDict=[]
 
 
+
+
         vis.dataPeople.forEach(function(faculty, index){
             let title = faculty['Title'];
             let teachingAreas = faculty['Teaching Areas'].split('|');
@@ -89,7 +91,8 @@ class visRadial {
 
             vis.Nodes.push({
                 "lvl": 1,
-                "name": title
+                "name": title,
+                "teachingArea":teachingAreas[0]
             })
 
             teachingAreas.forEach(function(area){
@@ -97,7 +100,8 @@ class visRadial {
                     vis.listAreas.push(area);
                     vis.Nodes.push({
                         "lvl": 0,
-                        "name": area
+                        "name": area,
+                        "teachingArea":null
                     })
                 }
 
@@ -108,6 +112,8 @@ class visRadial {
                 })
             })
         });
+
+        console.log(vis.Nodes)
 
 
         vis.dataCenters.forEach(function(row, index){
@@ -121,7 +127,8 @@ class visRadial {
 
                 vis.Nodes.push({
                     "lvl": 2,
-                    "name": center
+                    "name": center,
+                    "teachingArea":null
                 })
             }
 
@@ -132,18 +139,33 @@ class visRadial {
             })
         });
 
+        vis.sortedFaculty=vis.Nodes.filter(d=>d.lvl===1).slice().sort((a, b) => {
+            // console.log(a,b);
+            return d3.ascending(a.teachingArea, b.teachingArea)
+        })
+
+        vis.sortedAreas=vis.Nodes.filter(d=>d.lvl===0).slice().sort((a, b) => {
+            // console.log(a,b);
+            return d3.ascending(a.name, b.name)
+        })
+        vis.sortedCenters=vis.Nodes.filter(d=>d.lvl===2).slice().sort((a, b) => {
+            // console.log(a,b);
+            return d3.ascending(a.name, b.name)
+        })
+
+        vis.Nodes2=[...vis.sortedAreas,...vis.sortedFaculty, ...vis.sortedCenters]
+        // vis.Nodes2=[...vis.sortedFaculty]
+        // vis.Nodes2=[...vis.sortedCenters]
+        // console.log(vis.Nodes2)
+
         // z: For the donut diagram, roll the teaching data to get a list of faculty per each area
         vis.teachingAreasRolled=d3.rollups(vis.AreasDict, v=>v.length, d=>d.area)
         vis.areaDonutData=Object.assign({}, ...vis.teachingAreasRolled.map((x) => ({[x[0]]: x[1]})))
         // give each faculty and center a value of one.
         // vis.centerDonutData=Object.assign({}, ...vis.listCenters.map((x) => ({[x]: 1})))
 
-        vis.Nodes.sort(function(a,b){
-            if (a.lvl === b.lvl && a.lvl !== 2){
-                return a.name.localeCompare(b.name);
-            }
-            return a.lvl - b.lvl;
-        });
+        // sorts faculty?
+
 
         vis.listAreas.sort(function(a,b){ return a.localeCompare(b) });
         vis.listFaculty.sort(function(a,b){ return a.localeCompare(b) });
@@ -167,7 +189,10 @@ class visRadial {
         // d.lvl = 1 Faculty
         // d.lvl = 2 Centers
 
-        vis.Nodes.forEach(function (d, i) {
+
+
+
+        vis.Nodes2.forEach(function (d, i) {
             d.id = "n" + i;
             if (d.lvl === 2){
                 d.value = 1;
@@ -185,6 +210,7 @@ class visRadial {
             }
 
         });
+
 
 
         vis.Links.forEach(function (d,i) {
@@ -206,21 +232,35 @@ class visRadial {
         let vis = this;
 
         /////// NODES
+        // console.log(vis.Nodes2)
 
         vis.pie = d3.pie()
             .value(function (d) {
                 return d[1].value;
             })
-        vis.radialNodeData = vis.pie(Object.entries(vis.Nodes))
+            .startAngle(6.18577158148688)
+            // .endAngle(Math.PI/2 )
+            // .sort((a,b)=>{
+            //     // return d3.descending(a,b)
+            //     return (a[1].lvl ===1 && b[1].lvl===1)? d3.descending(a[1].teachingArea,b[1].teachingArea) : null
+            // })
 
+        vis.radialNodeData = vis.pie(Object.entries(vis.Nodes2))
+
+        console.log(vis.radialNodeData)
+        // vis.radialNodeData.forEach((d)=>{
+        //     console.log(d.data[1].name,d.data[1].teachingArea)
+        // })
         vis.anglesCenter = 2 * Math.PI / vis.listCenters.length; //radians NOT Degrees
 
         vis.pie2 = d3.pie()
             .value(function (d) {
                 // console.log(d);
                 return d[1];
-            })
+            }).sort((a,b)=>{return d3.descending(a,b)})
         vis.areaDonutDataReady = vis.pie2(Object.entries(vis.areaDonutData))
+
+        console.log(vis.areaDonutDataReady)
 
         vis.areaDonutAngles=[]
 
@@ -232,7 +272,7 @@ class visRadial {
 
 
         vis.facultyAngleScale = d3.scaleLinear()
-            .range([0, 2 * Math.PI])
+            .range([-2*Math.PI/5+.05, -12*Math.PI/5+.05])
             .domain([0, vis.facultyCount]);
 
         vis.centerAngleScale = d3.scaleLinear()
@@ -288,6 +328,7 @@ class visRadial {
             .attr("cy", d=>d.coords[1])
             .attr("fill","none")
             .attr("stroke", "black")
+            .attr("translate", function(d){if (d.lvl===1){return "rotate (6.18577158148688)"}})
             .attr("stroke-width", function(d){
                 if(d.data[1].lvl === 0){ return "px"; }
                 else if(d.data[1].lvl === 2){ return "0px"; }
@@ -296,7 +337,7 @@ class visRadial {
             .attr("fill", function(d){
                 if(d.data[1].lvl === 0){ return "black"; }
                 else if(d.data[1].lvl === 2){ return "#93a1ad"; }
-                else{ return "#A51C30"; }
+                else{ return vis.colorAreas(d.data[1].teachingArea) }
             })
             .on("mouseover", function(event,d){
                 // vis.showModal(d)
@@ -430,40 +471,45 @@ class visRadial {
 
 
 
-        vis.centerDiv
-            .append("text")
-            .text("SEAS FACULTY")
-            .attr("color", "black")
-            .attr("font-size", "2em")
-            .attr("z-index", 100000)
-            .attr("dy", "-2em")
-            .attr("text-anchor", "middle")
-
-        vis.centerDiv
-            .append("text")
-            .text("are involved in")
-            .attr("color", "black")
-            .attr("font-size", "1.5em")
-            .attr("z-index", 100000)
-            .attr("dy", "-1em")
-            .attr("text-anchor", "middle")
+        // vis.centerDiv
+        //     .append("text")
+        //     .text("SEAS FACULTY")
+        //     .attr("color", "black")
+        //     .attr("font-size", "2em")
+        //     .attr("z-index", 100000)
+        //     .attr("dy", "-2em")
+        //     .attr("text-anchor", "middle")
+        //
+        // vis.centerDiv
+        //     .append("text")
+        //     .text("are involved in")
+        //     .attr("color", "black")
+        //     .attr("font-size", "1.5em")
+        //     .attr("z-index", 100000)
+        //     .attr("dy", "-1em")
+        //     .attr("text-anchor", "middle")
 
         vis.centerDiv.selectAll(".defaultText").remove()
         vis.centerDiv.selectAll(".hoverText").remove()
 
         if (hover){
 
-
-
-            console.log(d.data.name)
-
             vis.centerDiv
                 .append("text")
-                .text(d.data[1].name)
+                .text(d.startAngle)
                 .attr("color", "black")
                 .attr("font-size", "2em")
                 .attr("z-index", 100000)
                 .attr("dy", "1em")
+                .attr("text-anchor", "middle")
+                .attr("class", "hoverText")
+            vis.centerDiv
+                .append("text")
+                .text(d.endAngle)
+                .attr("color", "black")
+                .attr("font-size", "2em")
+                .attr("z-index", 100000)
+                .attr("dy", "2em")
                 .attr("text-anchor", "middle")
                 .attr("class", "hoverText")
 
