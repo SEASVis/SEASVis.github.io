@@ -113,7 +113,15 @@ class visRadial {
             })
         });
 
-        console.log(vis.Nodes)
+        vis.Nodes.forEach(function(d){
+            console.log(d)
+            if (d.name==='Pavlos Protopapas') {
+                console.log(d)
+                d.teachingArea = 'Applied Computation'
+            }}
+
+
+        )
 
 
         vis.dataCenters.forEach(function(row, index){
@@ -238,7 +246,6 @@ class visRadial {
             .value(function (d) {
                 return d[1].value;
             })
-            .startAngle(6.18577158148688)
             // .endAngle(Math.PI/2 )
             // .sort((a,b)=>{
             //     // return d3.descending(a,b)
@@ -272,7 +279,7 @@ class visRadial {
 
 
         vis.facultyAngleScale = d3.scaleLinear()
-            .range([-2*Math.PI/5+.05, -12*Math.PI/5+.05])
+            .range([-2*Math.PI/5+.07, -12*Math.PI/5+.07])
             .domain([0, vis.facultyCount]);
 
         vis.centerAngleScale = d3.scaleLinear()

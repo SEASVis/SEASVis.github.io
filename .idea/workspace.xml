@@ -10,10 +10,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="23bcef6d-e1bd-4bf5-b1ce-d811345eb949" name="Default Changelist" comment="pulled visualizations into stand-alone pages">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/vis_radial.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vis_radial.js" afterDir="false" />
-    </list>
+    <list default="true" id="23bcef6d-e1bd-4bf5-b1ce-d811345eb949" name="Default Changelist" comment="pulled visualizations into stand-alone pages" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -83,7 +80,7 @@
       <workItem from="1635691215823" duration="9732000" />
       <workItem from="1635903393142" duration="52167000" />
       <workItem from="1636378649378" duration="21504000" />
-      <workItem from="1636752622521" duration="6271000" />
+      <workItem from="1636752622521" duration="6954000" />
     </task>
     <task id="LOCAL-00001" summary="pulled visualizations into stand-alone pages">
       <created>1633893015053</created>
