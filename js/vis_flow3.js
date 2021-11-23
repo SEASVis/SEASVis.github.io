@@ -95,19 +95,19 @@ class visFlow {
     initVis(){
         let vis = this;
 
-        vis.margin = {top: 10, right: 20, bottom: 20, left: 10};
+        vis.margin = {top: 40, right: 20, bottom: 40, left: 10};
         vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right;
         vis.height = $("#" + vis.parentElement).height() - vis.margin.top - vis.margin.bottom;
 
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
             .attr("width", vis.width+vis.margin.left+vis.margin.right)
-            .attr("height", 2000)
+            .attr("height", 2040)
             .append('g')
             .attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`);
 
         vis.svg.append("rect")
             .attr("width", vis.width)
-            .attr("height", 2000)
+            .attr("height", 2040)
             .style("fill", "white")
             .on("click", function () {
                 vis.repress(false);
@@ -202,7 +202,7 @@ class visFlow {
         vis.listFaculty.sort(function(a,b){ return a.localeCompare(b) });
 
         vis.colors = ["#ed1b34", "#00aaad", "#cbdb2a", "#fcb315", "#4e88c7", "#ffde2d", "#77ced9", "#bb89ca"]
-        vis.colors2 = ["#808080", "#696969"]
+        vis.colors2 = ["#a5a5a5"]
         vis.colorAreas = d3.scaleOrdinal().domain(vis.listAreas).range(vis.colors)
         vis.colorCenters = d3.scaleOrdinal().domain(vis.listCenters).range(vis.colors2)
 
@@ -251,11 +251,11 @@ class visFlow {
         vis.schoolCount = 0;
         vis.Nodes.forEach(function (d, i) {
             if(d.lvl === 0) {
-                d.x = 0;
+                d.x = 60;
                 d.y = (vis.boxHeightArea + vis.gap.height) * count[d.lvl] +$(window).scrollTop();
                 count[d.lvl] += 1;
             } else if(d.lvl === 2){
-                d.x = vis.boxWidthArea + vis.boxWidth + d.lvl*vis.gap.width;
+                d.x = vis.boxWidthArea + vis.boxWidth + d.lvl*vis.gap.width  - 60;
                 if(vis.schoolCount < 7){
                     d.y = (vis.boxHeightCenter + vis.gap.height) * count[d.lvl] +$(window).scrollTop();
                     vis.schoolCount = vis.schoolCount + 1;
@@ -276,6 +276,7 @@ class visFlow {
 
         let nodesEnter = nodes.enter().append("rect")
             .attr("class", "node")
+            .classed("repressNode", d=> d.lvl==2 ? true: false)
             .attr("id", function (d) { return d.id; })
             .attr("width", function(d) {
                 if(d.lvl === 0){ return vis.boxWidthArea; }
@@ -287,17 +288,20 @@ class visFlow {
                 if(d.lvl === 2){ return vis.boxHeightCenter; }
                 else{ return vis.boxHeight; }
             })
-            .attr("fill", function(d){
+            
+            .attr("fill", function(d){ 
                 if(d.lvl === 0){ return vis.colorAreas(d.name); }
-                else if(d.lvl === 2){ return vis.colorCenters(d.name); }
-                else{ return "#ed1b34"; }
+                else if(d.lvl === 2 | d.lvl === 0){ return vis.colorCenters(d.name); }
+                else{ return "white"; }
             })
-            .attr("rx", 6)
-            .attr("ry", 6)
-            .on("click", function () {
+            .attr("fill-opacity", d => d.lvl === 1 ? 0 : 0.8)
+            .attr("stroke-width", d => d.lvl=== 1 ? 1 : 0)
+            .attr("stroke", d => d.lvl === 1 ? "#ccc": "")
+            .on("mouseover", function () { //click
                 vis.repress(true);
                 vis.mouse_action(d3.select(this).datum(), true, d3.select(this).datum().lvl);
-            });
+            })
+            
 
         nodes.merge(nodesEnter)
             .attr("x", function (d) { return d.x; })
@@ -308,7 +312,7 @@ class visFlow {
 
         let labelsEnter = labels.enter().append("text")
             .attr("class", "label")
-            .style("font-size", "10px")
+            .style("font-size", "12px")
             .text(function (d) {
                 if(d.name !== "Environmental Science & Engineering" && d.name !== "Materials Science & Mechanical Engineering"){
                     return d.name;
@@ -331,18 +335,19 @@ class visFlow {
             return obj.name === "Environmental Science & Engineering"
         })
         let offset_wrap = 7
+        let x_offset = 7
         let ESE1 = vis.nodes_ESE[0]
         vis.svg.append("text")
             .attr("class", "label")
-            .attr("x", ESE1.x + 7 )
+            .attr("x", ESE1.x + x_offset )
             .attr("y", ESE1.y + vis.boxHeightArea/2+3 - offset_wrap)
-            .style("font-size", "10px")
+            .style("font-size", "12px")
             .text("Environmental Science");
         vis.svg.append("text")
             .attr("class", "label")
-            .attr("x", ESE1.x + 7 )
+            .attr("x", ESE1.x + x_offset )
             .attr("y", ESE1.y + vis.boxHeightArea/2+3 + offset_wrap)
-            .style("font-size", "10px")
+            .style("font-size", "12px")
             .text("& Engineering");
 
         vis.nodes_MSME = vis.Nodes.filter(obj => {
@@ -351,15 +356,15 @@ class visFlow {
         let MSME1 = vis.nodes_MSME[0]
         vis.svg.append("text")
             .attr("class", "label")
-            .attr("x", MSME1.x + 7 )
+            .attr("x", MSME1.x + x_offset )
             .attr("y", MSME1.y + vis.boxHeightArea/2+3 - offset_wrap)
-            .style("font-size", "10px")
+            .style("font-size", "12px")
             .text("Materials Science");
         vis.svg.append("text")
             .attr("class", "label")
-            .attr("x", MSME1.x + 7 )
+            .attr("x", MSME1.x + x_offset )
             .attr("y", MSME1.y + vis.boxHeightArea/2+3 + offset_wrap)
-            .style("font-size", "10px")
+            .style("font-size", "12px")
             .text("& Mechanical Engineering");
 
         let links = vis.svg.selectAll(".link").data(vis.Links, d=>d.id)
