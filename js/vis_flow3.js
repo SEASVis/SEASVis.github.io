@@ -297,7 +297,7 @@ class visFlow {
             .attr("fill-opacity", d => d.lvl === 1 ? 0 : 0.8)
             .attr("stroke-width", d => d.lvl=== 1 ? 1 : 0)
             .attr("stroke", d => d.lvl === 1 ? "#ccc": "")
-            .on("mouseover", function () { //click
+            .on("click", function () { 
                 vis.repress(true);
                 vis.mouse_action(d3.select(this).datum(), true, d3.select(this).datum().lvl);
             })
