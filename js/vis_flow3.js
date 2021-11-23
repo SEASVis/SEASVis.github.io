@@ -12,6 +12,18 @@ class visFlow {
         this.initVis()
     }
 
+    reset(){
+        let vis = this;
+        vis.Nodes.forEach(function(d){
+            d3.select("#" + d.id).classed("repressNode", false);
+        })
+
+        vis.Links.forEach(function(d){
+            d3.select("#" + d.id).classed("activeLink", false);
+            d3.select("#" + d.id).classed("repressLink", false);
+        })
+    }
+
     repress(stat){
         let vis = this;
         vis.Nodes.forEach(function(d){
@@ -149,7 +161,8 @@ class visFlow {
 
             vis.Nodes.push({
                 "lvl": 1,
-                "name": title
+                "name": title,
+                "school": 1
             })
 
             teachingAreas.forEach(function(area){
@@ -157,7 +170,8 @@ class visFlow {
                     vis.listAreas.push(area);
                     vis.Nodes.push({
                         "lvl": 0,
-                        "name": area
+                        "name": area,
+                        "school": 1
                     })
                 }
 
@@ -169,6 +183,7 @@ class visFlow {
             })
         });
 
+        let countSchool = 0;
         vis.dataCenters.forEach(function(row, index){
             let title = row['Title'];
             let center = row['Center'];
@@ -178,10 +193,20 @@ class visFlow {
             if(!vis.listCenters.includes(center)) {
                 vis.listCenters.push(center);
 
-                vis.Nodes.push({
-                    "lvl": 2,
-                    "name": center
-                })
+                if(countSchool < 7){
+                    vis.Nodes.push({
+                        "lvl": 2,
+                        "name": center,
+                        "school": 0
+                    })
+                } else {
+                    vis.Nodes.push({
+                        "lvl": 2,
+                        "name": center,
+                        "school": 1
+                    })
+                }
+                countSchool += 1;
             }
 
             vis.Links.push({
@@ -190,6 +215,15 @@ class visFlow {
                 "lvl": 1
             })
         });
+
+        let selectDiv = document.getElementById('center-filter-selector');
+        vis.listCenters.forEach((center) => {
+            let opt = document.createElement('option');
+            opt.value = center;
+            opt.innerHTML = center;
+            selectDiv.appendChild(opt);
+        });
+        $('#center-filter-selector').selectpicker('refresh');
 
         vis.Nodes.sort(function(a,b){
             if (a.lvl === b.lvl && a.lvl !== 2){
@@ -204,7 +238,6 @@ class visFlow {
         vis.colors = ["#ed1b34", "#00aaad", "#cbdb2a", "#fcb315", "#4e88c7", "#ffde2d", "#77ced9", "#bb89ca"]
         vis.colors2 = ["#808080", "#696969"]
         vis.colorAreas = d3.scaleOrdinal().domain(vis.listAreas).range(vis.colors)
-        vis.colorCenters = d3.scaleOrdinal().domain(vis.listCenters).range(vis.colors2)
 
         vis.areaCount = vis.listAreas.length;
         vis.facultyCount = vis.listFaculty.length;
@@ -218,6 +251,134 @@ class visFlow {
             d.target = vis.Nodes.filter(obj => {return obj.name === d.target})[0];
             d.id = "l" + d.source.id + d.target.id;
         });
+
+        vis.allNodes = vis.Nodes;
+        vis.allLinks = vis.Links;
+
+        vis.updateVis();
+    }
+
+    filterData(){
+        let vis = this;
+
+        vis.Nodes = vis.allNodes;
+        vis.Links = vis.allLinks;
+        vis.reset();
+
+        if(selectedArea.length === 0 && selectedCenter.length === 0){
+            vis.Nodes = [];
+            vis.Links = [];
+        }
+
+        if(selectedArea[0] !== "Include All" && selectedCenter.length !== 0) {
+            let selectedNodes = [];
+            let selectedLinks = [];
+            let selectedAreas = [];
+            let selectedFaculty = [];
+
+            selectedArea.forEach(function (d) {
+                let tempNode = vis.Nodes.filter(obj => {
+                    return obj.name === d
+                })[0];
+
+                selectedNodes.push(tempNode);
+                selectedAreas.push(tempNode);
+            })
+            selectedAreas.forEach(function (area) {
+                vis.Links.forEach(function (d) {
+                    if (d.target.id === area.id) {
+                        if (!selectedLinks.includes(d)) {
+                            selectedLinks.push(d)
+                        }
+
+                        let tempSelected = vis.Nodes.filter(obj => {
+                            return obj.name === d.source.name
+                        })[0]
+                        if (!selectedNodes.includes(tempSelected)) {
+                            selectedNodes.push(tempSelected);
+                        }
+                        selectedFaculty.push(d.source);
+                    }
+                })
+
+                vis.Links.forEach(function (d) {
+                    if (d.lvl === 1) {
+                        if (selectedFaculty.includes(d.source)) {
+                            if (!selectedLinks.includes(d)) {
+                                selectedLinks.push(d)
+                            }
+
+                            let tempSelected = vis.Nodes.filter(obj => {
+                                return obj.name === d.target.name
+                            })[0]
+                            if (!selectedNodes.includes(tempSelected)) {
+                                selectedNodes.push(tempSelected);
+                            }
+                        }
+                    }
+                })
+            })
+
+            selectedNodes.sort((a,b) => a.lvl - b.lvl || a.school - b.school || d3.ascending(a.name, b.name))
+            vis.Nodes = selectedNodes;
+            vis.Links = selectedLinks;
+            console.log(vis.Nodes)
+        }
+
+        if(selectedCenter[0] !== "Include All" && selectedArea.length !== 0) {
+            let selectedNodes = [];
+            let selectedLinks = [];
+            let selectedCenters = [];
+            let selectedFaculty = [];
+
+            selectedCenter.forEach(function (d) {
+                let tempNode = vis.Nodes.filter(obj => {
+                    return obj.name === d
+                })[0];
+
+                selectedNodes.push(tempNode);
+                selectedCenters.push(tempNode);
+            })
+
+            selectedCenters.forEach(function (center) {
+                vis.Links.forEach(function (d) {
+                    if (d.target.id === center.id) {
+                        if (!selectedLinks.includes(d)) {
+                            selectedLinks.push(d)
+                        }
+
+                        let tempSelected = vis.Nodes.filter(obj => {
+                            return obj.name === d.source.name
+                        })[0]
+                        if (!selectedNodes.includes(tempSelected)) {
+                            selectedNodes.push(tempSelected);
+                        }
+                        selectedFaculty.push(d.source);
+                    }
+                })
+
+                vis.Links.forEach(function (d) {
+                    if (d.lvl === 0) {
+                        if (selectedFaculty.includes(d.source)) {
+                            if (!selectedLinks.includes(d)) {
+                                selectedLinks.push(d)
+                            }
+
+                            let tempSelected = vis.Nodes.filter(obj => {
+                                return obj.name === d.target.name
+                            })[0]
+                            if (!selectedNodes.includes(tempSelected)) {
+                                selectedNodes.push(tempSelected);
+                            }
+                        }
+                    }
+                })
+            })
+
+            selectedNodes.sort((a,b) => a.lvl - b.lvl || a.area - b.area || d3.ascending(a.name, b.name))
+            vis.Nodes = selectedNodes;
+            vis.Links = selectedLinks;
+        }
 
         vis.updateVis();
     }
@@ -236,17 +397,36 @@ class visFlow {
         vis.Nodes.forEach(function (d) {
             count[d.lvl] = 0;
         });
-        vis.lvlCount = count.length;
+        vis.lvlCount = 3;
+        let countNodesAreas = vis.Nodes.filter((obj) => obj.lvl === 0).length;
+        let countNodesFaculty = vis.Nodes.filter((obj) => obj.lvl === 1).length;
+        let countNodesCenters = vis.Nodes.filter((obj) => obj.lvl === 2).length;
 
         vis.boxWidth = 155;
-        vis.boxWidthArea = 155;
+        vis.boxWidthArea = 240;
         vis.boxWidthCenter = 340;
         vis.gap = {width: (vis.width - (vis.boxWidthArea + vis.boxWidth + vis.boxWidthCenter)) / (vis.lvlCount-1), height: 2};
 
         vis.boxHeight = 14;
-        vis.boxHeightArea = (vis.height - vis.areaCount*vis.gap.height) / vis.areaCount;
-        vis.boxHeightCenter = (vis.height - (vis.centerCount+1)*vis.gap.height) / (vis.centerCount+1);
+        vis.boxHeightArea = (vis.height - countNodesAreas*vis.gap.height) / countNodesAreas;
+        vis.boxHeightCenter = (vis.height - (countNodesCenters+1)*vis.gap.height) / (countNodesCenters+1);
         vis.schoolOffset = vis.boxHeightCenter;
+
+        let listSchools = [
+            "Harvard Business School",
+            "Harvard Graduate School of Design",
+            "Harvard Kennedy School of Government",
+            "Harvard Law School",
+            "Harvard Medical School",
+            "Harvard T.H. Chan School of Public Health",
+            "Institute for Applied Computational Science (IACS)"
+        ]
+        let countSelectedSchools = 0;
+        vis.Nodes.forEach(function(d){
+            if(listSchools.includes(d.name)){
+                countSelectedSchools += 1;
+            }
+        })
 
         vis.schoolCount = 0;
         vis.Nodes.forEach(function (d, i) {
@@ -256,13 +436,20 @@ class visFlow {
                 count[d.lvl] += 1;
             } else if(d.lvl === 2){
                 d.x = vis.boxWidthArea + vis.boxWidth + d.lvl*vis.gap.width;
-                if(vis.schoolCount < 7){
+
+                if(countSelectedSchools === 0){
                     d.y = (vis.boxHeightCenter + vis.gap.height) * count[d.lvl] +$(window).scrollTop();
                     vis.schoolCount = vis.schoolCount + 1;
+                } else {
+                    if(vis.schoolCount < countSelectedSchools){
+                        d.y = (vis.boxHeightCenter + vis.gap.height) * count[d.lvl] +$(window).scrollTop();
+                        vis.schoolCount = vis.schoolCount + 1;
+                    }
+                    else{
+                        d.y = vis.schoolOffset + (vis.boxHeightCenter + vis.gap.height) * count[d.lvl] +$(window).scrollTop();
+                    }
                 }
-                else{
-                    d.y = vis.schoolOffset + (vis.boxHeightCenter + vis.gap.height) * count[d.lvl] +$(window).scrollTop();
-                }
+
                 count[d.lvl] += 1;
             } else { //(d.lvl === 1)
                 d.x = vis.boxWidthArea + vis.gap.width;
@@ -274,6 +461,8 @@ class visFlow {
         let nodes = vis.svg.selectAll(".node").data(vis.Nodes, d=>d.id)
         nodes.exit().remove();
 
+        let listSelectedCenters = vis.Nodes.filter((d) => d.lvl === 2).map(function(d){return d.name});
+        vis.colorCenters = d3.scaleOrdinal().domain(listSelectedCenters).range(vis.colors2)
         let nodesEnter = nodes.enter().append("rect")
             .attr("class", "node")
             .attr("id", function (d) { return d.id; })
@@ -281,16 +470,6 @@ class visFlow {
                 if(d.lvl === 0){ return vis.boxWidthArea; }
                 if(d.lvl === 2){ return vis.boxWidthCenter; }
                 else{ return vis.boxWidth; }
-            })
-            .attr("height", function(d) {
-                if(d.lvl === 0){ return vis.boxHeightArea; }
-                if(d.lvl === 2){ return vis.boxHeightCenter; }
-                else{ return vis.boxHeight; }
-            })
-            .attr("fill", function(d){
-                if(d.lvl === 0){ return vis.colorAreas(d.name); }
-                else if(d.lvl === 2){ return vis.colorCenters(d.name); }
-                else{ return "#ed1b34"; }
             })
             .attr("rx", 6)
             .attr("ry", 6)
@@ -302,17 +481,28 @@ class visFlow {
         nodes.merge(nodesEnter)
             .attr("x", function (d) { return d.x; })
             .attr("y", function (d) { return d.y; })
+            .attr("height", function(d) {
+                if(d.lvl === 0){ return vis.boxHeightArea; }
+                if(d.lvl === 2){ return vis.boxHeightCenter; }
+                else{ return vis.boxHeight; }
+            })
+            .attr("fill", function(d){
+                if(d.lvl === 0){ return vis.colorAreas(d.name); }
+                else if(d.lvl === 2){ return vis.colorCenters(d.name); }
+                else{ return "#ed1b34"; }
+            })
 
-        let labels = vis.svg.selectAll(".label").data(vis.Nodes)
+        let labels = vis.svg.selectAll(".label").data(vis.Nodes, d=>d.name)
         labels.exit().remove();
 
         let labelsEnter = labels.enter().append("text")
             .attr("class", "label")
             .style("font-size", "10px")
             .text(function (d) {
-                if(d.name !== "Environmental Science & Engineering" && d.name !== "Materials Science & Mechanical Engineering"){
-                    return d.name;
-                }
+                return d.name;
+                // if(d.name !== "Environmental Science & Engineering" && d.name !== "Materials Science & Mechanical Engineering"){
+                //     return d.name;
+                // }
             });
 
         labels.merge(labelsEnter)
@@ -327,40 +517,45 @@ class visFlow {
                 }
             })
 
-        vis.nodes_ESE = vis.Nodes.filter(obj => {
-            return obj.name === "Environmental Science & Engineering"
-        })
-        let offset_wrap = 7
-        let ESE1 = vis.nodes_ESE[0]
-        vis.svg.append("text")
-            .attr("class", "label")
-            .attr("x", ESE1.x + 7 )
-            .attr("y", ESE1.y + vis.boxHeightArea/2+3 - offset_wrap)
-            .style("font-size", "10px")
-            .text("Environmental Science");
-        vis.svg.append("text")
-            .attr("class", "label")
-            .attr("x", ESE1.x + 7 )
-            .attr("y", ESE1.y + vis.boxHeightArea/2+3 + offset_wrap)
-            .style("font-size", "10px")
-            .text("& Engineering");
-
-        vis.nodes_MSME = vis.Nodes.filter(obj => {
-            return obj.name === "Materials Science & Mechanical Engineering"
-        })
-        let MSME1 = vis.nodes_MSME[0]
-        vis.svg.append("text")
-            .attr("class", "label")
-            .attr("x", MSME1.x + 7 )
-            .attr("y", MSME1.y + vis.boxHeightArea/2+3 - offset_wrap)
-            .style("font-size", "10px")
-            .text("Materials Science");
-        vis.svg.append("text")
-            .attr("class", "label")
-            .attr("x", MSME1.x + 7 )
-            .attr("y", MSME1.y + vis.boxHeightArea/2+3 + offset_wrap)
-            .style("font-size", "10px")
-            .text("& Mechanical Engineering");
+        // let offset_wrap = 7
+        // vis.nodes_ESE = vis.Nodes.filter(obj => {
+        //     return obj.name === "Environmental Science & Engineering"
+        // })
+        // if(vis.nodes_ESE.length > 0){
+        //
+        //     let ESE1 = vis.nodes_ESE[0]
+        //     vis.svg.append("text")
+        //         .attr("class", "label")
+        //         .attr("x", ESE1.x + 7 )
+        //         .attr("y", ESE1.y + vis.boxHeightArea/2+3 - offset_wrap)
+        //         .style("font-size", "10px")
+        //         .text("Environmental Science");
+        //     vis.svg.append("text")
+        //         .attr("class", "label")
+        //         .attr("x", ESE1.x + 7 )
+        //         .attr("y", ESE1.y + vis.boxHeightArea/2+3 + offset_wrap)
+        //         .style("font-size", "10px")
+        //         .text("& Engineering");
+        // }
+        //
+        // vis.nodes_MSME = vis.Nodes.filter(obj => {
+        //     return obj.name === "Materials Science & Mechanical Engineering"
+        // })
+        // if(vis.nodes_MSME.length > 0){
+        //     let MSME1 = vis.nodes_MSME[0]
+        //     vis.svg.append("text")
+        //         .attr("class", "label")
+        //         .attr("x", MSME1.x + 7 )
+        //         .attr("y", MSME1.y + vis.boxHeightArea/2+3 - offset_wrap)
+        //         .style("font-size", "10px")
+        //         .text("Materials Science");
+        //     vis.svg.append("text")
+        //         .attr("class", "label")
+        //         .attr("x", MSME1.x + 7 )
+        //         .attr("y", MSME1.y + vis.boxHeightArea/2+3 + offset_wrap)
+        //         .style("font-size", "10px")
+        //         .text("& Mechanical Engineering");
+        // }
 
         let links = vis.svg.selectAll(".link").data(vis.Links, d=>d.id)
         links.exit().remove();

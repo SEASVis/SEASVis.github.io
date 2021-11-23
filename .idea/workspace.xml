@@ -11,11 +11,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="23bcef6d-e1bd-4bf5-b1ce-d811345eb949" name="Default Changelist" comment="pulled visualizations into stand-alone pages">
-      <change afterPath="$PROJECT_DIR$/css/styles_radial.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/vis_radial.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vis_radial.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vis_flow2.html" beforeDir="false" afterPath="$PROJECT_DIR$/vis_flow2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vis_radial.html" beforeDir="false" afterPath="$PROJECT_DIR$/vis_radial.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/main_flow3.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main_flow3.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/vis_flow3.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vis_flow3.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vis_flow3.html" beforeDir="false" afterPath="$PROJECT_DIR$/vis_flow3.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +38,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../DataVisualization/OnTheNose_DataViz" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -86,6 +86,12 @@
       <workItem from="1635691215823" duration="9732000" />
       <workItem from="1635903393142" duration="52167000" />
       <workItem from="1636378649378" duration="17278000" />
+      <workItem from="1636993974955" duration="2922000" />
+      <workItem from="1637006290678" duration="3337000" />
+      <workItem from="1637028112849" duration="7721000" />
+      <workItem from="1637082244340" duration="543000" />
+      <workItem from="1637616589551" duration="1090000" />
+      <workItem from="1637686656749" duration="3419000" />
     </task>
     <task id="LOCAL-00001" summary="pulled visualizations into stand-alone pages">
       <created>1633893015053</created>
@@ -116,5 +122,35 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="pulled visualizations into stand-alone pages" />
     <option name="LAST_COMMIT_MESSAGE" value="pulled visualizations into stand-alone pages" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1515" height="227" key="GridCell.Tab.0.bottom" timestamp="1637002866009">
+      <screen x="0" y="25" width="1536" height="873" />
+    </state>
+    <state width="1515" height="227" key="GridCell.Tab.0.bottom/-1600.25.1600.875/0.25.1536.873@0.25.1536.873" timestamp="1636993987102" />
+    <state width="1515" height="227" key="GridCell.Tab.0.bottom/0.25.1536.873@0.25.1536.873" timestamp="1637002866009" />
+    <state width="1515" height="227" key="GridCell.Tab.0.center" timestamp="1637002866008">
+      <screen x="0" y="25" width="1536" height="873" />
+    </state>
+    <state width="1515" height="227" key="GridCell.Tab.0.center/-1600.25.1600.875/0.25.1536.873@0.25.1536.873" timestamp="1636993987101" />
+    <state width="1515" height="227" key="GridCell.Tab.0.center/0.25.1536.873@0.25.1536.873" timestamp="1637002866008" />
+    <state width="1515" height="227" key="GridCell.Tab.0.left" timestamp="1637002866008">
+      <screen x="0" y="25" width="1536" height="873" />
+    </state>
+    <state width="1515" height="227" key="GridCell.Tab.0.left/-1600.25.1600.875/0.25.1536.873@0.25.1536.873" timestamp="1636993987100" />
+    <state width="1515" height="227" key="GridCell.Tab.0.left/0.25.1536.873@0.25.1536.873" timestamp="1637002866008" />
+    <state width="1515" height="227" key="GridCell.Tab.0.right" timestamp="1637002866009">
+      <screen x="0" y="25" width="1536" height="873" />
+    </state>
+    <state width="1515" height="227" key="GridCell.Tab.0.right/-1600.25.1600.875/0.25.1536.873@0.25.1536.873" timestamp="1636993987102" />
+    <state width="1515" height="227" key="GridCell.Tab.0.right/0.25.1536.873@0.25.1536.873" timestamp="1637002866009" />
+    <state x="469" y="216" width="597" height="490" key="find.popup" timestamp="1637687415673">
+      <screen x="0" y="25" width="1536" height="873" />
+    </state>
+    <state x="469" y="216" width="597" height="490" key="find.popup/-1920.25.1920.1055/0.25.1536.873@0.25.1536.873" timestamp="1637687415673" />
+    <state x="432" y="214" width="670" height="676" key="search.everywhere.popup" timestamp="1637029751401">
+      <screen x="0" y="25" width="1536" height="873" />
+    </state>
+    <state x="432" y="214" width="670" height="676" key="search.everywhere.popup/-1920.25.1920.1055/0.25.1536.873@0.25.1536.873" timestamp="1637029751401" />
   </component>
 </project>

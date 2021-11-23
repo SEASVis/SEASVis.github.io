@@ -16,3 +16,14 @@ function initMainPage(dataArray) {
     // initialize the visualization here
     myVisFlow = new visFlow("relationshipDiv", latestPeopleData, centers);
 }
+
+selectedArea = $('#area-filter-selector').val();
+function filterArea() {
+    selectedArea = $('#area-filter-selector').val();
+    myVisFlow.filterData();
+}
+selectedCenter = $('#center-filter-selector').val();
+function filterCenter() {
+    selectedCenter = $('#center-filter-selector').val();
+    myVisFlow.filterData();
+}
