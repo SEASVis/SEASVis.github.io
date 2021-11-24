@@ -263,7 +263,7 @@ class visFlow {
         vis.lvlCount = count.length;
 
         vis.boxWidth = 150;
-        vis.boxWidthArea = 220;
+        vis.boxWidthArea = 160;
         vis.boxWidthCenter = 335;
         vis.gap = {width: (vis.width - (2*vis.boxWidthArea + 2*vis.boxWidth + vis.boxWidthCenter)) / (vis.lvlCount-1), height: 1};
 
@@ -300,7 +300,7 @@ class visFlow {
                 d.id = "n" + i;
                 count[d.lvl] += 1;
             }else if(d.lvl === 2){
-                d.x = vis.boxWidthArea + vis.boxWidth + d.lvl*vis.gap.width;
+                d.x = vis.width/2 - vis.boxWidthCenter/2;
                 //d.y = (vis.boxHeightCenter + vis.gap.height) * count[d.lvl];
                 d.id = "n" + i;
                 count[d.lvl] += 1;
@@ -392,9 +392,9 @@ class visFlow {
             })
             .style("font-size", function(d){
                 if(d.lvl === 0 || d.lvl === 4){
-                    return "10px";
+                    return "11px";
                 }else{
-                    return "10px";
+                    return "11px";
                 }
             })
             .text(function (d) {
@@ -413,13 +413,13 @@ class visFlow {
             .attr("class", "label")
             .attr("x", ESE1.x + 7 )
             .attr("y", ESE1.y + vis.boxHeightArea/2+3 - offset_wrap)
-            .style("font-size", "10px")
+            .style("font-size", "11px")
             .text("Environmental Science");
         vis.svg.append("text")
             .attr("class", "label")
             .attr("x", ESE1.x + 7 )
             .attr("y", ESE1.y + vis.boxHeightArea/2+3 + offset_wrap)
-            .style("font-size", "10px")
+            .style("font-size", "11px")
             .text("& Engineering");
 
         let ESE2 = vis.nodes_ESE[1]
@@ -427,13 +427,13 @@ class visFlow {
             .attr("class", "label")
             .attr("x", ESE2.x + 7 )
             .attr("y", ESE2.y + vis.boxHeightArea/2+3 - offset_wrap)
-            .style("font-size", "10px")
+            .style("font-size", "11px")
             .text("Environmental Science");
         vis.svg.append("text")
             .attr("class", "label")
             .attr("x", ESE2.x + 7 )
             .attr("y", ESE2.y + vis.boxHeightArea/2+3 + offset_wrap)
-            .style("font-size", "10px")
+            .style("font-size", "11px")
             .text("& Engineering");
 
         vis.nodes_MSME = vis.Nodes.filter(obj => {
@@ -445,13 +445,13 @@ class visFlow {
             .attr("class", "label")
             .attr("x", MSME1.x + 7 )
             .attr("y", MSME1.y + vis.boxHeightArea/2+3 - offset_wrap)
-            .style("font-size", "10px")
+            .style("font-size", "11px")
             .text("Materials Science");
         vis.svg.append("text")
             .attr("class", "label")
             .attr("x", MSME1.x + 7 )
             .attr("y", MSME1.y + vis.boxHeightArea/2+3 + offset_wrap)
-            .style("font-size", "10px")
+            .style("font-size", "11px")
             .text("& Mechanical Engineering");
 
         let MSME2 = vis.nodes_MSME[1]
@@ -459,13 +459,13 @@ class visFlow {
             .attr("class", "label")
             .attr("x", MSME2.x + 7 )
             .attr("y", MSME2.y + vis.boxHeightArea/2+3 - offset_wrap)
-            .style("font-size", "10px")
+            .style("font-size", "11px")
             .text("Materials Science");
         vis.svg.append("text")
             .attr("class", "label")
             .attr("x", MSME2.x + 7 )
             .attr("y", MSME2.y + vis.boxHeightArea/2+3 + offset_wrap)
-            .style("font-size", "10px")
+            .style("font-size", "11px")
             .text("& Mechanical Engineering");
 
         vis.Links.forEach(function (li) {
@@ -520,14 +520,12 @@ class visFlow {
         });
 
         vis.svg.append("text")
-            .attr("x", function(){
-                let gap = (vis.width - 2*vis.boxWidthArea - 2*vis.boxWidth - vis.boxHeightCenter) / 4;
-                return vis.boxWidthArea + vis.boxWidth + 2*gap;
-            })
+            .attr("x", vis.width/2)
             .attr("y", function(){
                 return vis.centerOffset + (vis.boxHeightCenter + vis.gap.height) - 10;
             })
             .attr("text-anchor", "middle")
+            .attr("class", "textMessage")
             .style("font-size", "16px")
             .style("font-weight", "bold")
             .text("Click on any node to highlight the connections!");

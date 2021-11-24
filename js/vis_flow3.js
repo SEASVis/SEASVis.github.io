@@ -113,7 +113,7 @@ class visFlow {
 
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
             .attr("width", vis.width+vis.margin.left+vis.margin.right)
-            .attr("height", 2000)
+            .attr("height", 2880)
             .append('g')
             .attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`);
 
@@ -124,6 +124,17 @@ class visFlow {
             .on("click", function () {
                 vis.repress(false);
             });
+
+        vis.svg.append("text")
+            .attr("x", vis.width/2)
+            .attr("y", vis.height/2)
+            .attr("text-anchor", "middle")
+            .attr("id", "noFacultyMessage")
+            .attr("class", "textMessage")
+            .style("font-size", "24px")
+            .style("font-weight", "bold")
+            .style("opacity", 0)
+            .text("No faculty listed, please change your filters.");
 
         document.addEventListener('scroll', function() {
             vis.updateVis()
@@ -216,15 +227,6 @@ class visFlow {
             })
         });
 
-        let selectDiv = document.getElementById('center-filter-selector');
-        vis.listCenters.forEach((center) => {
-            let opt = document.createElement('option');
-            opt.value = center;
-            opt.innerHTML = center;
-            selectDiv.appendChild(opt);
-        });
-        $('#center-filter-selector').selectpicker('refresh');
-
         vis.Nodes.sort(function(a,b){
             if (a.lvl === b.lvl && a.lvl !== 2){
                 return a.name.localeCompare(b.name);
@@ -251,6 +253,24 @@ class visFlow {
             d.target = vis.Nodes.filter(obj => {return obj.name === d.target})[0];
             d.id = "l" + d.source.id + d.target.id;
         });
+
+        let selectAreaDiv = document.getElementById('area-filter-selector');
+        vis.listAreas.forEach((area) => {
+            let opt = document.createElement('option');
+            opt.value = area;
+            opt.innerHTML = area;
+            selectAreaDiv.appendChild(opt);
+        });
+        $('#area-filter-selector').selectpicker('refresh');
+
+        let selectCenterDiv = document.getElementById('center-filter-selector');
+        vis.listCenters.forEach((center) => {
+            let opt = document.createElement('option');
+            opt.value = center;
+            opt.innerHTML = center;
+            selectCenterDiv.appendChild(opt);
+        });
+        $('#center-filter-selector').selectpicker('refresh');
 
         vis.allNodes = vis.Nodes;
         vis.allLinks = vis.Links;
@@ -279,50 +299,57 @@ class visFlow {
             selectedArea.forEach(function (d) {
                 let tempNode = vis.Nodes.filter(obj => {
                     return obj.name === d
-                })[0];
+                });
 
-                selectedNodes.push(tempNode);
-                selectedAreas.push(tempNode);
+                if (tempNode.length !== 0){
+                    selectedNodes.push(tempNode[0]);
+                    selectedAreas.push(tempNode[0]);
+                }
             })
-            selectedAreas.forEach(function (area) {
-                vis.Links.forEach(function (d) {
-                    if (d.target.id === area.id) {
-                        if (!selectedLinks.includes(d)) {
-                            selectedLinks.push(d)
-                        }
 
-                        let tempSelected = vis.Nodes.filter(obj => {
-                            return obj.name === d.source.name
-                        })[0]
-                        if (!selectedNodes.includes(tempSelected)) {
-                            selectedNodes.push(tempSelected);
-                        }
-                        selectedFaculty.push(d.source);
-                    }
-                })
-
-                vis.Links.forEach(function (d) {
-                    if (d.lvl === 1) {
-                        if (selectedFaculty.includes(d.source)) {
+            if (selectedAreas.length !== 0) {
+                selectedAreas.forEach(function (area) {
+                    vis.Links.forEach(function (d) {
+                        if (d.target.id === area.id) {
                             if (!selectedLinks.includes(d)) {
                                 selectedLinks.push(d)
                             }
 
                             let tempSelected = vis.Nodes.filter(obj => {
-                                return obj.name === d.target.name
+                                return obj.name === d.source.name
                             })[0]
                             if (!selectedNodes.includes(tempSelected)) {
                                 selectedNodes.push(tempSelected);
                             }
+                            selectedFaculty.push(d.source);
                         }
-                    }
-                })
-            })
+                    })
 
-            selectedNodes.sort((a,b) => a.lvl - b.lvl || a.school - b.school || d3.ascending(a.name, b.name))
-            vis.Nodes = selectedNodes;
-            vis.Links = selectedLinks;
-            console.log(vis.Nodes)
+                    vis.Links.forEach(function (d) {
+                        if (d.lvl === 1) {
+                            if (selectedFaculty.includes(d.source)) {
+                                if (!selectedLinks.includes(d)) {
+                                    selectedLinks.push(d)
+                                }
+
+                                let tempSelected = vis.Nodes.filter(obj => {
+                                    return obj.name === d.target.name
+                                })[0]
+                                if (!selectedNodes.includes(tempSelected)) {
+                                    selectedNodes.push(tempSelected);
+                                }
+                            }
+                        }
+                    })
+                })
+
+                selectedNodes.sort((a, b) => a.lvl - b.lvl || a.school - b.school || d3.ascending(a.name, b.name))
+                vis.Nodes = selectedNodes;
+                vis.Links = selectedLinks;
+            } else {
+                vis.Nodes = [];
+                vis.Links = [];
+            }
         }
 
         if(selectedCenter[0] !== "Include All" && selectedArea.length !== 0) {
@@ -334,50 +361,63 @@ class visFlow {
             selectedCenter.forEach(function (d) {
                 let tempNode = vis.Nodes.filter(obj => {
                     return obj.name === d
-                })[0];
+                });
 
-                selectedNodes.push(tempNode);
-                selectedCenters.push(tempNode);
+                if (tempNode.length !== 0){
+                    selectedNodes.push(tempNode[0]);
+                    selectedCenters.push(tempNode[0]);
+                }
             })
 
-            selectedCenters.forEach(function (center) {
-                vis.Links.forEach(function (d) {
-                    if (d.target.id === center.id) {
-                        if (!selectedLinks.includes(d)) {
-                            selectedLinks.push(d)
-                        }
-
-                        let tempSelected = vis.Nodes.filter(obj => {
-                            return obj.name === d.source.name
-                        })[0]
-                        if (!selectedNodes.includes(tempSelected)) {
-                            selectedNodes.push(tempSelected);
-                        }
-                        selectedFaculty.push(d.source);
-                    }
-                })
-
-                vis.Links.forEach(function (d) {
-                    if (d.lvl === 0) {
-                        if (selectedFaculty.includes(d.source)) {
+            if (selectedCenters.length !== 0) {
+                selectedCenters.forEach(function (center) {
+                    vis.Links.forEach(function (d) {
+                        if (d.target.id === center.id) {
                             if (!selectedLinks.includes(d)) {
                                 selectedLinks.push(d)
                             }
 
                             let tempSelected = vis.Nodes.filter(obj => {
-                                return obj.name === d.target.name
+                                return obj.name === d.source.name
                             })[0]
                             if (!selectedNodes.includes(tempSelected)) {
                                 selectedNodes.push(tempSelected);
                             }
+                            selectedFaculty.push(d.source);
                         }
-                    }
-                })
-            })
+                    })
 
-            selectedNodes.sort((a,b) => a.lvl - b.lvl || a.area - b.area || d3.ascending(a.name, b.name))
-            vis.Nodes = selectedNodes;
-            vis.Links = selectedLinks;
+                    vis.Links.forEach(function (d) {
+                        if (d.lvl === 0) {
+                            if (selectedFaculty.includes(d.source)) {
+                                if (!selectedLinks.includes(d)) {
+                                    selectedLinks.push(d)
+                                }
+
+                                let tempSelected = vis.Nodes.filter(obj => {
+                                    return obj.name === d.target.name
+                                })[0]
+                                if (!selectedNodes.includes(tempSelected)) {
+                                    selectedNodes.push(tempSelected);
+                                }
+                            }
+                        }
+                    })
+                })
+
+                selectedNodes.sort((a, b) => a.lvl - b.lvl || a.area - b.area || a.school - b.school || d3.ascending(a.name, b.name))
+                vis.Nodes = selectedNodes;
+                vis.Links = selectedLinks;
+            } else {
+                vis.Nodes = [];
+                vis.Links = [];
+            }
+        }
+
+        if(vis.Nodes.length === 0){
+            d3.select("#noFacultyMessage").style("opacity", 1)
+        }else{
+            d3.select("#noFacultyMessage").style("opacity", 0)
         }
 
         vis.updateVis();
@@ -402,15 +442,20 @@ class visFlow {
         let countNodesFaculty = vis.Nodes.filter((obj) => obj.lvl === 1).length;
         let countNodesCenters = vis.Nodes.filter((obj) => obj.lvl === 2).length;
 
-        vis.boxWidth = 155;
+        vis.boxWidth = 160;
         vis.boxWidthArea = 240;
-        vis.boxWidthCenter = 340;
-        vis.gap = {width: (vis.width - (vis.boxWidthArea + vis.boxWidth + vis.boxWidthCenter)) / (vis.lvlCount-1), height: 2};
+        vis.boxWidthCenter = 320;
+        vis.gap = {width: (vis.width - (vis.boxWidthArea + vis.boxWidth + vis.boxWidthCenter)) / (vis.lvlCount-1), height: 3};
+        vis.gapHeightFaculty = vis.gap.height;
+        vis.offsetHeightFaculty = 0;
 
-        vis.boxHeight = 14;
+        vis.boxHeight = 20;
         vis.boxHeightArea = (vis.height - countNodesAreas*vis.gap.height) / countNodesAreas;
-        vis.boxHeightCenter = (vis.height - (countNodesCenters+1)*vis.gap.height) / (countNodesCenters+1);
-        vis.schoolOffset = vis.boxHeightCenter;
+
+        if (countNodesFaculty*(vis.boxHeight+vis.gapHeightFaculty) < vis.height){
+            vis.gapHeightFaculty = (vis.height - countNodesFaculty*vis.boxHeight) / countNodesFaculty;
+            vis.offsetHeightFaculty = vis.gapHeightFaculty/2;
+        }
 
         let listSchools = [
             "Harvard Business School",
@@ -427,6 +472,14 @@ class visFlow {
                 countSelectedSchools += 1;
             }
         })
+
+        if (countNodesCenters === countSelectedSchools || countSelectedSchools === 0){
+            vis.boxHeightCenter = (vis.height - (countNodesCenters)*vis.gap.height) / (countNodesCenters);
+            vis.schoolOffset = 0;
+        } else {
+            vis.boxHeightCenter = (vis.height - (countNodesCenters+1)*vis.gap.height) / (countNodesCenters+1);
+            vis.schoolOffset = vis.boxHeightCenter;
+        }
 
         vis.schoolCount = 0;
         vis.Nodes.forEach(function (d, i) {
@@ -452,8 +505,8 @@ class visFlow {
 
                 count[d.lvl] += 1;
             } else { //(d.lvl === 1)
-                d.x = vis.boxWidthArea + vis.gap.width;
-                d.y = (vis.boxHeight + vis.gap.height) * count[d.lvl];
+                d.x = vis.width/2 - vis.boxWidth/2;
+                d.y = (vis.boxHeight + vis.gapHeightFaculty) * count[d.lvl] + vis.offsetHeightFaculty;
                 count[d.lvl] += 1;
             }
         });
@@ -497,7 +550,7 @@ class visFlow {
 
         let labelsEnter = labels.enter().append("text")
             .attr("class", "label")
-            .style("font-size", "10px")
+            .style("font-size", "12px")
             .text(function (d) {
                 return d.name;
                 // if(d.name !== "Environmental Science & Engineering" && d.name !== "Materials Science & Mechanical Engineering"){
@@ -513,7 +566,7 @@ class visFlow {
                 }else if(d.lvl === 2){
                     return d.y + vis.boxHeightCenter/2+3;
                 }else{
-                    return d.y + vis.boxHeight-2;
+                    return d.y + vis.boxHeight-5;
                 }
             })
 
@@ -620,6 +673,7 @@ class visFlow {
         //         return (vis.boxHeightCenter + vis.gap.height) - 10;
         //     })
         //     .attr("text-anchor", "middle")
+        //     .attr("class", "textMessage")
         //     .style("font-size", "16px")
         //     .style("font-weight", "bold")
         //     .text("Click on any node to highlight the connections!");

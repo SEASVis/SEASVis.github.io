@@ -12,9 +12,15 @@
   <component name="ChangeListManager">
     <list default="true" id="23bcef6d-e1bd-4bf5-b1ce-d811345eb949" name="Default Changelist" comment="pulled visualizations into stand-alone pages">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/styles_flow.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/styles_flow.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/main_flow3.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main_flow3.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/vis_flow.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vis_flow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/vis_flow2.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vis_flow2.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/vis_flow3.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vis_flow3.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vis_arc2.html" beforeDir="false" afterPath="$PROJECT_DIR$/vis_arc2.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vis_flow.html" beforeDir="false" afterPath="$PROJECT_DIR$/vis_flow.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vis_flow2.html" beforeDir="false" afterPath="$PROJECT_DIR$/vis_flow2.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vis_flow3.html" beforeDir="false" afterPath="$PROJECT_DIR$/vis_flow3.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -91,7 +97,9 @@
       <workItem from="1637028112849" duration="7721000" />
       <workItem from="1637082244340" duration="543000" />
       <workItem from="1637616589551" duration="1090000" />
-      <workItem from="1637686656749" duration="3419000" />
+      <workItem from="1637686656749" duration="3797000" />
+      <workItem from="1637701240291" duration="9855000" />
+      <workItem from="1637769208171" duration="3682000" />
     </task>
     <task id="LOCAL-00001" summary="pulled visualizations into stand-alone pages">
       <created>1633893015053</created>
@@ -144,10 +152,10 @@
     </state>
     <state width="1515" height="227" key="GridCell.Tab.0.right/-1600.25.1600.875/0.25.1536.873@0.25.1536.873" timestamp="1636993987102" />
     <state width="1515" height="227" key="GridCell.Tab.0.right/0.25.1536.873@0.25.1536.873" timestamp="1637002866009" />
-    <state x="469" y="216" width="597" height="490" key="find.popup" timestamp="1637687415673">
+    <state x="469" y="216" width="597" height="490" key="find.popup" timestamp="1637777873005">
       <screen x="0" y="25" width="1536" height="873" />
     </state>
-    <state x="469" y="216" width="597" height="490" key="find.popup/-1920.25.1920.1055/0.25.1536.873@0.25.1536.873" timestamp="1637687415673" />
+    <state x="469" y="216" width="597" height="490" key="find.popup/-1920.25.1920.1055/0.25.1536.873@0.25.1536.873" timestamp="1637777873005" />
     <state x="432" y="214" width="670" height="676" key="search.everywhere.popup" timestamp="1637029751401">
       <screen x="0" y="25" width="1536" height="873" />
     </state>
