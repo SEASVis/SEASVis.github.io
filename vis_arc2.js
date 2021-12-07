@@ -119,140 +119,61 @@ export default function define(runtime, observer) {
                     .on("click", function(d,i){ 
                       selectedArea = selectedArea== i ? "all" : i
                       console.log("selected area: ", selectedArea);
-                      init()
+                      updateGraph()
                       })
                     );
 
-                init();
-            
-              // add variables for arc diagram
-              // var nodeRadius = d3.scaleSqrt().range([3, 7]);
-              // var linkWidth = d3.scaleLinear().range([1.5, 2 * nodeRadius.range()[0]]); 
-              // nodeRadius.domain(d3.extent(graph.nodes, function (d) { return d.targetLinks.length; }));
-              // linkWidth.domain(d3.extent(graph.links, function (d) { return d.target.targetLinks.length; }));
-            
-             
-                // var path = svg.insert("g", "*")
-                //   .attr("fill", "none")
-                //   .attr("stroke-opacity", 0.6)
-                //   .attr("stroke-width", 1.5)
-                //   .selectAll("path")
-                //   .data(arcData.links, d=>d.id)
-                //   .join("path")
-                //   .attr("stroke", d => {
-                //      return d.source.group === d.target.group ? color(d.source.group) : "#aaa"
-                //   })
-                //   .attr("stroke-width", d => {return linkWidth(d.target.targetLinks.length);})
-                //   .attr("d", arc);
-                  
-              // var path = svg.append("g")
-              //     .selectAll("path")
-              //     .data(arcData.links, d=>d.id)
-              //     .enter()
-              //     .append("path")
-              //     .attr("fill", "none")
-              //     .attr("stroke-opacity", 0.6)
-              //     .attr("stroke", d => {
-              //         return d.source.group === d.target.group ? color(d.source.group) : "#aaa"
-              //     })
-              //     .attr("stroke-width", d => {return linkWidth(d.target.targetLinks.length);})
-              //     .attr("d", arc)
+                updateGraph();
 
-              // path.transition()
-              //     .duration(500)
-              //     .attr("d", arc);
-
-            // const overlay = svg
-            //   .append("g")
-            //   .attr("fill", "none")
-            //   .attr("pointer-events", "all")
-            //   .selectAll("rect")
-            //   .data(graph.nodes)
-            //   .join("rect")
-            //   .attr("width", margin.left + 40)
-            //   .attr("height", step)
-            //   .attr("y", d => y(d.id) - step / 2)
-            //   .on("click", d => {
-            //     svg.classed("hover", true);
-            //     label.classed("primary", n => n === d);
-            //     label.classed("secondary", n => n.sourceLinks.some(l => l.target === d) || n.targetLinks.some(l => l.source === d));
-            //     path.classed("primary", l => l.source === d || l.target === d).filter(".primary").raise();
-            //   })
-
-              // const overlay = svg.append("g")
-              //     .attr("fill", "none")
-              //     .attr("class", "overlay")
-              //     .attr("pointer-events", "all")
-                  
-              //   .selectAll("rect")
-              //   .data(arcData.nodes)
-              //   .join(
-              //     enter => enter.append("rect")
-              //       .attr("width",  margin.left + 40)
-              //         .attr("height", step)
-              //         .attr("y", d => y(d.id) - step / 2)
-              //         // .attr("x", d => x(d.id) - step / 2)
-              //         // .attr("y", height - margin.bottom - margin.top)
-              //           .on("mouseover", d => {
-              //             svg.classed("hover", true);
-              //             label.classed("primary", n => n === d);
-              //             label.classed("secondary", n => n.sourceLinks.some(l => l.target === d) || n.targetLinks.some(l => l.source === d));
-              //             path.classed("primary", l => l.source === d || l.target === d).filter(".primary").raise();
-              //           legend.classed("hover", false);
-            
-              //           }),
-              //       update => update.attr("width", step)
-              //       .attr("y", d => y(d.id) - step / 2)
-              //       // .attr("x", d => x(d.id) - step / 2)
-              //       // .attr("y", height - margin.bottom - margin.top)
-              //       .attr("height", step)
-              //         .on("mouseover", d => {
-              //           svg.classed("hover", true);
-              //           label.classed("primary", n => n === d);
-              //           label.classed("secondary", n => n.sourceLinks.some(l => l.target === d) || n.targetLinks.some(l => l.source === d));
-              //           path.classed("primary", l => l.source === d || l.target === d).filter(".primary").raise();
-              //           legend.selectAll("text").attr("fill", "black");
-            
-              //         }),
-            
-              //       exit => exit.remove()
-              //   )
-              function updateData(nodes){
-               
-                const nodeById = new Map(nodes.map(d => [d.id, d]));
-                var selectedNodeName = nodes.map(d=> d.id)
-
-                var filteredLinks = data.links.filter(l=> selectedNodeName.includes(l.source))
-                console.log("filteredLinks")
-                console.log(filteredLinks)
-                var links = filteredLinks.map(({source, target, value}) => ({
-                  source: nodeById.get(source),
-                  target: nodeById.get(target),
-                  value
-                }));
-              
-                for (var link of links) {
-                  var {source, target, value} = link;
-                  source.sourceLinks.push(link);
-                  target.targetLinks.push(link);
-                }
-                return links;
-              }
-
-              function init(){
+              function updateGraph(){
                  // add variables for arc diagram
               var nodeRadius = d3.scaleSqrt().range([3, 7]);
               var linkWidth = d3.scaleLinear().range([1.5, 2 * nodeRadius.range()[0]]); 
                 nodeRadius.domain(d3.extent(graph.nodes, function (d) { return d.targetLinks.length; }));
                 linkWidth.domain(d3.extent(graph.links, function (d) { return d.target.targetLinks.length; }));
               
-              arcData.nodes = graph.nodes.filter(d => selectedArea == "all" | d.group == selectedArea | (d.targetLinks.filter(l=> l.source.group == selectedArea).length > 0))
-              var selectedNodeName = arcData.nodes.map(d=> d.id)
-              arcData.links = graph.links.filter(d => selectedArea == "all" | selectedNodeName.includes(d.source.id))  //d.source.group == selectedArea | d.target.group == selectedArea)
-              // arcData.links = updateData(arcData.nodes);
-                  
-              console.log("ArdData node: ", arcData.nodes);
-              console.log("ArdData link: ", arcData.links);
+                // update nodes based on selected area
+              var filteredFaculty = graph.nodes.filter(d => selectedArea == "all" | d.group == selectedArea)
+              var selectedFacultyName = filteredFaculty.map(d=> d.id)
+              console.log("selectedFacultyName",selectedFacultyName)
+              
+              // add faculty nodes that have shared collaboratiion with the above  "filteredFaculty"
+              filteredFaculty.map((d =>{
+                var source = d.sourceLinks
+                source.map((t =>{
+                  if (!selectedFacultyName.includes(t.target.id)){
+                    selectedFacultyName.push(t.target.id);
+                  }
+                }))
+              }))
+              // updated list of filtered faculty nodes, including faculty within the selected area & faculty who share collaboration 
+              console.log("update", selectedFacultyName)
+
+              // select these faculty nodes in the data
+              arcData.nodes = graph.nodes.filter(d => selectedArea == "all" | selectedFacultyName.includes(d.id))
+               
+              // select collaboration with the selected area
+              var updatedLink = []
+              arcData.nodes.map(l => {
+                var links = l.sourceLinks
+                // include all the links for faculty within the selected area 
+                if (l.group == selectedArea | selectedArea == "all"){
+                  links.map((m => {
+                    updatedLink.push(m)
+                  }))
+                } else {
+                  // include only links between faculty in the selected area faculty  
+                  links.map((m => {
+                    if (m.target.group == selectedArea){
+                      updatedLink.push(m)
+                    }
+                  }))
+                }
+              })
+              arcData.links = updatedLink;
+
+              // console.log("ArdData node: ", arcData.nodes);
+              // console.log("ArdData link: ", arcData.links);
 
                 var adaptiveHeight = (arcData.nodes.length - 1) * step + margin.top;
                 y.range([margin.top, adaptiveHeight]);
@@ -280,6 +201,32 @@ export default function define(runtime, observer) {
                         
                   label.exit().remove()
 
+
+                  const t = svg.transition()
+                    .duration(750);
+
+                  path = arcNodeWrapper
+                    .selectAll("path")
+                    .data(arcData.links, d=>d.source.id)
+
+                  path.enter()
+                    .append("path")
+                    .attr("fill", "none")
+                    .attr("stroke-opacity", 0.6)
+                    .attr("stroke", d => {
+                      return d.source.group === d.target.group ? color(d.source.group) : "#aaa"
+                    })
+                    .attr("stroke-width", d => {return linkWidth(1);})
+                    .attr("d", arc)
+                    .merge(path)
+                    .transition(t)
+                    .duration(750 + arcData.nodes.length * 20)
+                    .attr("stroke-width", d => {return linkWidth(d.target.targetLinks.length);})
+                    .attrTween("d", d => () => arc(d));
+
+                  path.exit().remove() 
+
+                
                   circle = arcNodeWrapper
                     .selectAll("circle")
                     .data(arcData.nodes, d=>d.id)
@@ -295,50 +242,28 @@ export default function define(runtime, observer) {
                     .attr("transform", d => `translate(${margin.left+10},${d.y = y(d.id)})`)
                     .attr("r", d => nodeRadius(d.targetLinks.length))
                         
-                    circle.exit().remove()
+                  circle.exit().remove()
 
-                  
-                  const t = svg.transition()
-                    .duration(750);
+                  circle.raise();
 
-                  path = arcNodeWrapper
-                    .selectAll("path")
-                    .data(arcData.links, d=>d.source.id)
-
-                  path.enter()
-                    .append("path")
-                    .attr("fill", "none")
-                    .attr("stroke-opacity", 0.6)
-                    .attr("stroke", d => {
-                      return d.source.group === d.target.group ? color(d.source.group) : "#aaa"
+                  overlay = interactionWrapper
+                    .selectAll("rect")
+                    .data(arcData.nodes, d=>d.id)
+                  overlay.enter()
+                    .append("rect")
+                    .merge(overlay)
+                    .attr("width", margin.left + 40)
+                    .attr("height", step)
+                    .attr("y", d => y(d.id) - step / 2)
+                    .on("click", d => {
+                      svg.classed("hover", true);
+                      label.classed("primary", n => n === d);
+                      label.classed("secondary", n => n.sourceLinks.some(l => l.target === d) || n.targetLinks.some(l => l.source === d));
+                      path.classed("primary", l => l.source === d || l.target === d).filter(".primary").raise();
                     })
-                    .attr("stroke-width", d => {return linkWidth(d.target.targetLinks.length);})
-                    .attr("d", arc)
-                    .merge(path)
-                    .transition(t)
-                    .duration(750 + arcData.nodes.length * 20)
-                    .attrTween("d", d => () => arc(d));
+                    
 
-                    path.exit().remove()
-
-                      overlay = interactionWrapper
-                        .selectAll("rect")
-                        .data(arcData.nodes, d=>d.id)
-                      overlay.enter()
-                        .append("rect")
-                        .merge(overlay)
-                        .attr("width", margin.left + 40)
-                        .attr("height", step)
-                        .attr("y", d => y(d.id) - step / 2)
-                        .on("click", d => {
-                          svg.classed("hover", true);
-                          label.classed("primary", n => n === d);
-                          label.classed("secondary", n => n.sourceLinks.some(l => l.target === d) || n.targetLinks.some(l => l.source === d));
-                          path.classed("primary", l => l.source === d || l.target === d).filter(".primary").raise();
-                        })
-                        
-
-                        overlay.exit().remove();
+                    overlay.exit().remove();
                 
               }
               function reset() {
@@ -350,75 +275,16 @@ export default function define(runtime, observer) {
                 })
               }
             
-              function update() {
-                arcData.nodes = graph.nodes.filter(d => selectedArea == "all" | d.group == selectedArea | (d.targetLinks.filter(l=> l.source.group == selectedArea).length > 0))
-                arcData.links = graph.links.filter(d => selectedArea == "all" | d.source.group == selectedArea | d.target.group == selectedArea)
-                console.log("ArdData length: ", arcData.nodes.length);
-                console.log("ArdData link length: ", arcData.links.length);
-
-                var adaptiveHeight = (arcData.nodes.length - 1) * step + margin.top;
-                y.range([margin.top, adaptiveHeight]);
-                y.domain(arcData.nodes.sort($0.value).map(d => d.id));
-            
-                const t = svg.transition()
-                    .duration(750);
-
-
-                label.transition(t)
-                    .delay((d, i) => i * 20)
-                    .attrTween("transform", d => {
-                      const i = d3.interpolateNumber(d.y, y(d.id));
-                      return t => `translate(${margin.left},${d.y = i(t)})`;
-                    });
-                label.exit().remove();
-
-                path.transition(t)
-                    .duration(750 + graph.nodes.length * 20)
-                    .attrTween("d", d => () => arc(d));
-                path.exit().remove();
-
-                overlay.transition(t)
-                    .delay((d, i) => i * 20)
-                    .attr("y", d => y(d.id) - step / 2);
-
-                overlay.exit().remove();
-             
-              // label.transition(t)
-              //       .delay((d, i) => i * 10)
-              //       .attrTween("transform", d => {
-              //         const i = d3.interpolateNumber(d.y, y(d.id));
-              //       return t => `translate(${margin.left},${d.y = i(t)})`;
-              //         // const i = d3.interpolateNumber(d.x, x(d.id));
-              //         // return t => i(t) ? `translate(${d.x = i(t)},${height - margin.top - margin.bottom})`: "translate(0,0)";
-              //       });
-            
-               
-
-              // path.data(arcData.links, d=>d.id)
-              // path
-              //     .transition(t)
-              //     .duration(750)
-              //     .attrTween("d", d => () => arc(d));
-                  // .attrTween("d", d=> () => selectedArea == "all" | d.target.group == selectedArea | d.source.group == selectedArea ? arc(d) : "")
-
-                // overlay.transition(t)
-                //     .delay((d, i) => i * 20)
-                //     .attr("y", d => y(d.id) - step / 2);
-              }
-            
-              $0.addEventListener("input", update);
-              invalidation.then(() => $0.removeEventListener("input", update));
+              $0.addEventListener("input", updateGraph);
+              invalidation.then(() => $0.removeEventListener("input", updateGraph));
             
               return svg.node();
           }
         );
     main.variable().define("arc", ["margin", "y"], function(margin,y){return(
         function arc(d) {
-          const y1 = y(d.source.id)   
-          const y2 = y(d.target.id)   
-
-          // const y1 = d.source.y;
-          // const y2 = d.target.y;
+          const y1 = d.source.y;
+          const y2 = d.target.y;
           const r = Math.abs(y2 - y1) / 2;
           return `M${margin.left+10},${y1}A${r},${r} 0,0,${y1 < y2 ? 1 : 0} ${margin.left+10},${y2}`;
         }
