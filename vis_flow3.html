@@ -14,28 +14,25 @@
 	<link rel="stylesheet" href="css/styles_flow.css">
 
 	<!-- GOOGLE FONTS -->
-	<link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@84,498&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-	<div>
-		<div class="float-left">
-			<select id='area-filter-selector' class="selectpicker" multiple data-live-search="true" onchange="filterArea()">
-				<option value="Include All">Include All</option>
-				<option value="Applied Computation">Applied Computation</option>
-				<option value="Applied Mathematics">Applied Mathematics</option>
-				<option value="Applied Physics">Applied Physics</option>
-				<option value="Bioengineering">Bioengineering</option>
-				<option value="Computer Science">Computer Science</option>
-				<option value="Electrical Engineering">Electrical Engineering</option>
-				<option value="Environmental Science & Engineering">Environmental Science & Engineering</option>
-				<option value="Materials Science & Mechanical Engineering">Materials Science & Mechanical Engineering</option>
+	<div class="row">
+		<div class="col">
+			<select id='area-filter-selector' class="selectpicker" data-width="500px" multiple data-live-search="true" onchange="filterArea()">
+				<option value="Include All">Include All Academic Areas</option>
 			</select>
 		</div>
-		<div class="float-right">
-			<select id='center-filter-selector' class="selectpicker" multiple data-live-search="true" onchange="filterCenter()">
-				<option value="Include All">Include All</option>
+		<div class="col my-auto">
+			<p id="headerMessage">Click on any node to highlight the connections!</p>
+		</div>
+		<div class="col">
+			<select id='center-filter-selector' class="selectpicker float-right" data-width="500px" multiple data-live-search="true" onchange="filterCenter()">
+				<option value="Include All">Include All Centers and Initiatives</option>
 			</select>
 		</div>
 	</div>

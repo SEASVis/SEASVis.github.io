@@ -4,7 +4,7 @@ h1, h3, p {
 
 h1 {
 	font-size:52px;
-	font-family: 'Russo One';
+	font-family: 'Open Sans', sans-serif;
 	margin-top:0;
 }
 
@@ -20,8 +20,8 @@ rect {
 .label {
 	fill: #212529;
 	pointer-events: none;
-	font-family:revert;
-	font-weight: 300;
+	font-weight: normal;
+	font-family: 'Open Sans', sans-serif;
 }
 
 .link {
@@ -47,4 +47,23 @@ rect {
 .repressLink {
 	stroke: #efefef;
 	stroke-width: 0px;
+}
+
+.bootstrap-select .btn {
+	font-size: 14px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.bootstrap-select .dropdown-menu {
+	font-size: 14px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.textMessage {
+	font-family: 'Open Sans', sans-serif;
+}
+
+#headerMessage {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 20px;
 }
