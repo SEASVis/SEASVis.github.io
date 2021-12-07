@@ -18,7 +18,7 @@ rect {
 }
 
 .label {
-	fill: white;
+	fill: #212529;
 	pointer-events: none;
 	font-weight: normal;
 	font-family: 'Open Sans', sans-serif;
@@ -26,26 +26,26 @@ rect {
 
 .link {
 	fill: none;
-	stroke-width: 1px;
+	stroke-width: 0.5px;
 }
 
 .activeFaculty {
-	fill: #ed1b34;
 	stroke: #ed1b34;
 }
 
 .activeLink {
 	fill: none;
-	stroke-width: 3px;
+	stroke-width: 0.8px;
 }
 
 .repressNode {
-	fill: #CCC;
-	stroke: #CCC;
+	fill: #efefef;
+	stroke: #ccc;
+	color: black;
 }
 
 .repressLink {
-	stroke: #CCC;
+	stroke: #efefef;
 	stroke-width: 0px;
 }
 

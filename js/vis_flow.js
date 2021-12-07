@@ -520,7 +520,10 @@ class visFlow {
         });
 
         vis.svg.append("text")
-            .attr("x", vis.width/2)
+            .attr("x", function(){
+                let gap = (vis.width - 2*vis.boxWidthArea - 2*vis.boxWidth - vis.boxHeightCenter) / 4;
+                return vis.boxWidthArea + vis.boxWidth + 2*gap;
+            })
             .attr("y", function(){
                 return vis.centerOffset + (vis.boxHeightCenter + vis.gap.height) - 10;
             })
