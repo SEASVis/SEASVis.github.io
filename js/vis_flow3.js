@@ -556,6 +556,8 @@ class visFlow {
             
 
         nodes.merge(nodesEnter)
+            .transition()
+            .duration(1000)
             .attr("x", function (d) { return d.x; })
             .attr("y", function (d) { return d.y; })
             .attr("height", function(d) {
@@ -578,6 +580,8 @@ class visFlow {
             });
 
         labels.merge(labelsEnter)
+            .transition()
+            .duration(1000)
             .attr("x", function (d) { return d.x + 7; })
             .attr("y", function (d) {
                 if(d.lvl === 0){
@@ -641,6 +645,8 @@ class visFlow {
             });
 
         links.merge(linksEnter)
+            .transition()
+            .duration(1000)
             .attr("d", function (li) {
                 let oTarget;
                 let oSource;

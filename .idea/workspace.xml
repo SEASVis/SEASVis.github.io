@@ -10,18 +10,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="23bcef6d-e1bd-4bf5-b1ce-d811345eb949" name="Default Changelist" comment="pulled visualizations into stand-alone pages">
+    <list default="true" id="23bcef6d-e1bd-4bf5-b1ce-d811345eb949" name="Default Changelist" comment="fixed logic with active nodes in flow vis">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/styles_flow.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/styles_flow.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/main_flow3.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main_flow3.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/vis_flow.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vis_flow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/vis_flow2.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vis_flow2.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/vis_flow3.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vis_flow3.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vis_arc2.html" beforeDir="false" afterPath="$PROJECT_DIR$/vis_arc2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vis_flow.html" beforeDir="false" afterPath="$PROJECT_DIR$/vis_flow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vis_flow2.html" beforeDir="false" afterPath="$PROJECT_DIR$/vis_flow2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vis_flow3.html" beforeDir="false" afterPath="$PROJECT_DIR$/vis_flow3.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +21,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="01224a7f-7a02-45c1-9841-7a3de1d1ffff" />
   </component>
   <component name="ProjectId" id="1yuqYXhSFRrPlx5FW7nUf9bbnRG" />
   <component name="ProjectLevelVcsManager">
@@ -46,6 +40,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="JavaScript Debug.index.html">
@@ -108,7 +103,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633893015053</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fixed logic with active nodes in flow vis">
+      <created>1642991142536</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1642991142536</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -129,7 +131,8 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="pulled visualizations into stand-alone pages" />
-    <option name="LAST_COMMIT_MESSAGE" value="pulled visualizations into stand-alone pages" />
+    <MESSAGE value="fixed logic with active nodes in flow vis" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed logic with active nodes in flow vis" />
   </component>
   <component name="WindowStateProjectService">
     <state width="1515" height="227" key="GridCell.Tab.0.bottom" timestamp="1637002866009">
@@ -152,10 +155,18 @@
     </state>
     <state width="1515" height="227" key="GridCell.Tab.0.right/-1600.25.1600.875/0.25.1536.873@0.25.1536.873" timestamp="1636993987102" />
     <state width="1515" height="227" key="GridCell.Tab.0.right/0.25.1536.873@0.25.1536.873" timestamp="1637002866009" />
-    <state x="469" y="216" width="597" height="490" key="find.popup" timestamp="1637777873005">
+    <state x="277" y="98" key="SettingsEditor" timestamp="1642990992546">
       <screen x="0" y="25" width="1536" height="873" />
     </state>
-    <state x="469" y="216" width="597" height="490" key="find.popup/-1920.25.1920.1055/0.25.1536.873@0.25.1536.873" timestamp="1637777873005" />
+    <state x="277" y="98" key="SettingsEditor/-1920.25.1920.1055/0.25.1536.873@0.25.1536.873" timestamp="1642990992546" />
+    <state x="368" y="199" key="Vcs.Push.Dialog.v2" timestamp="1642991149856">
+      <screen x="0" y="25" width="1536" height="873" />
+    </state>
+    <state x="368" y="199" key="Vcs.Push.Dialog.v2/-1920.25.1920.1055/0.25.1536.873@0.25.1536.873" timestamp="1642991149856" />
+    <state x="469" y="216" width="597" height="490" key="find.popup" timestamp="1642973501429">
+      <screen x="0" y="25" width="1536" height="873" />
+    </state>
+    <state x="469" y="216" width="597" height="490" key="find.popup/-1920.25.1920.1055/0.25.1536.873@0.25.1536.873" timestamp="1642973501429" />
     <state x="432" y="214" width="670" height="676" key="search.everywhere.popup" timestamp="1637029751401">
       <screen x="0" y="25" width="1536" height="873" />
     </state>
