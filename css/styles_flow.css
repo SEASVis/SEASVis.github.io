@@ -29,19 +29,25 @@ rect {
 	stroke-width: 0.5px;
 }
 
+.repressArea {
+	fill: #efefef;
+	stroke: #ccc;
+	color: black;
+}
+
 .activeFaculty {
 	stroke: #ed1b34;
+}
+
+.activeCenter {
+	fill: #a5a5a5;
+	stroke-width: 0;
+	color: black;
 }
 
 .activeLink {
 	fill: none;
 	stroke-width: 0.8px;
-}
-
-.repressNode {
-	fill: #efefef;
-	stroke: #ccc;
-	color: black;
 }
 
 .repressLink {
