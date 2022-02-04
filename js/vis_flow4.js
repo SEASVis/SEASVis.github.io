@@ -12,111 +12,6 @@ class visFlow {
         this.initVis()
     }
 
-    reset(){
-        let vis = this;
-        vis.Nodes.forEach(function(d){
-            if(d.lvl === 0){
-                d3.select("#" + d.id).classed("repressArea", false);
-            }else if(d.lvl === 1){
-                d3.select("#" + d.id).classed("activeFaculty", false);
-            }else{
-                d3.select("#" + d.id).classed("activeCenter", false);
-            }
-        })
-
-        vis.Links.forEach(function(d){
-            d3.select("#" + d.id).classed("activeLink", false);
-            d3.select("#" + d.id).classed("repressLink", false);
-        })
-    }
-
-    repress(){
-        let vis = this;
-        vis.Nodes.forEach(function(d){
-            if(d.lvl === 0){
-                d3.select("#" + d.id).classed("repressArea", true);
-            }else if(d.lvl === 1){
-                d3.select("#" + d.id).classed("activeFaculty", false);
-            }else{
-                d3.select("#" + d.id).classed("activeCenter", false);
-            }
-        })
-
-        vis.Links.forEach(function(d){
-            d3.select("#" + d.id).classed("activeLink", false);
-            d3.select("#" + d.id).classed("repressLink", true);
-        })
-    }
-
-    mouse_action(val, lvl){
-        let vis = this;
-
-        if(lvl === 0){
-            let area0 = vis.Nodes.filter(obj => {return obj.name === val.name})[0];
-            let areaFaculty = [];
-            d3.select("#" + area0.id).classed("repressArea", false);
-
-            vis.Links.forEach(function(d){
-                if(d.target.id === area0.id){
-                    d3.select("#" + d.id).classed("repressLink", false);
-                    d3.select("#" + d.id).classed("activeLink", true);
-                    areaFaculty.push(d.source);
-                    d3.select("#" + d.source.id).classed("activeFaculty", true);
-                }
-            })
-
-            vis.Links.forEach(function(d){
-                if(d.lvl === 1){
-                    if(areaFaculty.includes(d.source)){
-                        d3.select("#" + d.id).classed("repressLink", false);
-                        d3.select("#" + d.id).classed("activeLink", true);
-                        d3.select("#" + d.target.id).classed("activeCenter", true);
-                    }
-                }
-            })
-        }
-
-        if(lvl === 1){
-            d3.select("#" + val.id).classed("activeFaculty", true);
-
-            vis.Links.forEach(function(d){
-                if(d.source.id === val.id){
-                    d3.select("#" + d.id).classed("repressLink", false);
-                    d3.select("#" + d.id).classed("activeLink", true);
-                    if(d.lvl === 0){
-                        d3.select("#" + d.target.id).classed("repressArea", false);
-                    }else{
-                        d3.select("#" + d.target.id).classed("activeCenter", true);
-                    }
-                }
-            })
-        }
-
-        if(lvl === 2){
-            let centerFaculty = [];
-            d3.select("#" + val.id).classed("activeCenter", true);
-
-            vis.Links.forEach(function(d){
-                if(d.target.id === val.id){
-                    d3.select("#" + d.id).classed("repressLink", false);
-                    d3.select("#" + d.id).classed("activeLink", true);
-                    centerFaculty.push(d.source);
-                    d3.select("#" + d.source.id).classed("activeFaculty", true);
-                }
-            })
-
-            vis.Links.forEach(function(d){
-                if(d.lvl === 0){
-                    if(centerFaculty.includes(d.source)){
-                        d3.select("#" + d.id).classed("repressLink", false);
-                        d3.select("#" + d.id).classed("activeLink", true);
-                        d3.select("#" + d.target.id).classed("repressArea", false);
-                    }
-                }
-            })
-        }
-    }
-
     initVis(){
         let vis = this;
 
@@ -129,14 +24,6 @@ class visFlow {
             .attr("height", 2880)
             .append('g')
             .attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`);
-
-        vis.svg.append("rect")
-            .attr("width", vis.width)
-            .attr("height", 2040)
-            .style("fill", "white")
-            .on("click", function () {
-                vis.reset();
-            });
 
         vis.svg.append("text")
             .attr("x", vis.width/2)
@@ -266,171 +153,102 @@ class visFlow {
             d.id = "l" + d.source.id + d.target.id;
         });
 
-        let selectAreaDiv = document.getElementById('area-filter-selector');
-        vis.listAreas.forEach((area) => {
-            let opt = document.createElement('option');
-            opt.value = area;
-            opt.innerHTML = area;
-            selectAreaDiv.appendChild(opt);
-        });
-        $('#area-filter-selector').selectpicker('refresh');
-
-        let selectCenterDiv = document.getElementById('center-filter-selector');
-        vis.listCenters.forEach((center) => {
-            let opt = document.createElement('option');
-            opt.value = center;
-            opt.innerHTML = center;
-            selectCenterDiv.appendChild(opt);
-        });
-        $('#center-filter-selector').selectpicker('refresh');
-
         vis.allNodes = vis.Nodes;
         vis.allLinks = vis.Links;
 
         vis.updateVis();
     }
 
-    filterData(){
+    filterData(val, lvl){
         let vis = this;
 
         vis.Nodes = vis.allNodes;
         vis.Links = vis.allLinks;
-        vis.reset();
 
-        if(selectedArea.length === 0 && selectedCenter.length === 0){
-            vis.Nodes = [];
-            vis.Links = [];
-        }
+        let selectedNodes = [];
+        let selectedLinks = [];
 
-        if(selectedArea[0] !== "Include All" && selectedCenter.length !== 0) {
-            let selectedNodes = [];
-            let selectedLinks = [];
-            let selectedAreas = [];
-            let selectedFaculty = [];
+        if(lvl === 0){
+            let area0 = vis.Nodes.filter(obj => {return obj.name === val.name})[0]
+            selectedNodes.push(area0);
 
-            selectedArea.forEach(function (d) {
-                let tempNode = vis.Nodes.filter(obj => {
-                    return obj.name === d
-                });
-
-                if (tempNode.length !== 0){
-                    selectedNodes.push(tempNode[0]);
-                    selectedAreas.push(tempNode[0]);
+            let areaFaculty = [];
+            vis.Links.forEach(function(d){
+                if(d.target.id === area0.id){
+                    if(!selectedNodes.includes(d.source)){
+                        selectedNodes.push(d.source);
+                        areaFaculty.push(d.source);
+                    }
+                    selectedLinks.push(d);
                 }
             })
 
-            if (selectedAreas.length !== 0) {
-                selectedAreas.forEach(function (area) {
-                    vis.Links.forEach(function (d) {
-                        if (d.target.id === area.id) {
-                            if (!selectedLinks.includes(d)) {
-                                selectedLinks.push(d)
-                            }
-
-                            let tempSelected = vis.Nodes.filter(obj => {
-                                return obj.name === d.source.name
-                            })[0]
-                            if (!selectedNodes.includes(tempSelected)) {
-                                selectedNodes.push(tempSelected);
-                            }
-                            selectedFaculty.push(d.source);
+            vis.Links.forEach(function(d){
+                if(d.lvl === 1){
+                    if(areaFaculty.includes(d.source)){
+                        if(!selectedNodes.includes(d.target)){
+                            selectedNodes.push(d.target)
                         }
-                    })
-
-                    vis.Links.forEach(function (d) {
-                        if (d.lvl === 1) {
-                            if (selectedFaculty.includes(d.source)) {
-                                if (!selectedLinks.includes(d)) {
-                                    selectedLinks.push(d)
-                                }
-
-                                let tempSelected = vis.Nodes.filter(obj => {
-                                    return obj.name === d.target.name
-                                })[0]
-                                if (!selectedNodes.includes(tempSelected)) {
-                                    selectedNodes.push(tempSelected);
-                                }
-                            }
-                        }
-                    })
-                })
-
-                selectedNodes.sort((a, b) => a.lvl - b.lvl || a.school - b.school || d3.ascending(a.name, b.name))
-                vis.Nodes = selectedNodes;
-                vis.Links = selectedLinks;
-            } else {
-                vis.Nodes = [];
-                vis.Links = [];
-            }
-        }
-
-        if(selectedCenter[0] !== "Include All" && selectedArea.length !== 0) {
-            let selectedNodes = [];
-            let selectedLinks = [];
-            let selectedCenters = [];
-            let selectedFaculty = [];
-
-            selectedCenter.forEach(function (d) {
-                let tempNode = vis.Nodes.filter(obj => {
-                    return obj.name === d
-                });
-
-                if (tempNode.length !== 0){
-                    selectedNodes.push(tempNode[0]);
-                    selectedCenters.push(tempNode[0]);
+                        selectedLinks.push(d);
+                    }
                 }
             })
 
-            if (selectedCenters.length !== 0) {
-                selectedCenters.forEach(function (center) {
-                    vis.Links.forEach(function (d) {
-                        if (d.target.id === center.id) {
-                            if (!selectedLinks.includes(d)) {
-                                selectedLinks.push(d)
-                            }
+            vis.Nodes = selectedNodes;
+            vis.Links = selectedLinks;
+        }
 
-                            let tempSelected = vis.Nodes.filter(obj => {
-                                return obj.name === d.source.name
-                            })[0]
-                            if (!selectedNodes.includes(tempSelected)) {
-                                selectedNodes.push(tempSelected);
-                            }
-                            selectedFaculty.push(d.source);
+        if(lvl === 1){
+            selectedNodes.push(val);
+
+            vis.Links.forEach(function(d){
+                if(d.source.id === val.id){
+                    if(!selectedNodes.includes(d.target)){
+                        selectedNodes.push(d.target)
+                    }
+                    selectedLinks.push(d)
+                }
+            })
+
+            vis.Nodes = selectedNodes;
+            vis.Links = selectedLinks;
+        }
+
+        if(lvl === 2){
+            selectedNodes.push(val);
+
+            let centerFaculty = [];
+            vis.Links.forEach(function(d){
+                if(d.target.id === val.id){
+                    if(!selectedNodes.includes(d.source)){
+                        selectedNodes.push(d.source)
+                        centerFaculty.push(d.source);
+                    }
+                    selectedLinks.push(d);
+                }
+            })
+
+            vis.Links.forEach(function(d){
+                if(d.lvl === 0){
+                    if(centerFaculty.includes(d.source)){
+                        if(!selectedNodes.includes(d.target)){
+                            selectedNodes.push(d.target)
                         }
-                    })
+                        selectedLinks.push(d)
+                    }
+                }
+            })
 
-                    vis.Links.forEach(function (d) {
-                        if (d.lvl === 0) {
-                            if (selectedFaculty.includes(d.source)) {
-                                if (!selectedLinks.includes(d)) {
-                                    selectedLinks.push(d)
-                                }
+            vis.Nodes = selectedNodes;
+            vis.Links = selectedLinks;
+        }
 
-                                let tempSelected = vis.Nodes.filter(obj => {
-                                    return obj.name === d.target.name
-                                })[0]
-                                if (!selectedNodes.includes(tempSelected)) {
-                                    selectedNodes.push(tempSelected);
-                                }
-                            }
-                        }
-                    })
-                })
-
-                selectedNodes.sort((a, b) => a.lvl - b.lvl || a.area - b.area || a.school - b.school || d3.ascending(a.name, b.name))
-                vis.Nodes = selectedNodes;
-                vis.Links = selectedLinks;
-            } else {
-                vis.Nodes = [];
-                vis.Links = [];
+        vis.Nodes.sort(function(a,b){
+            if (a.lvl === b.lvl && a.lvl !== 2){
+                return a.name.localeCompare(b.name);
             }
-        }
-
-        if(vis.Nodes.length === 0){
-            d3.select("#noFacultyMessage").style("opacity", 1)
-        }else{
-            d3.select("#noFacultyMessage").style("opacity", 0)
-        }
+            return a.lvl - b.lvl;
+        });
 
         vis.updateVis();
     }
@@ -549,9 +367,8 @@ class visFlow {
             .attr("fill-opacity", d => d.lvl === 1 ? 0 : 0.8)
             .attr("stroke-width", d => d.lvl=== 1 ? 1 : 0)
             .attr("stroke", d => d.lvl === 1 ? "#ccc": "")
-            .on("click", function () { 
-                vis.repress();
-                vis.mouse_action(d3.select(this).datum(), d3.select(this).datum().lvl);
+            .on("click", function () {
+                vis.filterData(d3.select(this).datum(), d3.select(this).datum().lvl);
             })
             
 

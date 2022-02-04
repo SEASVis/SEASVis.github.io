@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>(Dropdown Version) Flow Visualization: Faculty School & Center Affiliations</title>
+	<title>(Click Version) Flow Visualization: Faculty School & Center Affiliations</title>
 
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="css/bootstrap.css">
@@ -21,19 +21,10 @@
 
 <body>
 
-	<div class="row">
-		<div class="col">
-			<select id='area-filter-selector' class="selectpicker" data-width="500px" multiple data-live-search="true" onchange="filterArea()">
-				<option value="Include All">Include All Academic Areas</option>
-			</select>
-		</div>
-		<div class="col my-auto">
-			<p id="headerMessage">Click on any node to highlight the connections!</p>
-		</div>
-		<div class="col">
-			<select id='center-filter-selector' class="selectpicker float-right" data-width="500px" multiple data-live-search="true" onchange="filterCenter()">
-				<option value="Include All">Include All Centers and Initiatives</option>
-			</select>
+	<div class="row justify-content-center">
+		<div class="col-3" style="display: flex; align-items: center;">
+			<span id="headerMessage">Click on any node to filter the visualization! &nbsp &nbsp</span>
+			<button type="button" class="reset-btn" onclick="resetVis()">Reset</button>
 		</div>
 	</div>
 
@@ -49,14 +40,8 @@
 	<script src="https://d3js.org/d3.v6.min.js"></script>
 
 	<!-- custom scripts-->
-	<script src="js/vis_flow3.js"></script>
-	<script src="js/main_flow3.js"></script>
-
-	<script>
-		$('select').selectpicker();
-		$('.selectpicker').selectpicker('deselectAll');
-		$('.selectpicker').selectpicker('val', 'Include All');
-	</script>
+	<script src="js/vis_flow4.js"></script>
+	<script src="js/main_flow4.js"></script>
 
 </body>
 

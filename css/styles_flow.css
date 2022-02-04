@@ -73,3 +73,11 @@ rect {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 20px;
 }
+
+.reset-btn {
+	border: 1px;
+	padding-left: 5px;
+	padding-right: 5px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+}
