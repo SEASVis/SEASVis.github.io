@@ -2350,6 +2350,7 @@ class visFlow2 {
                 return vis.offset_schools - 10;
             })
             .attr("text-anchor", "middle")
+            .attr("class", "textMessage")
             .style("font-size", "16px")
             .style("font-weight", "bold")
             .text("Click on any node to highlight the connections!");

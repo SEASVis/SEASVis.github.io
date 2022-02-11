@@ -4,7 +4,7 @@ h1, h3, p {
 
 h1 {
 	font-size:52px;
-	font-family: 'Russo One';
+	font-family: 'Open Sans', sans-serif;
 	margin-top:0;
 }
 
@@ -18,31 +18,66 @@ rect {
 }
 
 .label {
-	fill: white;
+	fill: #212529;
 	pointer-events: none;
+	font-weight: normal;
+	font-family: 'Open Sans', sans-serif;
 }
 
 .link {
 	fill: none;
-	stroke-width: 1px;
+	stroke-width: 0.5px;
+}
+
+.repressArea {
+	fill: #efefef;
+	stroke: #ccc;
+	color: black;
 }
 
 .activeFaculty {
-	fill: #ed1b34;
 	stroke: #ed1b34;
+}
+
+.activeCenter {
+	fill: #a5a5a5;
+	stroke-width: 0;
+	color: black;
 }
 
 .activeLink {
 	fill: none;
-	stroke-width: 3px;
-}
-
-.repressNode {
-	fill: #CCC;
-	stroke: #CCC;
+	stroke-width: 0.8px;
 }
 
 .repressLink {
-	stroke: #CCC;
+	stroke: #efefef;
 	stroke-width: 0px;
+}
+
+.bootstrap-select .btn {
+	font-size: 14px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.bootstrap-select .dropdown-menu {
+	font-size: 14px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.textMessage {
+	font-family: 'Open Sans', sans-serif;
+}
+
+#headerMessage {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 20px;
+}
+
+.reset-btn {
+	border: 1px;
+	padding-left: 5px;
+	padding-right: 5px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
 }
