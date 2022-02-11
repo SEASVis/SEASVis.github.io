@@ -11,9 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="23bcef6d-e1bd-4bf5-b1ce-d811345eb949" name="Default Changelist" comment="pulled visualizations into stand-alone pages">
-      <change afterPath="$PROJECT_DIR$/images/SEAS_building.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/vis_radial.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/vis_radial.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +34,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../DataVisualization/OnTheNose_DataViz" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Research/Projects/MetaAnalysis_Project/Network_Graph/network-vis" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -85,7 +83,10 @@
       <workItem from="1635903393142" duration="52167000" />
       <workItem from="1636378649378" duration="21504000" />
       <workItem from="1636752622521" duration="8121000" />
-      <workItem from="1637006701245" duration="6011000" />
+      <workItem from="1637006701245" duration="6637000" />
+      <workItem from="1637692135247" duration="771000" />
+      <workItem from="1638663179568" duration="3007000" />
+      <workItem from="1638935874693" duration="27000" />
     </task>
     <task id="LOCAL-00001" summary="pulled visualizations into stand-alone pages">
       <created>1633893015053</created>
