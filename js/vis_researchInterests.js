@@ -236,6 +236,7 @@ class visResearchInterests {
         let tempScaleShift = vis.cellScalar * d3.min([((vis.width - vis.xShift) / vis.displayFaculty.length), ((vis.height - vis.yShift) / vis.displayResearchInterests.length)]);
 
         vis.cellWidth = d3.max([tempScaleShift,5]); // can I just increase the max?
+        console.log(vis.cellWidth)
         vis.displayLabelsBoolean = (vis.displayFaculty.length <= vis.displayLabelsThreshold);
     }
 
@@ -280,7 +281,7 @@ class visResearchInterests {
             .merge(rowLabels)
             .transition(trans) // ENTER + UPDATE
             .attr("text-anchor","end")
-            .attr("y", (d,i) => (vis.cellPadding + vis.cellWidth) * (i+1) + vis.yShift)
+            .attr("y", (d,i) => (vis.cellPadding + vis.cellWidth) * (i+1) + vis.yShift-vis.cellWidth/2)
             .attr("x", vis.xShift-5)
             .attr("opacity", function(d) {
                 if (vis.displayLabelsBoolean){
@@ -317,8 +318,9 @@ class visResearchInterests {
             .merge(columnLabels)
             .transition(trans) // ENTER + UPDATE
             .attr("text-anchor","start")
-            .attr("x", (d,i) => (vis.cellPadding + vis.cellWidth) * (i+1) + vis.xShift)
-            .attr("y", vis.yShift-5)
+            .attr("x", (d,i) => (vis.cellPadding + vis.cellWidth) * (i+1) + 250)
+            .attr("y", vis.yShift-vis.cellWidth/2)
+            // .attr("stroke",5)
             .attr("opacity", function(d) {
                 if (vis.displayLabelsBoolean){
                     return 1.0;
