@@ -3,7 +3,8 @@ let wordBarSubTitleTop = "";
 let wordBarSubTitleBottom = "";
 let wordBarColor = ""; // send over the color of the selected box
 let selectedFacultyAdjFilter = "";
-let selectedFacultyTableFilter = "";
+let selectedFacultyTableFilterAA = "";
+let selectedFacultyTableFilterRI = "";
 
 // load data using promises
 let promises = [

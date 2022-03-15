@@ -8,6 +8,34 @@ h1 {
 	margin-top:0;
 }
 
+p{
+	font-size: 2em;
+}
+
+.custom-select{
+	font-family: 'Russo One';
+	height: 5vh;
+	width: 23vw;
+	text-transform: uppercase;
+	font-weight: 600;
+	letter-spacing: 2px;
+	font-size: 1.1rem;
+	padding: 1rem;
+	background-color: #FAFCFD;
+	border: 3px solid black;
+	transition: .3s ease-in-out;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.custom-select select{
+	max-width: 23ch;
+}
+
+.options{
+	height: 7vh;
+}
+
 #researchInterestsTooltip {
 	width: 400px;
 }
@@ -18,9 +46,14 @@ h1 {
 }
 
 #faculty-interest-table .matrix-row-labels {
-	font-size: 10px;
+	font-size: 1.2em;
 }
 
 #faculty-interest-table .matrix-column-labels {
-	font-size: 9px;
+	font-size: 1.2em;
+}
+
+
+.cbf-switch{
+	font-size: 2em;
 }

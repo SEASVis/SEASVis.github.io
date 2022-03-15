@@ -8,13 +8,15 @@ class visResearchInterests {
         this.peopleInfo = peopleInfo;
         this.latestPeopleInfo = latestPeopleInfo;
 
+        console.log(this.peopleInfo)
+
         this.initVis();
     }
 
     initVis(){
         let vis = this;
 
-        vis.margin = {top: 20, right: 5, bottom: 5, left: 5};
+        vis.margin = {top: 20, right: 5, bottom: 0, left: 0};
         vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right;
         vis.height = $("#" + vis.parentElement).height() - vis.margin.top - vis.margin.bottom;
 
@@ -24,12 +26,29 @@ class visResearchInterests {
             .attr("width", vis.width + vis.margin.left + vis.margin.right)
             .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
             .append('g')
-            .attr('transform', `translate (${vis.width/6}, ${vis.margin.top})`);
+            .attr('transform', `translate (${vis.width/6}, ${vis.margin.top})`)
+            // .attr('transform', 'rotate(45deg)');
 
+        // color palette and color blind option
+        vis.areaList = ["Applied Mathematics", "Applied Physics", "Bioengineering", "Computer Science", "Electrical Engineering",
+            "Environmental Science & Engineering", "Material Science & Mechanical Engineering"]
+        vis.colors= {'Applied Mathematics':'#00aaad',"Applied Physics":"#cbdb2a","Bioengineering":"#fcb315","Computer Science":"#4e88c7",
+            "Electrical Engineering":"#ffde2d","Environmental Science & Engineering":"#77ced9", "Material Science & Mechanical Engineering":"#bb89ca"}
+
+        vis.cbColors = {'Applied Mathematics':'#FCB315',"Applied Physics":"#FFDE2D","Bioengineering":"#41A23D","Computer Science":"#01D9DC",
+            "Electrical Engineering":"#B379E8","Environmental Science & Engineering":"#0D5AAF", "Material Science & Mechanical Engineering":"#B7E5EA"}
+
+        vis.areaLoc = [{x: -150, y:0},{x: -150, y:15},{x: -150, y:30},{x: -150, y:45},{x: -150, y:60},
+            {x: -150, y:75},{x: -150, y:90},]
         // we seem to be narrowing who we include, so here it is
         vis.latestAllFaculty = vis.latestPeopleInfo.map((x) => x.Title);
         vis.allFaculty = vis.peopleInfo.map((x) => x.Title)
             .filter((x) => vis.latestAllFaculty.includes(x));
+
+
+
+
+        vis.teachingAreaInfo={}
 
         // I also want some big list of research areas... and teaching areas while we're at it
         let allResearchInterestsDup = vis.peopleInfo.map((x) => x["Research Interests"]).join("|").split("|");
@@ -43,31 +62,33 @@ class visResearchInterests {
             .sort(function(a, b){return a.localeCompare(b)});
 
         // add options to the select item for filtering
-        let selectDiv = document.getElementById('faculty-table-filter-selector');
+        let selectDivRI = document.getElementById('faculty-table-filter-research-selector');
+        let selectDivAA = document.getElementById('faculty-table-filter-academic-selector');
         vis.allTeachingAreas.forEach((teachingArea) => {
             let opt = document.createElement('option');
             opt.value = teachingArea;
-            opt.innerHTML = "Filter: Academic Area: " + teachingArea;
-            selectDiv.appendChild(opt);
+            opt.innerHTML = teachingArea;
+            selectDivAA.appendChild(opt);
         });
         vis.allResearchInterests.forEach((r) => {
             let opt = document.createElement('option');
             opt.value = r;
-            opt.innerHTML = "Filter: Research Interest: " + r;
+            opt.innerHTML = r;
             // just so that something is set
             if (r == vis.allResearchInterests[0]) {
                 //opt.selected = true;
                 //selectedFacultyTableFilter = r;
             }
-            selectDiv.appendChild(opt);
+            selectDivRI.appendChild(opt);
         });
 
         // intrinsic properties of the adjacency matrix
         //vis.cellWidth = 2;
-        vis.yShift = 100;
-        vis.xShift = 240;
+        vis.yShift = 150;
+        vis.xShift = 250;
         vis.originalYShift = vis.yShift;
         vis.originalXShift = vis.xShift;
+        vis.ySquareShift = 10;
 
         vis.cellScalar = 0.95; //0.85;
         vis.cellPadding = 1;
@@ -90,6 +111,7 @@ class visResearchInterests {
         });
 
         vis.basicRelationData();
+        vis.teachingAreaData();
         vis.createMatrixData();
 
         // decide whether or not to display text based on how many are here
@@ -103,6 +125,17 @@ class visResearchInterests {
 
         // actually create the squares (and labels)
         vis.wrangleData();
+    }
+
+    teachingAreaData(){
+        let vis = this;
+
+        vis.peopleInfo.forEach((x)=>{
+            let tas = x['Teaching Areas'].split("|")
+            // console.log(tas, vis.areaList.includes(tas[0]))
+            let ta = vis.areaList.includes(tas[0]) ? tas[0] : tas[1]
+            vis.teachingAreaInfo[x.Title]=ta
+        })
     }
 
     basicRelationData() {
@@ -170,26 +203,40 @@ class visResearchInterests {
 
     sortAndFilterValues() {
         let vis = this;
+        vis.noMatch = false;
 
         // filter FIRST
 
         // filtering the faculty
-        if (vis.allResearchInterests.includes(selectedFacultyTableFilter)) {
-            let filteredFaculty = vis.allFaculty.filter(name => vis.departmentMap[name].researchInterests.includes(selectedFacultyTableFilter));
-            vis.displayFaculty = filteredFaculty;
-            vis.xShift = 240;
-            vis.cellScalar = 0.85;
-        } else if (vis.allTeachingAreas.includes(selectedFacultyTableFilter)) {
-            let filteredFaculty = vis.allFaculty.filter(name => vis.departmentMap[name].teachingAreas.includes(selectedFacultyTableFilter));
-            vis.displayFaculty = filteredFaculty;
-            vis.xShift = 240;
-            vis.cellScalar = 0.85;
-        }
-        else if (selectedFacultyTableFilter == "All") {
+        if (selectedFacultyTableFilterRI != "All" & selectedFacultyTableFilterAA == "All") {
+            vis.displayFaculty = vis.allFaculty.filter(name => vis.departmentMap[name].researchInterests.includes(selectedFacultyTableFilterRI));
+            // vis.displayFaculty = filteredFacultyRI;
+            // vis.xShift = 240;
+            vis.cellScalar = 0.7;
+        } else if (selectedFacultyTableFilterAA != "All" & selectedFacultyTableFilterRI == "All") {
+            vis.displayFaculty = vis.allFaculty.filter(name => vis.departmentMap[name].teachingAreas.includes(selectedFacultyTableFilterAA));
+            // vis.displayFaculty = filteredFacultyAA;
+            // vis.xShift = 240;
+            vis.cellScalar = 0.7;
+        } else if (selectedFacultyTableFilterRI == "All" && selectedFacultyTableFilterAA == "All") {
             vis.displayFaculty = vis.allFaculty;
-            vis.xShift = 50;
+            // vis.xShift = 50;
             vis.cellScalar = 0.6;
+        } else if (selectedFacultyTableFilterRI != "All" && selectedFacultyTableFilterAA != "All"){
+            let filteredFacultyRI = vis.allFaculty.filter(name => vis.departmentMap[name].researchInterests.includes(selectedFacultyTableFilterRI));
+            vis.displayFaculty = filteredFacultyRI.filter(name => vis.departmentMap[name].teachingAreas.includes(selectedFacultyTableFilterAA));
+            if (vis.displayFaculty.length > 0){
+                // vis.xshift=240;
+                vis.cellScalar=0.6
+            } else if (vis.displayFaculty==0){
+                vis.displayFaculty=vis.allFaculty;
+                vis.noMatch= true;
+                // vis.xShift=50;
+                vis.cellScalar=0.6;
+            }
         }
+
+
 
         // once you've filtered the faculty, filter out research areas that are unnecessary
         let allRelevantResearchInterestStr = vis.displayFaculty.map((name) => vis.departmentMap[name].researchInterests).join("|");
@@ -202,24 +249,24 @@ class visResearchInterests {
         // THEN sort
 
         // sorting of faculty
-        let stringFacultyInclusionSorts = ["name", "teachingAreas"];
-        if (stringFacultyInclusionSorts.includes(selectedFacultyTableFacultySort)) {
-            // compare strings
-            vis.displayFaculty.sort(function(a, b){return vis.facultySortInfoDict[a][selectedFacultyTableFacultySort].localeCompare(vis.facultySortInfoDict[b][selectedFacultyTableFacultySort])});
-        }
-        else {
-            // compare numbers (counts)
-            vis.displayFaculty.sort(function(a, b){return vis.facultySortInfoDict[b][selectedFacultyTableFacultySort] - vis.facultySortInfoDict[a][selectedFacultyTableFacultySort]});
-        }
-
-        // sorting of research areas
-        let stringResearchInclusionSorts = ["researchInterest"];
-        if (stringResearchInclusionSorts.includes(selectedFacultyTableResearchSort)) {
-            vis.displayResearchInterests.sort(function(a, b){return vis.researchInterestSortInfoDict[a][selectedFacultyTableResearchSort].localeCompare(vis.researchInterestSortInfoDict[b][selectedFacultyTableResearchSort])});
-        }
-        else {
-            vis.displayResearchInterests.sort(function(a, b){return vis.researchInterestSortInfoDict[b][selectedFacultyTableResearchSort] - vis.researchInterestSortInfoDict[a][selectedFacultyTableResearchSort]});
-        }
+        // let stringFacultyInclusionSorts = ["name", "teachingAreas"];
+        // if (stringFacultyInclusionSorts.includes(selectedFacultyTableFacultySort)) {
+        //     // compare strings
+        //     vis.displayFaculty.sort(function(a, b){return vis.facultySortInfoDict[a][selectedFacultyTableFacultySort].localeCompare(vis.facultySortInfoDict[b][selectedFacultyTableFacultySort])});
+        // }
+        // else {
+        //     // compare numbers (counts)
+        //     vis.displayFaculty.sort(function(a, b){return vis.facultySortInfoDict[b][selectedFacultyTableFacultySort] - vis.facultySortInfoDict[a][selectedFacultyTableFacultySort]});
+        // }
+        //
+        // // sorting of research areas
+        // let stringResearchInclusionSorts = ["researchInterest"];
+        // if (stringResearchInclusionSorts.includes(selectedFacultyTableResearchSort)) {
+        //     vis.displayResearchInterests.sort(function(a, b){return vis.researchInterestSortInfoDict[a][selectedFacultyTableResearchSort].localeCompare(vis.researchInterestSortInfoDict[b][selectedFacultyTableResearchSort])});
+        // }
+        // else {
+        //     vis.displayResearchInterests.sort(function(a, b){return vis.researchInterestSortInfoDict[b][selectedFacultyTableResearchSort] - vis.researchInterestSortInfoDict[a][selectedFacultyTableResearchSort]});
+        // }
 
         // update the cell widths so it scales, and maybe update whether or not text is shown
 
@@ -240,17 +287,27 @@ class visResearchInterests {
         vis.displayLabelsBoolean = (vis.displayFaculty.length <= vis.displayLabelsThreshold);
     }
 
+    updateColors(){
+        let vis = this;
+        vis.facultyColors = selectedColorPalette==false? vis.colors : vis.cbColors;
+    }
+
     wrangleData() {
         let vis = this;
 
         vis.sortAndFilterValues();
         vis.createMatrixData();
+        vis.updateColors();
+
+
 
         vis.updateVis();
     }
 
     updateVis(){
         let vis = this;
+
+
 
         let trans = d3.transition()
             .duration(800);
@@ -291,11 +348,11 @@ class visResearchInterests {
                     return 0.0;
                 }
             })
-            .attr("fill", function(d) {
-                if (d == selectedFacultyTableFilter) {
-                    return "black";
+            .attr("font-weight", function(d) {
+                if (d == selectedFacultyTableFilterRI) {
+                    return "bold";
                 } else {
-                    return "#5d5d5d";
+                    return "normal";
                 }
             })
             .text(d =>d);
@@ -318,7 +375,7 @@ class visResearchInterests {
             .merge(columnLabels)
             .transition(trans) // ENTER + UPDATE
             .attr("text-anchor","start")
-            .attr("x", (d,i) => (vis.cellPadding + vis.cellWidth) * (i+1) + 250)
+            .attr("x", (d,i) => (vis.cellPadding + vis.cellWidth) * (i+1) + vis.xShift+10)
             .attr("y", vis.yShift-vis.cellWidth/2)
             // .attr("stroke",5)
             .attr("opacity", function(d) {
@@ -332,12 +389,62 @@ class visResearchInterests {
             .attr("transform", (d,i) => "rotate(270," + ((vis.cellPadding + vis.cellWidth) * (i+1) + vis.xShift) +  "," + (vis.yShift - 5) + ")")
             .text((d) => d);
 
+        let facultySquares = vis.svg
+            .selectAll(".faculty-column-labels")
+            .data(vis.displayFaculty)
+
+        facultySquares.exit()
+            .style("opacity",0.0)
+            .transition(trans)
+            .remove();
+
+        facultySquares
+            .enter()
+            .append("rect")
+            .attr("class","faculty-column-labels")
+            .merge(facultySquares)
+            .attr("width",vis.cellWidth)
+            .attr('height',5)
+            .attr("x", (d,i) => (vis.cellPadding + vis.cellWidth) * (i) + vis.xShift)
+            .attr("y", vis.yShift-vis.ySquareShift)
+            // .attr("stroke",5)
+            .attr("opacity", function(d) {
+                if (vis.displayLabelsBoolean){
+                    return 1.0;
+                }
+                else {
+                    return 0.0;
+                }
+            })
+            .attr("fill", (d)=>{return vis.teachingAreaInfo[d] ? vis.facultyColors[vis.teachingAreaInfo[d]] : '#E8E8E8'})
+
+
+        // vis.legend = vis.svg
+        //     .append("g")
+        //     .selectAll("g")
+        //     .data(vis.areaList, d=>d)
+        //     .join("g")
+        //     .attr("transform", (d,i) => `translate(${vis.areaLoc[i].x},${vis.areaLoc[i].y})`)
+        //     .call(g => g.append("rect")
+        //         .attr("width", 12)
+        //         .attr("height", 12)
+        //         .attr("fill", (d,i) => vis.colors[d])
+        //     )
+        //     .call(g => g.append("text")
+        //         .attr("font-family", "sans-serif")
+        //         .attr("font-size", 14)
+        //         .attr("dy", "0.8em")
+        //         .attr("dx", "1em")
+        //         .attr("text-anchor", "start")
+        //         .attr("class", "legend")
+        //         .text(d => d))
+
         let relationSquares = vis.svg
             .selectAll(".matrix-relation-squares")
             .data(vis.matrixLongList, (d) => d.nameKey);
 
         relationSquares.exit() // EXIT
-            .style("opacity", 0.0)
+            .style("opacity",0.0)
             .transition(trans)
             .remove();
 
@@ -393,12 +500,15 @@ class visResearchInterests {
             .merge(relationSquares) // ENTER + UPDATE
             .transition(trans)
             .attr("fill", function(d) {
-                if (d.isInterested) {
-                    return "#ed1b34"; // SEAS red //"#a51c30"; // harvard crimson. used to be purple here
-                } else {
+                if (vis.noMatch){
                     return "#E8E8E8";
-                }
-            })
+                } else {
+                    if (d.isInterested) {
+                        return "#ed1b34"; // SEAS red //"#a51c30"; // harvard crimson. used to be purple here
+                    } else {
+                        return "#E8E8E8";
+                    }
+            }})
             .attr("opacity", function(d) {
                 if (vis.displayLabelsBoolean || d.isInterested){
                     return 1.0;
@@ -412,5 +522,9 @@ class visResearchInterests {
             //.attr("y", (d,i) => (vis.cellPadding + vis.cellWidth) * d.ypos + vis.yShift)
             .attr("width", vis.cellWidth)
             .attr("height", vis.cellWidth);
+
+        // vis.svg.selectAll().attr('transform', `translate (${vis.width/6}, ${vis.margin.top}) rotate(45degrees)`)
+
+
     }
 }
