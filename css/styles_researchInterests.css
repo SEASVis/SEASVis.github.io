@@ -12,6 +12,12 @@ p{
 	font-size: 2em;
 }
 
+.options{
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-evenly;
+}
+
 .custom-select{
 	font-family: 'Russo One';
 	height: 5vh;
@@ -56,4 +62,7 @@ p{
 
 .cbf-switch{
 	font-size: 2em;
+	font-family: 'Russo One';
+	margin:auto;
+	padding-top: 1vh;
 }

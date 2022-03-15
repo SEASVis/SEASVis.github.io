@@ -35,11 +35,11 @@ class visResearchInterests {
         vis.colors= {'Applied Mathematics':'#00aaad',"Applied Physics":"#cbdb2a","Bioengineering":"#fcb315","Computer Science":"#4e88c7",
             "Electrical Engineering":"#ffde2d","Environmental Science & Engineering":"#77ced9", "Material Science & Mechanical Engineering":"#bb89ca"}
 
-        vis.cbColors = {'Applied Mathematics':'#FCB315',"Applied Physics":"#FFDE2D","Bioengineering":"#41A23D","Computer Science":"#01D9DC",
-            "Electrical Engineering":"#B379E8","Environmental Science & Engineering":"#0D5AAF", "Material Science & Mechanical Engineering":"#B7E5EA"}
+        vis.cbColors = {'Applied Mathematics':'#01D9DC',"Applied Physics":"#41A23D","Bioengineering":"#FCB315","Computer Science":"#0D5AAF",
+            "Electrical Engineering":"#FFDE2D","Environmental Science & Engineering":"#B7E5EA", "Material Science & Mechanical Engineering":"#B379E8"}
 
-        vis.areaLoc = [{x: -150, y:0},{x: -150, y:15},{x: -150, y:30},{x: -150, y:45},{x: -150, y:60},
-            {x: -150, y:75},{x: -150, y:90},]
+        vis.areaLoc = [{x: -150, y:-20},{x: 10, y:-20},{x: 140, y:-20},{x: 265, y:-20},{x: 415, y:-20},
+            {x: 580, y:-20},{x: 840, y:-20},]
         // we seem to be narrowing who we include, so here it is
         vis.latestAllFaculty = vis.latestPeopleInfo.map((x) => x.Title);
         vis.allFaculty = vis.peopleInfo.map((x) => x.Title)
@@ -419,25 +419,25 @@ class visResearchInterests {
             .attr("fill", (d)=>{return vis.teachingAreaInfo[d] ? vis.facultyColors[vis.teachingAreaInfo[d]] : '#E8E8E8'})
 
 
-        // vis.legend = vis.svg
-        //     .append("g")
-        //     .selectAll("g")
-        //     .data(vis.areaList, d=>d)
-        //     .join("g")
-        //     .attr("transform", (d,i) => `translate(${vis.areaLoc[i].x},${vis.areaLoc[i].y})`)
-        //     .call(g => g.append("rect")
-        //         .attr("width", 12)
-        //         .attr("height", 12)
-        //         .attr("fill", (d,i) => vis.colors[d])
-        //     )
-        //     .call(g => g.append("text")
-        //         .attr("font-family", "sans-serif")
-        //         .attr("font-size", 14)
-        //         .attr("dy", "0.8em")
-        //         .attr("dx", "1em")
-        //         .attr("text-anchor", "start")
-        //         .attr("class", "legend")
-        //         .text(d => d))
+        vis.legend = vis.svg
+            .append("g")
+            .selectAll("g")
+            .data(vis.areaList, d=>d)
+            .join("g")
+            .attr("transform", (d,i) => `translate(${vis.areaLoc[i].x},${vis.areaLoc[i].y})`)
+            .call(g => g.append("rect")
+                .attr("width", 12)
+                .attr("height", 12)
+                .attr("fill", (d,i) => vis.facultyColors[d])
+            )
+            .call(g => g.append("text")
+                .attr("font-family", "sans-serif")
+                .attr("font-size", 14)
+                .attr("dy", "0.8em")
+                .attr("dx", "1em")
+                .attr("text-anchor", "start")
+                .attr("class", "legend")
+                .text(d => d))
 
         let relationSquares = vis.svg
             .selectAll(".matrix-relation-squares")
