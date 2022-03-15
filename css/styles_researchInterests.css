@@ -12,6 +12,10 @@ p{
 	font-size: 2em;
 }
 
+.header{
+	margin-bottom: 2vh;
+}
+
 .options{
 	display: flex;
 	flex-flow: row nowrap;
@@ -34,9 +38,68 @@ p{
 	text-overflow: ellipsis;
 }
 
-.custom-select select{
-	max-width: 23ch;
+/*.custom-select select{*/
+
+
+/*}*/
+
+select.custom-select option:hover {
+	box-shadow: 0 0 10px 100px #cd0505 inset;
+	cursor: pointer;
 }
+
+/*.chosen-value::-webkit-input-placeholder {*/
+/*	color: #333;*/
+/*}*/
+/*.chosen-value:hover {*/
+/*	background-color: #ff908b;*/
+/*	cursor: pointer;*/
+/*}*/
+/*.chosen-value:hover::-webkit-input-placeholder {*/
+/*	color: #333;*/
+/*}*/
+/*.chosen-value:focus, .chosen-value.open {*/
+/*	box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.2);*/
+/*	outline: 0;*/
+/*	background-color: #ff908b;*/
+/*	color: #000;*/
+/*}*/
+/*.chosen-value:focus::-webkit-input-placeholder, .chosen-value.open::-webkit-input-placeholder {*/
+/*	color: #000;*/
+/*}*/
+/*select > option {*/
+/*	list-style: none;*/
+/*	margin-top: 4rem;*/
+/*	box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.2);*/
+/*	overflow: hidden;*/
+/*	max-height: 0;*/
+/*	transition: 0.3s ease-in-out;*/
+/*}*/
+/*.value-list.open {*/
+/*	max-height: 320px;*/
+/*	overflow: auto;*/
+/*}*/
+/*.value-list li {*/
+/*	position: relative;*/
+/*	height: 4rem;*/
+/*	background-color: #fafcfd;*/
+/*	padding: 1rem;*/
+/*	font-size: 1.1rem;*/
+/*	display: flex;*/
+/*	align-items: center;*/
+/*	cursor: pointer;*/
+/*	transition: background-color 0.3s;*/
+/*	opacity: 1;*/
+/*}*/
+/*.value-list li:hover {*/
+/*	background-color: #ff908b;*/
+/*}*/
+/*.value-list li.closed {*/
+/*	max-height: 0;*/
+/*	overflow: hidden;*/
+/*	padding: 0;*/
+/*	opacity: 0;*/
+/*}*/
 
 .options{
 	height: 7vh;

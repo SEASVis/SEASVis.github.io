@@ -38,8 +38,8 @@ class visResearchInterests {
         vis.cbColors = {'Applied Mathematics':'#01D9DC',"Applied Physics":"#41A23D","Bioengineering":"#FCB315","Computer Science":"#0D5AAF",
             "Electrical Engineering":"#FFDE2D","Environmental Science & Engineering":"#B7E5EA", "Material Science & Mechanical Engineering":"#B379E8"}
 
-        vis.areaLoc = [{x: -150, y:-20},{x: 10, y:-20},{x: 140, y:-20},{x: 265, y:-20},{x: 415, y:-20},
-            {x: 580, y:-20},{x: 840, y:-20},]
+        vis.areaLoc = [{x: -50, y:-20},{x: 110, y:-20},{x: 240, y:-20},{x: 375, y:-20},{x: 515, y:-20},
+            {x: 680, y:-20},{x: 940, y:-20},]
         // we seem to be narrowing who we include, so here it is
         vis.latestAllFaculty = vis.latestPeopleInfo.map((x) => x.Title);
         vis.allFaculty = vis.peopleInfo.map((x) => x.Title)
@@ -90,7 +90,7 @@ class visResearchInterests {
         vis.originalXShift = vis.xShift;
         vis.ySquareShift = 10;
 
-        vis.cellScalar = 0.95; //0.85;
+        vis.cellScalar = 0.85; //0.85;
         vis.cellPadding = 1;
 
 
@@ -164,6 +164,7 @@ class visResearchInterests {
 
         let xpos = 0;
         vis.displayFaculty.forEach((name) => {
+            console.log(name)
             let facultyObj = {};
             facultyObj.name = name;
             facultyObj.researchInterests = [];
@@ -197,6 +198,8 @@ class visResearchInterests {
 
             xpos = xpos+1;
         });
+
+        console.log(matrixLongList)
 
         vis.matrixLongList = matrixLongList;
     }
@@ -386,7 +389,7 @@ class visResearchInterests {
                     return 0.0;
                 }
             })
-            .attr("transform", (d,i) => "rotate(270," + ((vis.cellPadding + vis.cellWidth) * (i+1) + vis.xShift) +  "," + (vis.yShift - 5) + ")")
+            .attr("transform", (d,i) => "rotate(310," + ((vis.cellPadding + vis.cellWidth) * (i+1) + vis.xShift) +  "," + (vis.yShift+10) + ")")
             .text((d) => d);
 
         let facultySquares = vis.svg
@@ -510,11 +513,21 @@ class visResearchInterests {
                     }
             }})
             .attr("opacity", function(d) {
-                if (vis.displayLabelsBoolean || d.isInterested){
+                if (vis.noMatch){
                     return 1.0;
+                    // if (d.researchInterests.includes(selectedFacultyTableFilterRI || d.teachingAreas.includes(selectedFacultyTableFilterAA))){
+                    //     return 1.0
+                    // } else {
+                    //     return 0.5
+                    // }
                 }
                 else {
-                    return 0.5;
+                    if (vis.displayLabelsBoolean || d.isInterested){
+                        return 1.0;
+                    }
+                    else {
+                        return 0.5;
+                    }
                 }
             })
             .attr("x", (d,i) => (vis.cellPadding + vis.cellWidth) * d.xpos + vis.xShift)
