@@ -55,6 +55,6 @@ function sortResearchChangeFacultyTable() {
 
 function changeColorPalette(){
     selectedColorPalette = !selectedColorPalette;
-    myVisResearchInterests.wrangleData();
+    myVisResearchInterests.updateColors();
 
 }

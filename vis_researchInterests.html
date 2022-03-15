@@ -35,12 +35,8 @@
 					<option value="All">All Academic Areas</option>
 				</select>
 			</div>
-			<div class="col-3 justify-content-left">
-				<select  id='faculty-table-filter-research-selector' class="custom-select align-self-center" onchange="filterChangeFacultyTableRI()">
-					<option value="All">All Research Interests</option>
-				</select>
-			</div>
-			<div class="col-3 justify-content-right color-switch">
+
+			<div class="col-2 justify-content-center color-switch">
 				<div class="pretty p-switch p-fill cbf-switch" >
 					<input type="checkbox" value="false" onChange="changeColorPalette()" />
 					<div class="state p-primary" >
@@ -69,6 +65,11 @@
 <!--					<option value="researchInterest" selected>Sort Research Interests: Default Ordering</option>-->
 <!--					<option value="interestedFaculty">Sort Research Interests: By Number of Interested Faculty</option>-->
 <!--				</select>-->
+			</div>
+			<div class="col-3 justify-content-left">
+				<select  id='faculty-table-filter-research-selector' class="custom-select align-self-center" onchange="filterChangeFacultyTableRI()">
+					<option value="All">All Research Interests</option>
+				</select>
 			</div>
 		</div>
 		<hr/>

@@ -38,8 +38,12 @@ class visResearchInterests {
         vis.cbColors = {'Applied Mathematics':'#01D9DC',"Applied Physics":"#41A23D","Bioengineering":"#FCB315","Computer Science":"#0D5AAF",
             "Electrical Engineering":"#FFDE2D","Environmental Science & Engineering":"#B7E5EA", "Material Science & Mechanical Engineering":"#B379E8"}
 
-        vis.areaLoc = [{x: -50, y:-20},{x: 110, y:-20},{x: 240, y:-20},{x: 375, y:-20},{x: 515, y:-20},
-            {x: 680, y:-20},{x: 940, y:-20},]
+        vis.areaLoc = [{x: -110, y:-20},{x: 65, y:-20},{x: 215, y:-20},{x: 355, y:-20},{x: 515, y:-20},
+            {x: 700, y:-20},{x: 990, y:-20},]
+
+        vis.legend = vis.svg
+            .append("g")
+            .attr("class", "academic-legend")
         // we seem to be narrowing who we include, so here it is
         vis.latestAllFaculty = vis.latestPeopleInfo.map((x) => x.Title);
         vis.allFaculty = vis.peopleInfo.map((x) => x.Title)
@@ -85,12 +89,12 @@ class visResearchInterests {
         // intrinsic properties of the adjacency matrix
         //vis.cellWidth = 2;
         vis.yShift = 150;
-        vis.xShift = 250;
+        vis.xShift = 400;
         vis.originalYShift = vis.yShift;
         vis.originalXShift = vis.xShift;
         vis.ySquareShift = 10;
 
-        vis.cellScalar = 0.85; //0.85;
+        vis.cellScalar =1; //0.85;
         vis.cellPadding = 1;
 
 
@@ -293,6 +297,33 @@ class visResearchInterests {
     updateColors(){
         let vis = this;
         vis.facultyColors = selectedColorPalette==false? vis.colors : vis.cbColors;
+
+        vis.renderLegend();
+    }
+
+    renderLegend(){
+        let vis = this;
+
+        vis.legend.remove();
+
+        vis.legend
+            .selectAll(".academic-legend")
+            .data(vis.areaList, d=>d)
+            .join("g")
+            .attr("transform", (d,i) => `translate(${vis.areaLoc[i].x},${vis.areaLoc[i].y})`)
+            .call(g => g.append("rect")
+                .attr("width", 12)
+                .attr("height", 12)
+                .attr("fill", (d,i) => vis.facultyColors[d])
+            )
+            .call(g => g.append("text")
+                .attr("font-family", "Russo One")
+                .attr("font-size", 14)
+                .attr("dy", "0.8em")
+                .attr("dx", "1em")
+                .attr("text-anchor", "start")
+                .attr("class", "legend")
+                .text(d => d))
     }
 
     wrangleData() {
@@ -434,7 +465,7 @@ class visResearchInterests {
                 .attr("fill", (d,i) => vis.facultyColors[d])
             )
             .call(g => g.append("text")
-                .attr("font-family", "sans-serif")
+                .attr("font-family", "Russo One")
                 .attr("font-size", 14)
                 .attr("dy", "0.8em")
                 .attr("dx", "1em")

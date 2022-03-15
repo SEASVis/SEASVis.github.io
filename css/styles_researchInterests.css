@@ -36,6 +36,7 @@ p{
 	transition: .3s ease-in-out;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	-webkit-padding-end: 30px !important;
 }
 
 /*.custom-select select{*/
@@ -128,4 +129,8 @@ select.custom-select option:hover {
 	font-family: 'Russo One';
 	margin:auto;
 	padding-top: 1vh;
+}
+
+.legend text{
+	font-weight: normal;
 }
