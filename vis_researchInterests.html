@@ -30,7 +30,7 @@
 			</div>
 		</div>
 		<div class="row options">
-			<div class="col-3 justify-content-left">
+			<div class="col-3 justify-content-center">
 				<select  id='faculty-table-filter-academic-selector' class="custom-select align-self-center" onchange="filterChangeFacultyTableAA()">
 					<option value="All">All Academic Areas</option>
 				</select>
@@ -39,7 +39,7 @@
 			<div class="col-2 justify-content-center color-switch">
 				<div class="pretty p-switch p-fill cbf-switch" >
 					<input type="checkbox" value="false" onChange="changeColorPalette()" />
-					<div class="state p-primary" >
+					<div class="state" >
 						<label>Color-Blind Friendly</label>
 					</div>
 				</div>
@@ -67,7 +67,15 @@
 <!--					</select>-->
 <!--				</div>-->
 			</div>
-			<div class="col-3 justify-content-left">
+			<div class="col-1 justify-content-center color-switch">
+				<div class="pretty p-switch p-fill cbf-switch" >
+					<input type="checkbox" value="false" onChange="sortTable()" />
+					<div class="state" >
+						<label>Sort</label>
+					</div>
+				</div>
+			</div>
+			<div class="col-3 justify-content-center">
 				<select  id='faculty-table-filter-research-selector' class="custom-select align-self-center" onchange="filterChangeFacultyTableRI()">
 					<option value="All">All Research Interests</option>
 				</select>

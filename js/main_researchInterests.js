@@ -24,6 +24,7 @@ function initMainPage(dataArray) {
 let selectedFacultyTableFilterRI = $('#faculty-table-filter-research-selector').val();
 let selectedFacultyTableFilterAA = $('#faculty-table-filter-academic-selector').val();
 let selectedColorPalette = false;
+var selectedSortTable = false;
 //let newFilterBack = false;
 
 function filterChangeFacultyTableAA() {
@@ -40,16 +41,17 @@ function filterChangeFacultyTableRI() {
     myVisResearchInterests.wrangleData();
 }
 
-selectedFacultyTableFacultySort = $('#faculty-table-faculty-sort-selector').val();
-function sortFacultyChangeFacultyTable() {
-    // sort table, via the faculty
-    selectedFacultyTableFacultySort = $('#faculty-table-faculty-sort-selector').val();
-    myVisResearchInterests.wrangleData();
-}
-selectedFacultyTableResearchSort = $('#faculty-table-research-sort-selector').val();
-function sortResearchChangeFacultyTable() {
+// selectedFacultyTableFacultySort = $('#faculty-table-faculty-sort-selector').val();
+// function sortFacultyChangeFacultyTable() {
+//     // sort table, via the faculty
+//     selectedFacultyTableFacultySort = $('#faculty-table-faculty-sort-selector').val();
+//     myVisResearchInterests.wrangleData();
+// }
+// selectedFacultyTableResearchSort = $('#faculty-table-research-sort-selector').val();
+function sortTable() {
     // sort table, via research interests
-    selectedFacultyTableResearchSort = $('#faculty-table-research-sort-selector').val();
+    selectedSortTable =! selectedSortTable;
+    // selectedFacultyTableResearchSort = $('#faculty-table-research-sort-selector').val();
     myVisResearchInterests.wrangleData();
 }
 

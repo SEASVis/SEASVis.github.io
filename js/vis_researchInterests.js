@@ -211,6 +211,7 @@ class visResearchInterests {
     sortAndFilterValues() {
         let vis = this;
         vis.noMatch = false;
+        vis.isAll = true;
 
         // filter FIRST
 
@@ -220,11 +221,13 @@ class visResearchInterests {
             // vis.displayFaculty = filteredFacultyRI;
             // vis.xShift = 240;
             vis.cellScalar = 0.7;
+            vis.isAll=false;
         } else if (selectedFacultyTableFilterAA != "All" & selectedFacultyTableFilterRI == "All") {
             vis.displayFaculty = vis.allFaculty.filter(name => vis.departmentMap[name].teachingAreas.includes(selectedFacultyTableFilterAA));
             // vis.displayFaculty = filteredFacultyAA;
             // vis.xShift = 240;
             vis.cellScalar = 0.7;
+            vis.isAll = false;
         } else if (selectedFacultyTableFilterRI == "All" && selectedFacultyTableFilterAA == "All") {
             vis.displayFaculty = vis.allFaculty;
             // vis.xShift = 50;
@@ -241,6 +244,7 @@ class visResearchInterests {
                 // vis.xShift=50;
                 vis.cellScalar=0.6;
             }
+            vis.isAll=false;
         }
 
 
@@ -256,23 +260,28 @@ class visResearchInterests {
         // THEN sort
 
         // sorting of faculty
-        // let stringFacultyInclusionSorts = ["name", "teachingAreas"];
-        // if (stringFacultyInclusionSorts.includes(selectedFacultyTableFacultySort)) {
-        //     // compare strings
-        //     vis.displayFaculty.sort(function(a, b){return vis.facultySortInfoDict[a][selectedFacultyTableFacultySort].localeCompare(vis.facultySortInfoDict[b][selectedFacultyTableFacultySort])});
-        // }
-        // else {
-        //     // compare numbers (counts)
-        //     vis.displayFaculty.sort(function(a, b){return vis.facultySortInfoDict[b][selectedFacultyTableFacultySort] - vis.facultySortInfoDict[a][selectedFacultyTableFacultySort]});
-        // }
-        //
-        // // sorting of research areas
-        // let stringResearchInclusionSorts = ["researchInterest"];
+        let stringFacultyInclusionSorts = ["name", "teachingAreas"];
+        let stringResearchInclusionSorts = ["researchInterest"];
+        let selectedFacultyTableFacultySort = ["name", "numResearchInterests"]
+        let selectedFacultyTableResearchSort = ['researchInterest', 'interestedFaculty']
+        if (!selectedSortTable) {
+            // compare strings
+            vis.displayFaculty.sort(function(a, b){return vis.facultySortInfoDict[a][selectedFacultyTableFacultySort[0]].localeCompare(vis.facultySortInfoDict[b][selectedFacultyTableFacultySort[0]])});
+            vis.displayResearchInterests.sort(function(a, b){return vis.researchInterestSortInfoDict[a][selectedFacultyTableResearchSort[0]].localeCompare(vis.researchInterestSortInfoDict[b][selectedFacultyTableResearchSort[0]])});
+
+        }
+        else {
+            // compare numbers (counts)
+            vis.displayFaculty.sort(function(a, b){return vis.facultySortInfoDict[b][selectedFacultyTableFacultySort[1]] - vis.facultySortInfoDict[a][selectedFacultyTableFacultySort[1]]});
+            vis.displayResearchInterests.sort(function(a, b){return vis.researchInterestSortInfoDict[b][selectedFacultyTableResearchSort[1]] - vis.researchInterestSortInfoDict[a][selectedFacultyTableResearchSort[1]]});
+        }
+
+        // sorting of research areas
+
         // if (stringResearchInclusionSorts.includes(selectedFacultyTableResearchSort)) {
-        //     vis.displayResearchInterests.sort(function(a, b){return vis.researchInterestSortInfoDict[a][selectedFacultyTableResearchSort].localeCompare(vis.researchInterestSortInfoDict[b][selectedFacultyTableResearchSort])});
-        // }
+        //    }
         // else {
-        //     vis.displayResearchInterests.sort(function(a, b){return vis.researchInterestSortInfoDict[b][selectedFacultyTableResearchSort] - vis.researchInterestSortInfoDict[a][selectedFacultyTableResearchSort]});
+        //
         // }
 
         // update the cell widths so it scales, and maybe update whether or not text is shown
@@ -495,28 +504,31 @@ class visResearchInterests {
                     .attr('stroke-width', '2px')
                     .attr('stroke', 'black');
                 // update tooltip
-                vis.tooltip
-                    .style("opacity", 1)
-                    .html(`
-                     <div style="border: thin solid grey; border-radius: 5px; background: lightgrey; padding: 20px">
-                        <h4 style="text-align: center"><b>Column: </b>${d.name}</h4>
-                        <h4 style="text-align: center"><b>Row: </b> ${d.researchInterest}</h4>
-                        <p><b>Teaching Area:</b> ${vis.departmentMap[d.name].teachingAreas}
-                        <br>
-                        <b>Research Interests:</b> ${vis.departmentMap[d.name].researchInterests}
-                        <br>
-                        <b>Email:</b> ${vis.allInfoMap[d.name]["Email"]}
-                        <br>
-                        <b>Phone:</b> ${vis.allInfoMap[d.name]["Phone"]}
-                        <br>
-                        <b>Website:</b> ${vis.allInfoMap[d.name]["Website Link"]}
-                        </p>
-                     </div>`);
 
-                vis.tooltip
-                    .style("left", (event.pageX - $("#researchInterestsTooltip").width()/2) + "px")
+                if (vis.isAll | vis.noMatch) {
+                    vis.tooltip
+                        .style("opacity", 1)
+                        .html(`
+                         <div style="border: thin solid grey; border-radius: 5px; background: lightgrey; padding: 20px">
+                            <h4 style="text-align: center"><b>Column: </b>${d.name}</h4>
+                            <h4 style="text-align: center"><b>Row: </b> ${d.researchInterest}</h4>
+                            <p><b>Teaching Area:</b> ${vis.departmentMap[d.name].teachingAreas}
+                            <br>
+                            <b>Research Interests:</b> ${vis.departmentMap[d.name].researchInterests}
+                            <br>
+                            <b>Email:</b> ${vis.allInfoMap[d.name]["Email"]}
+                            <br>
+                            <b>Phone:</b> ${vis.allInfoMap[d.name]["Phone"]}
+                            <br>
+                            <b>Website:</b> ${vis.allInfoMap[d.name]["Website Link"]}
+                            </p>
+                         </div>`);
 
-                    .style("top", (event.pageY - $("#researchInterestsTooltip").height() - 5) + "px")
+                    vis.tooltip
+                        .style("left", (event.pageX - $("#researchInterestsTooltip").width() / 2) + "px")
+
+                        .style("top", (event.pageY - $("#researchInterestsTooltip").height() - 5) + "px")
+                }
             })
             .on('mouseout', function(event, d){
                 d3.select(this)
