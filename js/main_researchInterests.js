@@ -21,23 +21,42 @@ function initMainPage(dataArray) {
 // handle buttons, sorting, selecting etc. down here
 
 // for the faculty heatmap table for research interests
-selectedFacultyTableFilter = $('#faculty-table-filter-selector').val();
+let selectedFacultyTableFilterRI = $('#faculty-table-filter-research-selector').val();
+let selectedFacultyTableFilterAA = $('#faculty-table-filter-academic-selector').val();
+let selectedColorPalette = false;
+var selectedSortTable = false;
 //let newFilterBack = false;
-function filterChangeFacultyTable() {
+
+function filterChangeFacultyTableAA() {
     // filter matrix by these values
-    selectedFacultyTableFilter = $('#faculty-table-filter-selector').val();
+    selectedFacultyTableFilterAA = $('#faculty-table-filter-academic-selector').val();
     //newFilterBack = (selectedFacultyAdjFilter == "All");
     myVisResearchInterests.wrangleData();
 }
-selectedFacultyTableFacultySort = $('#faculty-table-faculty-sort-selector').val();
-function sortFacultyChangeFacultyTable() {
-    // sort table, via the faculty
-    selectedFacultyTableFacultySort = $('#faculty-table-faculty-sort-selector').val();
+
+function filterChangeFacultyTableRI() {
+    // filter matrix by these values
+    selectedFacultyTableFilterRI = $('#faculty-table-filter-research-selector').val();
+    //newFilterBack = (selectedFacultyAdjFilter == "All");
     myVisResearchInterests.wrangleData();
 }
-selectedFacultyTableResearchSort = $('#faculty-table-research-sort-selector').val();
-function sortResearchChangeFacultyTable() {
+
+// selectedFacultyTableFacultySort = $('#faculty-table-faculty-sort-selector').val();
+// function sortFacultyChangeFacultyTable() {
+//     // sort table, via the faculty
+//     selectedFacultyTableFacultySort = $('#faculty-table-faculty-sort-selector').val();
+//     myVisResearchInterests.wrangleData();
+// }
+// selectedFacultyTableResearchSort = $('#faculty-table-research-sort-selector').val();
+function sortTable() {
     // sort table, via research interests
-    selectedFacultyTableResearchSort = $('#faculty-table-research-sort-selector').val();
+    selectedSortTable =! selectedSortTable;
+    // selectedFacultyTableResearchSort = $('#faculty-table-research-sort-selector').val();
     myVisResearchInterests.wrangleData();
+}
+
+function changeColorPalette(){
+    selectedColorPalette = !selectedColorPalette;
+    myVisResearchInterests.wrangleData();
+
 }

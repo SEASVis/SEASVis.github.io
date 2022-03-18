@@ -12,6 +12,7 @@
     "@observablehq/runtime": "4"
   },
   "dependencies": {
-    "d3-radial": "^0.0.2"
+    "d3-radial": "^0.0.2",
+    "pretty-checkbox": "^3.0.3"
   }
 }

@@ -8,9 +8,13 @@
 	<!-- Bootstrap-->
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
+	<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
 
 	<!-- Our style sheet -->
 	<link rel="stylesheet" href="css/styles_researchInterests.css">
+<!--	<link rel="stylesheet" href="dist/pretty-checkbox.min.css">-->
 
 	<!-- GOOGLE FONTS -->
 	<link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
@@ -20,28 +24,66 @@
 
 	<div class="container-fluid" style="height: 100vh; padding-top: 1vh">
 
-		<div class="row justify-content-center">
-			<div class="col-3">
-				<select  id='faculty-table-filter-selector' class="custom-select align-self-center" onchange="filterChangeFacultyTable()">
-					<option value="All">Include All</option>
+		<div class="row justify-content-center header">
+			<div class="col-9">
+				<h1> Faculty Research Area Comparison</h1>
+			</div>
+		</div>
+		<div class="row options">
+			<div class="col-3 justify-content-center">
+				<select  id='faculty-table-filter-academic-selector' class="custom-select align-self-center" onchange="filterChangeFacultyTableAA()">
+					<option value="All">All Academic Areas</option>
 				</select>
 			</div>
-			<div class="col-3">
-				<select id='faculty-table-faculty-sort-selector' class="custom-select align-self-center" onchange="sortFacultyChangeFacultyTable()">
-					<option value="name" selected>Sort Faculty: Default Ordering</option>
-					<option value="teachingAreas">Sort Faculty: By Academic Area</option>
-					<option value="numResearchInterests">Sort Faculty: By Most Research Interests</option>
-				</select>
+
+			<div class="col-2 justify-content-center color-switch">
+				<div class="pretty p-switch p-fill cbf-switch" >
+					<input type="checkbox" value="false" onChange="changeColorPalette()" />
+					<div class="state" >
+						<label>Color-Blind Friendly</label>
+					</div>
+				</div>
+<!--				<div class="pretty p-switch p-fill p-toggle">-->
+<!--					<input id='faculty-table-palette-selector' type="checkbox" onchange="changeColorPalette()" />-->
+<!--					<div class="state p-success p-on">-->
+<!--						<label>Color-Blind Friendly</label>-->
+<!--					</div>-->
+<!--					<div class="state p-danger p-off">-->
+<!--						<label>Color-Blind Friendly </label>-->
+<!--					</div>-->
+<!--				</div>-->
+
+<!--			<div class="col-3">-->
+<!--				<select id='faculty-table-faculty-sort-selector' class="custom-select align-self-center" onchange="sortFacultyChangeFacultyTable()">-->
+<!--					<option value="name" selected>Sort Faculty: Default Ordering</option>-->
+<!--					<option value="teachingAreas">Sort Faculty: By Academic Area</option>-->
+<!--					<option value="numResearchInterests">Sort Faculty: By Most Research Interests</option>-->
+<!--				</select>-->
+<!--			</div>-->
+<!--				<div class="col-3">-->
+<!--					<select id='faculty-table-research-sort-selector' class="custom-select align-self-center" onchange="sortResearchChangeFacultyTable()">-->
+<!--						<option value="researchInterest" selected>Sort Research Interests: Default Ordering</option>-->
+<!--						<option value="interestedFaculty">Sort Research Interests: By Number of Interested Faculty</option>-->
+<!--					</select>-->
+<!--				</div>-->
 			</div>
-			<div class="col-3">
-				<select id='faculty-table-research-sort-selector' class="custom-select align-self-center" onchange="sortResearchChangeFacultyTable()">
-					<option value="researchInterest" selected>Sort Research Interests: Default Ordering</option>
-					<option value="interestedFaculty">Sort Research Interests: By Number of Interested Faculty</option>
+			<div class="col-1 justify-content-center color-switch">
+				<div class="pretty p-switch p-fill cbf-switch" >
+					<input type="checkbox" value="false" onChange="sortTable()" />
+					<div class="state" >
+						<label>Sort</label>
+					</div>
+				</div>
+			</div>
+			<div class="col-3 justify-content-center">
+				<select  id='faculty-table-filter-research-selector' class="custom-select align-self-center" onchange="filterChangeFacultyTableRI()">
+					<option value="All">All Research Interests</option>
 				</select>
 			</div>
 		</div>
+		<hr/>
 
-		<div class="row justify-content-center" style="height: 95vh;">
+		<div class="row justify-content-center" style="height: 95vh; margin-top: 0vh;">
 			<div class="col-12">
 				<div id="faculty-interest-table" style="height: 100%; width:100%;"></div>
 			</div>
@@ -53,7 +95,7 @@
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-
+	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 	<!-- d3 -->
 	<script src="https://d3js.org/d3.v6.min.js"></script>
 
