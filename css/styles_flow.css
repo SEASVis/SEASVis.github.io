@@ -17,6 +17,11 @@ rect {
 	cursor: pointer;
 }
 
+.node:hover {
+	stroke: #f44336;
+	stroke-width: 2px;
+}
+
 .label {
 	fill: #212529;
 	pointer-events: none;
@@ -74,10 +79,31 @@ rect {
 	font-size: 20px;
 }
 
-.reset-btn {
-	border: 1px;
-	padding-left: 5px;
-	padding-right: 5px;
+#reset-btn {
+	padding-top: 1px;
+	padding-bottom: 1px;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 16px;
+	border-color: #f44336;
+	background: white;
+	color: red
+}
+
+#reset-btn:hover {
+	background: #f44336;
+	color: white;
+}
+
+.color-switch {
+	display: inline;
+	position: absolute;
+	right: 0;
+	padding-top: 5px
+}
+
+.cbf-switch{
+	margin:auto;
+	padding-right: 10px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
 }

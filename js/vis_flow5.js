@@ -53,6 +53,8 @@ class visFlow {
         vis.listFaculty = [];
         vis.listAreas = [];
         vis.listCenters = [];
+        vis.listFacultySchools = [];
+        vis.listFacultyCentersInitiatives = [];
 
         vis.dataPeople.forEach(function(faculty, index){
             let title = faculty['Title'];
@@ -69,6 +71,8 @@ class visFlow {
         vis.filteredData.forEach(function(faculty, index){
             let title = faculty['Title'];
             let teachingAreas = faculty['Teaching Areas'].split('|');
+            let schools = faculty['School Affiliations'].split('|');
+            let centersInitiatives = faculty['Center/Initiative Affiliations'].split('|');
 
             vis.Nodes.push({
                 "lvl": 1,
@@ -92,50 +96,99 @@ class visFlow {
                     "lvl": 0
                 })
             })
-        });
 
-        let countSchool = 0;
-        vis.dataCenters.forEach(function(row, index){
-            let title = row['Title'];
-            let center = row['Center'];
+            schools.forEach(function(school){
+                if(schools[0] === ""){return;}
 
-            if(!vis.listFaculty.includes(title)){return;}
-
-            if(!vis.listCenters.includes(center)) {
-                vis.listCenters.push(center);
-
-                if(countSchool < 7){
+                if(!vis.listFacultySchools.includes(school)){
+                    vis.listFacultySchools.push(school);
                     vis.Nodes.push({
                         "lvl": 2,
-                        "name": center,
+                        "name": school,
                         "school": 0
                     })
-                } else {
+                }
+
+                vis.Links.push({
+                    "source": title,
+                    "target": school,
+                    "lvl": 1
+                })
+            })
+
+            centersInitiatives.forEach(function(center){
+                if(centersInitiatives[0] === ""){return;}
+
+                if(!vis.listFacultyCentersInitiatives.includes(center)){
+                    vis.listFacultyCentersInitiatives.push(center);
                     vis.Nodes.push({
                         "lvl": 2,
                         "name": center,
                         "school": 1
                     })
                 }
-                countSchool += 1;
-            }
 
-            vis.Links.push({
-                "source": title,
-                "target": center,
-                "lvl": 1
+                vis.Links.push({
+                    "source": title,
+                    "target": center,
+                    "lvl": 1
+                })
             })
         });
+        console.log(vis.listFacultySchools)
+
+        // let countSchool = 0;
+        // vis.dataCenters.forEach(function(row, index){
+        //     let title = row['Title'];
+        //     let center = row['Center'];
+        //
+        //     if(!vis.listFaculty.includes(title)){return;}
+        //
+        //     if(!vis.listCenters.includes(center)) {
+        //         vis.listCenters.push(center);
+        //
+        //         if(countSchool < 7){
+        //             vis.Nodes.push({
+        //                 "lvl": 2,
+        //                 "name": center,
+        //                 "school": 0
+        //             })
+        //         } else {
+        //             vis.Nodes.push({
+        //                 "lvl": 2,
+        //                 "name": center,
+        //                 "school": 1
+        //             })
+        //         }
+        //         countSchool += 1;
+        //     }
+        //
+        //     vis.Links.push({
+        //         "source": title,
+        //         "target": center,
+        //         "lvl": 1
+        //     })
+        // });
 
         vis.Nodes.sort(function(a,b){
-            if (a.lvl === b.lvl && a.lvl !== 2){
-                return a.name.localeCompare(b.name);
+            if (a.lvl === b.lvl){
+                if (a.lvl !== 2){
+                    return a.name.localeCompare(b.name);
+                } else if (a.school === b.school) {
+                    return a.name.localeCompare(b.name);
+                } else {
+                    return a.school - b.school;
+                }
             }
             return a.lvl - b.lvl;
         });
 
         vis.listAreas.sort(function(a,b){ return a.localeCompare(b) });
         vis.listFaculty.sort(function(a,b){ return a.localeCompare(b) });
+
+        vis.listFacultySchools.sort(function(a,b){ return a.localeCompare(b) });
+        vis.listFacultyCentersInitiatives.sort(function(a,b){ return a.localeCompare(b) });
+        vis.listCenters = vis.listFacultySchools.concat(vis.listFacultyCentersInitiatives);
 
         vis.areaCount = vis.listAreas.length;
         vis.facultyCount = vis.listFaculty.length;
@@ -291,18 +344,18 @@ class visFlow {
             vis.offsetHeightFaculty = vis.gapHeightFaculty/2;
         }
 
-        let listSchools = [
-            "Harvard Business School",
-            "Harvard Graduate School of Design",
-            "Harvard Kennedy School of Government",
-            "Harvard Law School",
-            "Harvard Medical School",
-            "Harvard T.H. Chan School of Public Health",
-            "Institute for Applied Computational Science (IACS)"
-        ]
+        // let listSchools = [
+        //     "Harvard Business School",
+        //     "Harvard Graduate School of Design",
+        //     "Harvard Kennedy School of Government",
+        //     "Harvard Law School",
+        //     "Harvard Medical School",
+        //     "Harvard T.H. Chan School of Public Health",
+        //     "Institute for Applied Computational Science (IACS)"
+        // ]
         let countSelectedSchools = 0;
         vis.Nodes.forEach(function(d){
-            if(listSchools.includes(d.name)){
+            if(vis.listFacultySchools.includes(d.name)){
                 countSelectedSchools += 1;
             }
         })
