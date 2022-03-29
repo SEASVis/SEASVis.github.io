@@ -21,7 +21,7 @@ class visFlow {
 
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
             .attr("width", vis.width+vis.margin.left+vis.margin.right)
-            .attr("height", 2900)
+            .attr("height", 3300)
             .append('g')
             .attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`);
 
@@ -331,7 +331,7 @@ class visFlow {
 
         vis.boxWidth = 160;
         vis.boxWidthArea = 240;
-        vis.boxWidthCenter = 320;
+        vis.boxWidthCenter = 380;
         vis.gap = {width: (vis.width - (vis.boxWidthArea + vis.boxWidth + vis.boxWidthCenter)) / (vis.lvlCount-1), height: 3};
         vis.gapHeightFaculty = vis.gap.height;
         vis.offsetHeightFaculty = 0;
