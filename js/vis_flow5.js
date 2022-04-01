@@ -307,9 +307,9 @@ class visFlow {
         let vis = this;
 
         if(selectedColorPalette){
-            vis.colors = ["#ed1b34", "#00aaad", "#cbdb2a", "#fcb315", "#4e88c7", "#ffde2d", "#77ced9", "#bb89ca"]
-        }else{
             vis.colors = ["#ed1b34", "#01D9DC", "#41A23D", "#FCB315", "#0D5AAF", "#FFDE2D", "#B7E5EA", "#B379E8"]
+        }else{
+            vis.colors = ["#ed1b34", "#00aaad", "#cbdb2a", "#fcb315", "#4e88c7", "#ffde2d", "#77ced9", "#bb89ca"]
         }
         vis.colorAreas = d3.scaleOrdinal().domain(vis.listAreas).range(vis.colors)
 
