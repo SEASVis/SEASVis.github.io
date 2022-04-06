@@ -4,10 +4,9 @@
 
 class visFlow {
 
-    constructor(parentElement, dataPeople, dataCenters){
+    constructor(parentElement, dataPeople){
         this.parentElement = parentElement;
         this.dataPeople = dataPeople;
-        this.dataCenters = dataCenters;
 
         this.initVis()
     }

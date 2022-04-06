@@ -1,7 +1,6 @@
 // load data using promises
 let promises = [
-    d3.csv('data/people.csv'),
-    d3.csv('data/Visualization Data_Centers.csv')
+    d3.csv('data/people.csv')
 ];
 Promise.all(promises)
     .then( function(data){ initMainPage(data) })
@@ -11,10 +10,9 @@ Promise.all(promises)
 function initMainPage(dataArray) {
     // log data
     let latestPeopleData = dataArray[0];
-    let centers = dataArray[1];
 
     // initialize the visualization here
-    myVisFlow = new visFlow("relationshipDiv", latestPeopleData, centers);
+    myVisFlow = new visFlow("relationshipDiv", latestPeopleData);
 }
 
 function resetVis() {
