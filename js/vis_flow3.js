@@ -241,14 +241,33 @@ class visFlow {
         });
 
         vis.Nodes.sort(function(a,b){
-            if (a.lvl === b.lvl && a.lvl !== 2){
+            if (a.lvl === b.lvl && a.lvl === 0){
                 return a.name.localeCompare(b.name);
+            } else if (a.lvl === b.lvl && a.lvl === 1){
+                let splitA = a.name.split(" ");
+                let splitB = b.name.split(" ");
+                let lastA = splitA[splitA.length - 1];
+                let lastB = splitB[splitB.length - 1];
+
+                if (lastA < lastB) return -1;
+                if (lastA > lastB) return 1;
+                return 0;
+            } else{
+                return a.lvl - b.lvl;
             }
-            return a.lvl - b.lvl;
         });
 
         vis.listAreas.sort(function(a,b){ return a.localeCompare(b) });
-        vis.listFaculty.sort(function(a,b){ return a.localeCompare(b) });
+        vis.listFaculty.sort(function(a,b){
+            let splitA = a.split(" ");
+            let splitB = b.split(" ");
+            let lastA = splitA[splitA.length - 1];
+            let lastB = splitB[splitB.length - 1];
+
+            if (lastA < lastB) return -1;
+            if (lastA > lastB) return 1;
+            return 0;
+        })
 
         vis.colors = ["#ed1b34", "#00aaad", "#cbdb2a", "#fcb315", "#4e88c7", "#ffde2d", "#77ced9", "#bb89ca"]
         vis.colorAreas = d3.scaleOrdinal().domain(vis.listAreas).range(vis.colors)
@@ -355,7 +374,26 @@ class visFlow {
                     })
                 })
 
-                selectedNodes.sort((a, b) => a.lvl - b.lvl || a.school - b.school || d3.ascending(a.name, b.name))
+                selectedNodes.sort(function(a, b){
+                    if (a.lvl !== b.lvl){
+                        return a.lvl - b.lvl;
+                    } else if( a.lvl === 0){
+                        return d3.ascending(a.name, b.name);
+                    } else if (b.lvl === 1){
+                        let splitA = a.name.split(" ");
+                        let splitB = b.name.split(" ");
+                        let lastA = splitA[splitA.length - 1];
+                        let lastB = splitB[splitB.length - 1];
+
+                        if (lastA < lastB) return -1;
+                        if (lastA > lastB) return 1;
+                        return 0;
+                    } else if (a.school !== b.school) {
+                        return a.school - b.school;
+                    } else {
+                        return d3.ascending(a.name, b.name);
+                    }
+                })
                 vis.Nodes = selectedNodes;
                 vis.Links = selectedLinks;
             } else {
