@@ -1,7 +1,7 @@
 // load data using promises
 let promises = [
-    d3.csv('data/Visualization Data_People.csv'),
-    d3.csv('data/Final Visualization Data_People.csv')
+    d3.csv('data/Final_Visualization_Data_People.csv')
+    // d3.csv('https://seas.harvard.edu/viz/people')
 ];
 
 Promise.all(promises)
@@ -11,11 +11,11 @@ Promise.all(promises)
 // initMainPage
 function initMainPage(dataArray) {
     // log data
-    let peopleData = dataArray[0];
-    let latestPeopleData = dataArray[1];
+    // console.log(dataArray)
+    // let latestPeopleData = dataArray;
 
     // initialize the visualization here
-    myVisResearchInterests = new visResearchInterests("faculty-interest-table", peopleData, latestPeopleData);
+    myVisResearchInterests = new visResearchInterests("faculty-interest-table", dataArray[0]);
 }
 
 // handle buttons, sorting, selecting etc. down here
