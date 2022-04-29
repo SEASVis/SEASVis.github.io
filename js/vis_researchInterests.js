@@ -306,6 +306,10 @@ class visResearchInterests {
                 // console.log(x, x.value, options[x.value])
                 x.disabled=false
             })
+            Array.from(document.getElementsByClassName('teachingMenuOption')).forEach(x=>{
+                // console.log(x, x.value, options[x.value])
+                x.disabled=false
+            })
         }
 
         // console.log(options)
