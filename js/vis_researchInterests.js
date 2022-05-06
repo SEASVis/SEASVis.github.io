@@ -196,6 +196,7 @@ class visResearchInterests {
         })
 
         console.log(vis.intersectionMatrixRI)
+        console.log(vis.intersectionMatrixAA)
 
 
 
