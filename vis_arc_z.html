@@ -31,21 +31,21 @@
 
             <h3> Menu Options</h3>
 
-<!--            <div class="row justify-content-center color-switch cbf-switch">-->
-<!--                <select id="selectSort" onChange="changeSort()">-->
-<!--                    <option value="Group">by Cluster</option>-->
-<!--                    <option value="Frequency">by Frequency</option>-->
-<!--                    <option value="Name">by Name</option>-->
-<!--                </select>-->
-<!--            </div>-->
-<!--            <div class="row justify-content-center color-switch cbf-switch">-->
-<!--                <div class="pretty p-switch p-fill" >-->
-<!--                    <input type="checkbox" value="false" onChange="changeColorPaletteArc()" />-->
-<!--                    <div class="state" >-->
-<!--                        <label>Color-Blind Friendly</label>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
+            <div class="row justify-content-center color-switch cbf-switch">
+                <select id="selectSort" onChange="changeSort()">
+                    <option value="academicArea">by Academic Area</option>
+                    <option value="numCollab">by Number of Collaborations</option>
+                    <option value="alphabetical" selected>by Name</option>
+                </select>
+            </div>
+            <div class="row justify-content-center color-switch cbf-switch">
+                <div class="pretty p-switch p-fill" >
+                    <input type="checkbox" value="false" onChange="changeColorPaletteArc()" />
+                    <div class="state" >
+                        <label>Color-Blind Friendly</label>
+                    </div>
+                </div>
+            </div>
 <!--            <div class="row justify-content-center color-switch cbf-switch">-->
 
 <!--                <div class="pretty p-default p-round">-->
@@ -84,6 +84,7 @@
 <!-- d3 -->
 <script src="https://d3js.org/d3.v6.min.js"></script>
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-ease@3"></script>
 
 <!-- our custom scripts-->
 

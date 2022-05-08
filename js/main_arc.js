@@ -23,8 +23,8 @@ function initMainPage(dataArray) {
 // for the faculty heatmap table for research interests
 // let selectedFacultyTableFilterRI = $('#faculty-table-filter-research-selector').val();
 // let selectedFacultyTableFilterAA = $('#faculty-table-filter-academic-selector').val();
-let selectedColorPalette = false;
-let selectedSortMethod = 'alphabetical';
+var selectedColorPaletteArc = false;
+var selectedSortMethod = 'alphabetical';
 // var selectedSortTable = false;
 //let newFilterBack = false;
 
@@ -57,12 +57,13 @@ let selectedSortMethod = 'alphabetical';
 // }
 //
 function changeColorPaletteArc(){
-    selectedColorPalette = !selectedColorPalette;
-    myArcViz.wrangleData();
+    selectedColorPaletteArc = !selectedColorPaletteArc;
+    console.log('changeColorPaletteArch function')
+    myArcViz.updateColors(selectedColorPaletteArc,selectedSortMethod);
 }
 
 function changeSort(){
     selectedSortMethod = $('#selectSort').val();
-    myArcViz.sortData();
+    myArcViz.wrangleData(selectedSortMethod);
 
 }
