@@ -20,25 +20,26 @@
 <body>
 
 <div class="container-fluid" style="height: 100vh; padding-top: 1vh">
-    <div class="row options">
+    <div class="row">
         <div class="col-10 justify-content-center" style="min-height: 100vh; margin-top: 0vh;">
             <div id="arc-vis-bin" style="height: 100%; width:100%;"></div>
         </div>
         <div class="col-2 justify-content-center menu">
-<!--            <select  id='faculty-table-filter-academic-selector' class="custom-select align-self-center" onchange="filterChangeFacultyTableAA()">-->
-<!--                <option value="All">All Academic Areas</option>-->
-<!--            </select>-->
-
-            <h3> Menu Options</h3>
-
-            <div class="row justify-content-center color-switch cbf-switch">
+            <div class="row justify-content-center">
+                <h3> Menu </h3>
+            </div>
+            <div class="row justify-content-center" style="height: 2vh"></div>
+            <div class="row justify-content-center color-switch cbf-switch" style="height: 5vh">
+                <h4 class="justify-content-left"> Sort By: </h4>
                 <select id="selectSort" onChange="changeSort()">
                     <option value="academicArea">by Academic Area</option>
                     <option value="numCollab">by Number of Collaborations</option>
                     <option value="alphabetical" selected>by Name</option>
                 </select>
             </div>
-            <div class="row justify-content-center color-switch cbf-switch">
+
+            <div class="row justify-content-center" style="height: 2vh"></div>
+            <div class="row justify-content-center color-switch cbf-switch" style="height: 5vh">
                 <div class="pretty p-switch p-fill" >
                     <input type="checkbox" value="false" onChange="changeColorPaletteArc()" />
                     <div class="state" >

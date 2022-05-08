@@ -59,6 +59,10 @@ class visArc {
             .range(vis.cbColors)
             .domain([0,6])
 
+        vis.colorTransfer = d3.scaleOrdinal()
+            .range(vis.cbColors)
+            .domain(vis.colors)
+
         vis.tau = 2*Math.PI
         vis.spacing=18
         vis.margin=20
@@ -87,12 +91,18 @@ class visArc {
         vis.initToggle = true;
 
         vis.updateColors(false)
+        vis.makeGradients()
+        vis.makeReverseGradients()
+        vis.makeGradientsCB()
+        vis.makeReverseGradientsCB()
 
 
     }
 
     updateColors(value,sortMethod){
         let vis = this;
+
+        vis.CBFRIENDLY = value;
 
         vis.colorScale = value ? vis.colorScaleCB : vis.colorScaleNormal;
         vis.wrangleData(sortMethod)
@@ -101,7 +111,6 @@ class visArc {
 
     wrangleData(sortMethod){
         let vis = this;
-
 
         vis.nodes.forEach((d,i)=>{
             d["value"] = 0;
@@ -132,8 +141,6 @@ class visArc {
 
         vis.doSort(vis.thisSortMethod)
 
-
-
     }
 
     makeGradients(){
@@ -162,6 +169,32 @@ class visArc {
             .style("stop-opacity", 1)
     }
 
+    makeGradientsCB(){
+        let vis = this;
+        vis.gradientsCB = vis.svg.append('defs').selectAll('linearGradient')
+            .data(vis.links)
+            .enter()
+            .append('linearGradient')
+            .attr('id', d=>'gradient-cb-'+d.source.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, '')+'-'+d.target.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, ''))
+            .attr("y1", "0%")
+            .attr("y2", "0%")
+            .attr("x1", "0%")
+            .attr("x2", "100%")//since its a vertical linear gradient
+
+
+        vis.gradientsCB
+            .append("stop")
+            .attr("offset", "10%")
+            .style("stop-color", d=>vis.colorTransfer(d.sourceColor))//end in red
+            .style("stop-opacity", 1)
+
+        vis.gradientsCB
+            .append("stop")
+            .attr("offset", "90%")
+            .style("stop-color", d=>vis.colorTransfer(d.targetColor))//start in blue
+            .style("stop-opacity", 1)
+    }
+
     makeReverseGradients(){
         let vis = this;
         vis.gradientsR = vis.svg.append('defs').selectAll('linearGradient')
@@ -178,26 +211,44 @@ class visArc {
         vis.gradientsR
             .append("stop")
             .attr("offset", "10%")
-            .style("stop-color",d=>d.targetColor )//end in red
+            .style("stop-color",d=>d.targetColor)//end in red
             .style("stop-opacity", 1)
 
         vis.gradientsR
             .append("stop")
             .attr("offset", "90%")
-            .style("stop-color",d=>d.sourceColor )//start in blue
+            .style("stop-color",d=>d.sourceColor)//start in blue
+            .style("stop-opacity", 1)
+    }
+
+    makeReverseGradientsCB(){
+        let vis = this;
+        vis.gradientsRCB = vis.svg.append('defs').selectAll('linearGradient')
+            .data(vis.links)
+            .enter()
+            .append('linearGradient')
+            .attr('id', d=>'reverse-gradient-cb-'+d.target.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, '')+'-'+d.source.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, ''))
+            .attr("y1", "0%")
+            .attr("y2", "0%")
+            .attr("x1", "0%")
+            .attr("x2", "100%")//since its a vertical linear gradient
+
+
+        vis.gradientsRCB
+            .append("stop")
+            .attr("offset", "10%")
+            .style("stop-color",d=>vis.colorTransfer(d.targetColor))//end in red
+            .style("stop-opacity", 1)
+
+        vis.gradientsRCB
+            .append("stop")
+            .attr("offset", "90%")
+            .style("stop-color",d=>vis.colorTransfer(d.sourceColor) )//start in blue
             .style("stop-opacity", 1)
     }
 
     updateVis(){
         let vis = this;
-
-        console.log('update vis')
-
-        vis.makeGradients()
-        vis.makeReverseGradients()
-
-        vis.trans = d3.transition()
-            .duration(800);
 
         vis.toggleCircle=false
         vis.toggle2=false
@@ -206,19 +257,6 @@ class visArc {
         vis.path = vis.svg.selectAll("path")
             .data(vis.links);
 
-        // UPDATE
-        // vis.path
-        //     .transition()
-        //     .duration(1000)
-        //     .ease(d3.easeLinear)
-        //     .attr('fill', function(d){
-        //         if (d.doT > d.doS){
-        //             return "url(#gradient-" + d.source.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, '') +"-"+d.target.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, '')+")"
-        //         } else{
-        //             console.log('here')
-        //             return "url(#reverse-gradient-" + d.target.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, '') +"-"+d.source.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, '')+")"
-        //         }
-        //     })
 
         // ENTER
         vis.path.enter()
@@ -240,10 +278,17 @@ class visArc {
             })
             .attr('fill', function(d){
                 if (d.doT > d.doS){
-                    return "url(#gradient-" + d.source.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, '') +"-"+d.target.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, '')+")"
+                    if (vis.CBFRIENDLY){
+                        return "url(#gradient-cb-" + d.source.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, '') +"-"+d.target.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, '')+")"
+                    } else {
+                        return "url(#gradient-" + d.source.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, '') +"-"+d.target.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, '')+")"
+                    }
                 } else{
-                    console.log('here')
-                    return "url(#reverse-gradient-" + d.target.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, '') +"-"+d.source.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, '')+")"
+                    if (vis.CBFRIENDLY){
+                        return "url(#reverse-gradient-cb-" + d.target.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, '') +"-"+d.source.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, '')+")"
+                    } else {
+                        return "url(#reverse-gradient-" + d.target.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, '') +"-"+d.source.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, '')+")"
+                    }
                 }
             })
             .attr("opacity", '0.5')
@@ -270,35 +315,39 @@ class visArc {
             .duration(2500)
             .ease(d3.easeLinear)
             .attr('fill', function(d){
+                console.log('second transition', vis.CBFRIENDLY)
                 if (d.doT > d.doS){
-                    return "url(#gradient-" + d.source.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, '') +"-"+d.target.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, '')+")"
+                    if (vis.CBFRIENDLY){
+                        return "url(#gradient-cb-" + d.source.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, '') +"-"+d.target.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, '')+")"
+                    } else {
+                        return "url(#gradient-" + d.source.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, '') +"-"+d.target.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, '')+")"
+                    }
                 } else{
-                    return "url(#reverse-gradient-" + d.target.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, '') +"-"+d.source.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, '')+")"
+                    if (vis.CBFRIENDLY){
+                        return "url(#reverse-gradient-cb-" + d.target.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, '') +"-"+d.source.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, '')+")"
+                    } else {
+                        return "url(#reverse-gradient-" + d.target.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, '') +"-"+d.source.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s/g, '')+")"
+                    }
                 }
             })
             .call(vis.pathTween, vis.displayNodes, vis.arcBuilder,vis.arcTranslation)
+
+        vis.path.exit().remove()
 
         // DATA JOIN
         vis.circle = vis.svg.selectAll("circle")
             .data(vis.displayNodes)
 
-        // vis.circle.exit() // EXIT
-        //     .style("opacity", 0.0)
-        //     .transition()
-        //     .duration(2500)
-        //     .ease(d3.easeLinear)
-        //     .remove();
-
         // UPDATE
         vis.circle
+            .transition()
+            .duration(0)
+            .attr("fill", function(d,i) {return vis.colorScale(d.group);})
             .transition()
             .duration(2500)
             .ease(d3.easeLinear)
             .attr("cy", function(d,i) {
                 return vis.nodeDisplayY(d);})
-            .transition()
-            .duration(1000)
-            .attr("fill", function(d,i) {return vis.colorScale(d.group);})
         // ENTER
         vis.circle.enter()
             .append("circle")
@@ -327,8 +376,6 @@ class visArc {
             })
 
          vis.circle.exit().remove();
-
-
 
         // DATA JOIN
         vis.text = vis.svg.selectAll("text")
@@ -376,7 +423,7 @@ class visArc {
         vis.svg.selectAll('path')
             // .attr('fill', function (link_d) { return link_d.source === d.id || link_d.target === d.id ? `${vis.colors(d.group)}` : '#b8b8b8';})
             .attr('opacity', function (link_d) {
-                return link_d.source === d.id || link_d.target === d.id ? 1 : 0.1;
+                return link_d.source === d.id || link_d.target === d.id ? 1 : 0.2;
             })
 
     }
@@ -458,7 +505,7 @@ class visArc {
 
     arcTranslation(d){
         let vis = this;
-        return "translate(" + 5 + "," + (d.y1 + d.y2)/2 + ") rotate(90)";
+        return "translate(" + 3 + "," + (d.y1 + d.y2)/2 + ") rotate(90)";
     }
 
     nodeDisplayY(node){
