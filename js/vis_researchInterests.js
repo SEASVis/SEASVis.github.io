@@ -3,12 +3,12 @@
 * * * * * * * * * * * * * */
 
 class visResearchInterests {
-    constructor(parentElement, peopleInfo, latestPeopleInfo){
+    constructor(parentElement, latestPeopleInfo){
         this.parentElement = parentElement;
-        this.peopleInfo = peopleInfo;
-        this.latestPeopleInfo = latestPeopleInfo;
+        // this.peopleInfo = peopleInfo; //remove all instances and replace with latest People Info
+        this.peopleInfo = latestPeopleInfo;
 
-        console.log(this.peopleInfo)
+        // this.peopleInfo.forEach(x=>console.log(x))
 
         this.initVis();
     }
@@ -32,22 +32,33 @@ class visResearchInterests {
         // color palette and color blind option
         vis.areaList = ["Applied Mathematics", "Applied Physics", "Bioengineering", "Computer Science", "Electrical Engineering",
             "Environmental Science & Engineering", "Material Science & Mechanical Engineering"]
-        vis.colors= {'Applied Mathematics':'#00aaad',"Applied Physics":"#cbdb2a","Bioengineering":"#fcb315","Computer Science":"#4e88c7",
-            "Electrical Engineering":"#ffde2d","Environmental Science & Engineering":"#77ced9", "Material Science & Mechanical Engineering":"#bb89ca"}
+        // vis.colors= {'Applied Mathematics':'#00aaad',"Applied Physics":"#cbdb2a","Bioengineering":"#fcb315","Computer Science":"#4e88c7",
+        //     "Electrical Engineering":"#ffde2d","Environmental Science & Engineering":"#77ced9", "Material Science & Mechanical Engineering":"#bb89ca"}
+        vis.colors= ['#00aaad',"#cbdb2a","#fcb315","#4e88c7","#ffde2d","#77ced9", "#bb89ca"]
 
-        vis.cbColors = {'Applied Mathematics':'#01D9DC',"Applied Physics":"#41A23D","Bioengineering":"#FCB315","Computer Science":"#0D5AAF",
-            "Electrical Engineering":"#FFDE2D","Environmental Science & Engineering":"#B7E5EA", "Material Science & Mechanical Engineering":"#B379E8"}
+        // vis.cbColors = {'Applied Mathematics':'#01D9DC',"Applied Physics":"#41A23D","Bioengineering":"#FCB315","Computer Science":"#0D5AAF",
+        //     "Electrical Engineering":"#FFDE2D","Environmental Science & Engineering":"#B7E5EA", "Material Science & Mechanical Engineering":"#B379E8"}
+        vis.cbColors = ['#01D9DC',"#41A23D","#FCB315","#0D5AAF", "#FFDE2D","#B7E5EA", "#B379E8"]
 
-        vis.areaLoc = [{x: -110, y:-20},{x: 65, y:-20},{x: 215, y:-20},{x: 355, y:-20},{x: 515, y:-20},
-            {x: 700, y:-20},{x: 990, y:-20},]
+        vis.areaLoc = [{x: 0, y:-20},{x: vis.width/20*2+vis.areaList[2].length, y:-20},{x: vis.width/20*4+vis.areaList[3].length, y:-20},{x: 500, y:-20},{x: 700, y:-20},
+            {x: 150, y:0},{x: 450, y:0},]
+
+        vis.legendScale = d3.scaleOrdinal()
+            .domain(vis.areaList)
+
+        vis.rectSize = 12;
 
         vis.legend = vis.svg
             .append("g")
             .attr("class", "academic-legend")
         // we seem to be narrowing who we include, so here it is
-        vis.latestAllFaculty = vis.latestPeopleInfo.map((x) => x.Title);
-        vis.allFaculty = vis.peopleInfo.map((x) => x.Title)
-            .filter((x) => vis.latestAllFaculty.includes(x));
+        vis.allFaculty = vis.peopleInfo.map((x) => x.Title);
+        // vis.allFaculty = vis.peopleInfo.map((x) => x.Title)
+        //     .filter((x) => vis.latestAllFaculty.includes(x));
+
+        vis.noMatchMessage = vis.svg
+            .append("g")
+            .attr("class", "no-match-message")
 
 
 
@@ -65,26 +76,10 @@ class visResearchInterests {
             .filter((x) => x.length > 0)
             .sort(function(a, b){return a.localeCompare(b)});
 
+
         // add options to the select item for filtering
-        let selectDivRI = document.getElementById('faculty-table-filter-research-selector');
-        let selectDivAA = document.getElementById('faculty-table-filter-academic-selector');
-        vis.allTeachingAreas.forEach((teachingArea) => {
-            let opt = document.createElement('option');
-            opt.value = teachingArea;
-            opt.innerHTML = teachingArea;
-            selectDivAA.appendChild(opt);
-        });
-        vis.allResearchInterests.forEach((r) => {
-            let opt = document.createElement('option');
-            opt.value = r;
-            opt.innerHTML = r;
-            // just so that something is set
-            if (r == vis.allResearchInterests[0]) {
-                //opt.selected = true;
-                //selectedFacultyTableFilter = r;
-            }
-            selectDivRI.appendChild(opt);
-        });
+
+
 
         // intrinsic properties of the adjacency matrix
         //vis.cellWidth = 2;
@@ -118,6 +113,9 @@ class visResearchInterests {
         vis.teachingAreaData();
         vis.createMatrixData();
 
+        vis.createDropDownMenu()
+        vis.createIntersectionMatrix()
+
         // decide whether or not to display text based on how many are here
         vis.displayLabelsThreshold = 50;
         vis.displayLabelsBoolean = (vis.displayFaculty.length <= vis.displayLabelsThreshold);
@@ -135,6 +133,7 @@ class visResearchInterests {
         let vis = this;
 
         vis.peopleInfo.forEach((x)=>{
+            // console.log(x)
             let tas = x['Teaching Areas'].split("|")
             // console.log(tas, vis.areaList.includes(tas[0]))
             let ta = vis.areaList.includes(tas[0]) ? tas[0] : tas[1]
@@ -156,6 +155,82 @@ class visResearchInterests {
         });
     }
 
+    createIntersectionMatrix(){
+        let vis = this;
+
+        vis.intersectionMatrixAA= [];
+        vis.intersectionMatrixRI=[]
+
+        vis.allTeachingAreas.forEach(x=>{
+
+            // console.log(vis.departmentMap)
+
+            vis.filteredTA =  vis.allFaculty.filter(name => { return vis.departmentMap[name].teachingAreas.includes(x);
+            })
+            // vis.numTA=vis.filteredTA.length
+            vis.intersectionMatrixAA[x]={}
+
+            vis.allResearchInterests.forEach(y=>{
+                vis.filteredRI= vis.filteredTA.filter(name => vis.departmentMap[name].researchInterests.includes(y));
+                // let thisCombo={}
+                vis.intersectionMatrixAA[x][y]=vis.filteredRI.length != 0 ? false  : true;
+
+            })
+        })
+
+        vis.allResearchInterests.forEach(x=>{
+
+            // console.log(vis.departmentMap)
+
+            vis.filteredRI =  vis.allFaculty.filter(name => { return vis.departmentMap[name].researchInterests.includes(x);
+            })
+            // vis.numTA=vis.filteredTA.length
+            vis.intersectionMatrixRI[x]={}
+
+            vis.allTeachingAreas.forEach(y=>{
+                vis.filteredAA= vis.filteredRI.filter(name => vis.departmentMap[name].teachingAreas.includes(y));
+                // let thisCombo={}
+                vis.intersectionMatrixRI[x][y]=vis.filteredAA.length != 0 ? false  : true;
+
+            })
+        })
+
+        console.log(vis.intersectionMatrixRI)
+        console.log(vis.intersectionMatrixAA)
+
+
+
+    }
+
+    createDropDownMenu(){
+        let vis = this;
+
+        let selectDivRI = document.getElementById('faculty-table-filter-research-selector');
+        let selectDivAA = document.getElementById('faculty-table-filter-academic-selector');
+
+
+
+        vis.allTeachingAreas.forEach((teachingArea) => {
+            let opt = document.createElement('option');
+            opt.value = teachingArea;
+            opt.innerHTML = teachingArea;
+            opt.className = 'teachingMenuOption'
+            selectDivAA.appendChild(opt);
+        });
+        vis.allResearchInterests.forEach((r) => {
+            let opt = document.createElement('option');
+            opt.value = r;
+            opt.innerHTML = r;
+            opt.className = 'researchMenuOption'
+            // just so that something is set
+            if (r == vis.allResearchInterests[0]) {
+                //opt.selected = true;
+                //selectedFacultyTableFilter = r;
+            }
+            selectDivRI.appendChild(opt);
+        });
+    }
+
     createMatrixData() {
         let vis = this;
         // this function will use some names of faculty (vis.displayFaculty), and some dataset, and creates data in the table
@@ -168,7 +243,7 @@ class visResearchInterests {
 
         let xpos = 0;
         vis.displayFaculty.forEach((name) => {
-            console.log(name)
+            // console.log(name)
             let facultyObj = {};
             facultyObj.name = name;
             facultyObj.researchInterests = [];
@@ -203,9 +278,47 @@ class visResearchInterests {
             xpos = xpos+1;
         });
 
-        console.log(matrixLongList)
+        // console.log(matrixLongList)
 
         vis.matrixLongList = matrixLongList;
+    }
+
+    updateMenuOptions(){
+        let vis = this;
+        console.log(selectedFacultyTableFilterAA,selectedFacultyTableFilterRI)
+
+        if (selectedFacultyTableFilterAA != 'All'){
+            // let options = vis.intersectionMatrix[selectedFacultyTableFilterAA]
+
+
+            Array.from(document.getElementsByClassName('researchMenuOption')).forEach(x=>{
+                // console.log(x, x.value, options[x.value])
+                x.disabled=vis.intersectionMatrixAA[selectedFacultyTableFilterAA][x.value]
+            })
+
+        } else if (selectedFacultyTableFilterRI != 'All') {
+            Array.from(document.getElementsByClassName('teachingMenuOption')).forEach(x=>{
+                // console.log(x, x.value, options[x.value])
+                x.disabled=vis.intersectionMatrixRI[selectedFacultyTableFilterRI][x.value]
+            })
+
+        }else{
+            Array.from(document.getElementsByClassName('researchMenuOption')).forEach(x=>{
+                // console.log(x, x.value, options[x.value])
+                x.disabled=false
+            })
+            Array.from(document.getElementsByClassName('teachingMenuOption')).forEach(x=>{
+                // console.log(x, x.value, options[x.value])
+                x.disabled=false
+            })
+        }
+
+        // console.log(options)
+
+
+
+
+
     }
 
     sortAndFilterValues() {
@@ -247,6 +360,8 @@ class visResearchInterests {
             vis.isAll=false;
         }
 
+
+        vis.updateMenuOptions()
 
 
         // once you've filtered the faculty, filter out research areas that are unnecessary
@@ -299,7 +414,7 @@ class visResearchInterests {
         let tempScaleShift = vis.cellScalar * d3.min([((vis.width - vis.xShift) / vis.displayFaculty.length), ((vis.height - vis.yShift) / vis.displayResearchInterests.length)]);
 
         vis.cellWidth = d3.max([tempScaleShift,5]); // can I just increase the max?
-        console.log(vis.cellWidth)
+        // console.log(vis.cellWidth)
         vis.displayLabelsBoolean = (vis.displayFaculty.length <= vis.displayLabelsThreshold);
     }
 
@@ -307,26 +422,90 @@ class visResearchInterests {
         let vis = this;
         vis.facultyColors = selectedColorPalette==false? vis.colors : vis.cbColors;
 
+        vis.legendScale
+            .range(vis.facultyColors)
+
         vis.renderLegend();
     }
 
     renderLegend(){
         let vis = this;
 
+//         var margin;
+//         var line = 0;
+//         var col = 0;
+//         var line2 = 0;
+//         var col2 = vis.rectSize;
+//
         vis.legend.remove();
+// //
+// //
+// // // Add one dot in the legend for each name.
+//         var size = 20
+//         vis.legend.selectAll("mydots")
+//             .data(vis.areaList)
+//             .enter()
+//             .append("rect")
+//             .attr("transform", function (d, i) {
+//                 var y = line * 25 - 10;
+//                 var x = col;
+//                 col += d.length * 10 + 10;
+//                 if (col > vis.width) {
+//                     x = 0;
+//                     col = d.length * 10 +10;
+//                     line++;
+//                     y = line * 25 -10;
+//                 }
+//                 return "translate(" + x + "," + y + ")";
+//             })
+//             // .attr("x", (d,i)=>{console.log(d.length); return vis.rectSize*i+d.length*3+50})
+//             // .attr("y", 0) // 100 is where the first dot appears. 25 is the distance between dots
+//             .attr("width", vis.rectSize)
+//             .attr("height", size)
+//             .style("fill", function(d){ return vis.legendScale(d)})
+// //
+// // // Add one dot in the legend for each name.
+//         vis.legend.selectAll("mylabels")
+//             .data(vis.areaList)
+//             .enter()
+//             .append("text")
+//             .attr("transform", function (d, i) {
+//                 var y = line2 * 25;
+//                 var x = col2;
+//                 col2 += d.length * 10 + 15;
+//                 if (col2 > vis.width) {
+//                     x = vis.rectSize;
+//                     col2 = d.length * 10 +30;
+//                     line2++;
+//                     y = line2 * 25;
+//                 }
+//                 return "translate(" + x + "," + y + ")";
+//             })
+//             // .attr("x", vis.height/8)
+//             // .attr("y", function(d,i){ return 100 + i*(size+5) + (size/2)}) // 100 is where the first dot appears. 25 is the distance between dots
+//             // // .style("fill", function(d){ return vis.legendScale(d)})
+//             .text(function(d){ return d})
+//             .attr("text-anchor", "left")
+//             .style("alignment-baseline", "middle")
 
         vis.legend
             .selectAll(".academic-legend")
-            .data(vis.areaList, d=>d)
-            .join("g")
+            .data(vis.areaList)
+            .enter()
+            .append("rect")
+            .attr("width", vis.rectSize)
+            .attr("height", vis.rectSize)
+            .attr("x", 120)
+            .attr("y", (d,i)=>{100+i*(vis.rectSize)+5})
+            .style("fill", d=>vis.legendScale(d))
             .attr("transform", (d,i) => `translate(${vis.areaLoc[i].x},${vis.areaLoc[i].y})`)
             .call(g => g.append("rect")
                 .attr("width", 12)
                 .attr("height", 12)
-                .attr("fill", (d,i) => vis.facultyColors[d])
+                .attr("fill", (d,i) => vis.legendScale[d])
             )
             .call(g => g.append("text")
-                .attr("font-family", "Russo One")
+                .attr("font-family", "Open Sans")
                 .attr("font-size", 14)
                 .attr("dy", "0.8em")
                 .attr("dx", "1em")
@@ -339,6 +518,7 @@ class visResearchInterests {
         let vis = this;
 
         vis.sortAndFilterValues();
+        // vis.updateMenuOptions();
         vis.createMatrixData();
         vis.updateColors();
 
@@ -459,7 +639,18 @@ class visResearchInterests {
                     return 0.0;
                 }
             })
-            .attr("fill", (d)=>{return vis.teachingAreaInfo[d] ? vis.facultyColors[vis.teachingAreaInfo[d]] : '#E8E8E8'})
+            .attr("fill", (d)=>{return vis.teachingAreaInfo[d] ? vis.legendScale(vis.teachingAreaInfo[d]) : '#E8E8E8'})
+
+
+        vis.renderLegend();
+
+        // var margin;
+        // var line = 0;
+        // var col = 0;
+        // var line2 = 0;
+        // var col2 = vis.rectSize;
+
+        vis.legend.remove();
 
 
         vis.legend = vis.svg
@@ -471,16 +662,36 @@ class visResearchInterests {
             .call(g => g.append("rect")
                 .attr("width", 12)
                 .attr("height", 12)
-                .attr("fill", (d,i) => vis.facultyColors[d])
+                .attr("fill", (d,i) => vis.legendScale(d))
             )
             .call(g => g.append("text")
-                .attr("font-family", "Russo One")
+                .attr("font-family", "Open Sans")
                 .attr("font-size", 14)
                 .attr("dy", "0.8em")
                 .attr("dx", "1em")
                 .attr("text-anchor", "start")
                 .attr("class", "legend")
                 .text(d => d))
+
+        vis.noMatchMessage.remove();
+        vis.noMatchMessage = vis.svg
+            .append("g")
+            .attr("class", "no-match-message")
+
+        if (vis.noMatch){
+            vis.noMatchMessage
+                // .enter()
+                .append("text")
+                .text("No matching faculty at the intersection of " + selectedFacultyTableFilterAA + " and " + selectedFacultyTableFilterRI + ".")
+                .attr('transform', `translate (${vis.width/6}, ${vis.margin.top*4})`)
+
+        } else{
+            vis.noMatchMessage.remove();
+        }
+
+        // vis.noMatchMessage.exit().remove()
+
+
 
         let relationSquares = vis.svg
             .selectAll(".matrix-relation-squares")
@@ -515,12 +726,7 @@ class visResearchInterests {
                             <p><b>Teaching Area:</b> ${vis.departmentMap[d.name].teachingAreas}
                             <br>
                             <b>Research Interests:</b> ${vis.departmentMap[d.name].researchInterests}
-                            <br>
-                            <b>Email:</b> ${vis.allInfoMap[d.name]["Email"]}
-                            <br>
-                            <b>Phone:</b> ${vis.allInfoMap[d.name]["Phone"]}
-                            <br>
-                            <b>Website:</b> ${vis.allInfoMap[d.name]["Website Link"]}
+
                             </p>
                          </div>`);
 

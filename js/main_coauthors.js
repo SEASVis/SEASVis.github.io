@@ -10,7 +10,7 @@ let selectedFacultyTableFilterRI = "";
 let promises = [
     d3.csv('data/per_paper_vals_v1.csv'),
     d3.csv('data/Visualization Data_People.csv'),
-    d3.csv('data/Final Visualization Data_People.csv')
+    d3.csv('data/Final_Visualization_Data_People.csv')
 ];
 
 Promise.all(promises)

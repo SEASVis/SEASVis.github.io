@@ -4,7 +4,7 @@ h1, h3, p {
 
 h1 {
 	font-size:52px;
-	font-family: 'Russo One';
+	font-family: 'Open Sans', sans-serif;
 	margin-top:0;
 }
 
@@ -23,11 +23,11 @@ p{
 }
 
 .custom-select{
-	font-family: 'Russo One';
+	font-family: 'Open Sans', sans-serif;
 	height: 5vh;
 	width: 23vw;
 	text-transform: uppercase;
-	font-weight: 600;
+	font-weight: 800;
 	letter-spacing: 2px;
 	font-size: 1.1rem;
 	padding: 1rem;
@@ -39,68 +39,21 @@ p{
 	-webkit-padding-end: 30px !important;
 }
 
-/*.custom-select select{*/
+.custom-select option{
+	font-weight: 600;
 
-
-/*}*/
+}
 
 select.custom-select option:hover {
 	box-shadow: 0 0 10px 100px #cd0505 inset;
 	cursor: pointer;
 }
 
-/*.chosen-value::-webkit-input-placeholder {*/
-/*	color: #333;*/
-/*}*/
-/*.chosen-value:hover {*/
-/*	background-color: #ff908b;*/
-/*	cursor: pointer;*/
-/*}*/
-/*.chosen-value:hover::-webkit-input-placeholder {*/
-/*	color: #333;*/
-/*}*/
-/*.chosen-value:focus, .chosen-value.open {*/
-/*	box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.2);*/
-/*	outline: 0;*/
-/*	background-color: #ff908b;*/
-/*	color: #000;*/
-/*}*/
-/*.chosen-value:focus::-webkit-input-placeholder, .chosen-value.open::-webkit-input-placeholder {*/
-/*	color: #000;*/
-/*}*/
-/*select > option {*/
-/*	list-style: none;*/
-/*	margin-top: 4rem;*/
-/*	box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.2);*/
-/*	overflow: hidden;*/
-/*	max-height: 0;*/
-/*	transition: 0.3s ease-in-out;*/
-/*}*/
-/*.value-list.open {*/
-/*	max-height: 320px;*/
-/*	overflow: auto;*/
-/*}*/
-/*.value-list li {*/
-/*	position: relative;*/
-/*	height: 4rem;*/
-/*	background-color: #fafcfd;*/
-/*	padding: 1rem;*/
-/*	font-size: 1.1rem;*/
-/*	display: flex;*/
-/*	align-items: center;*/
-/*	cursor: pointer;*/
-/*	transition: background-color 0.3s;*/
-/*	opacity: 1;*/
-/*}*/
-/*.value-list li:hover {*/
-/*	background-color: #ff908b;*/
-/*}*/
-/*.value-list li.closed {*/
-/*	max-height: 0;*/
-/*	overflow: hidden;*/
-/*	padding: 0;*/
-/*	opacity: 0;*/
-/*}*/
+select.custom-select option[disabled]{
+	font-weight: 200;
+	color: #a8a8a8;
+}
+
 
 .options{
 	height: 7vh;
@@ -126,11 +79,18 @@ select.custom-select option:hover {
 
 .cbf-switch{
 	font-size: 2em;
-	font-family: 'Russo One';
-	margin:auto;
-	padding-top: 1vh;
+	font-family: 'Open Sans', sans-serif;
+	justify-content: center;
+	align-content: center;
+	/*margin:auto;*/
+	margin-top: 1vh;
+	/*padding-top: 1vh;*/
 }
 
 .legend text{
 	font-weight: normal;
+}
+
+.no-match-message{
+	font-size: 1.5em;
 }

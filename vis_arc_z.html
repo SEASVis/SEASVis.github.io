@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Arc Visualization: Faculty-Faculty Collaborations</title>
+    <link rel="stylesheet" type="text/css" href="./inspector.css">
+    <!-- Bootstrap-->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+
+    <!-- Our style sheet -->
+    <link rel="stylesheet" href="css/styles_arc.css">
+
+    <!-- GOOGLE FONTS -->
+<!--    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">-->
+</head>
+
+<body>
+
+<div class="container-fluid" style="height: 100vh; padding-top: 1vh">
+    <div class="row">
+        <div class="col-10 justify-content-center" style="min-height: 100vh; margin-top: 0vh;">
+            <div id="arc-vis-bin" style="height: 100%; width:100%;"></div>
+        </div>
+        <div class="col-2 justify-content-center menu">
+            <div class="row justify-content-center">
+                <h3> Menu </h3>
+            </div>
+            <div class="row justify-content-center" style="height: 2vh"></div>
+            <div class="row justify-content-center color-switch cbf-switch" style="height: 5vh">
+                <h4 class="justify-content-left"> Sort By: </h4>
+                <select id="selectSort" onChange="changeSort()">
+                    <option value="academicArea">by Academic Area</option>
+                    <option value="numCollab">by Number of Collaborations</option>
+                    <option value="alphabetical" selected>by Name</option>
+                </select>
+            </div>
+
+            <div class="row justify-content-center" style="height: 2vh"></div>
+            <div class="row justify-content-center color-switch cbf-switch" style="height: 5vh">
+                <div class="pretty p-switch p-fill" >
+                    <input type="checkbox" value="false" onChange="changeColorPaletteArc()" />
+                    <div class="state" >
+                        <label>Color-Blind Friendly</label>
+                    </div>
+                </div>
+            </div>
+<!--            <div class="row justify-content-center color-switch cbf-switch">-->
+
+<!--                <div class="pretty p-default p-round">-->
+<!--                    <input type="radio" name="radio1" checked>-->
+<!--                    <div class="state">-->
+<!--                        <label>Alphabetical</label>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="row justify-content-center color-switch cbf-switch">-->
+<!--                <div class="pretty p-default p-round">-->
+<!--                    <input type="radio" name="radio1">-->
+<!--                    <div class="state">-->
+<!--                        <label>Academic Area</label>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="row justify-content-center color-switch cbf-switch">-->
+<!--                <div class="pretty p-default p-round">-->
+<!--                    <input type="radio" name="radio1">-->
+<!--                    <div class="state">-->
+<!--                        <label>Number of Collaborations</label>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+        </div>
+    </div>
+
+</div>
+
+<!-- bootstrap -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<!-- d3 -->
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-ease@3"></script>
+
+<!-- our custom scripts-->
+
+<script src="js/vis_arc_z_New.js"></script>
+<script src="js/main_arc.js"></script>
+
+</body>
+
+</html>
+
+
