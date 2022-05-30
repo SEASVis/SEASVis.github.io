@@ -146,6 +146,7 @@ export default function define(runtime, observer) {
                   }
                 }))
               }))
+
               // updated list of filtered faculty nodes, including faculty within the selected area & faculty who share collaboration 
               console.log("update", selectedFacultyName)
 

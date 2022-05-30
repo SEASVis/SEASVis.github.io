@@ -288,9 +288,6 @@ class visResearchInterests {
         console.log(selectedFacultyTableFilterAA,selectedFacultyTableFilterRI)
 
         if (selectedFacultyTableFilterAA != 'All'){
-            // let options = vis.intersectionMatrix[selectedFacultyTableFilterAA]
-
-
             Array.from(document.getElementsByClassName('researchMenuOption')).forEach(x=>{
                 // console.log(x, x.value, options[x.value])
                 x.disabled=vis.intersectionMatrixAA[selectedFacultyTableFilterAA][x.value]
@@ -312,13 +309,6 @@ class visResearchInterests {
                 x.disabled=false
             })
         }
-
-        // console.log(options)
-
-
-
-
-
     }
 
     sortAndFilterValues() {

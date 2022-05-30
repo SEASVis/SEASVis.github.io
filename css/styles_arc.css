@@ -2,3 +2,23 @@
     border-left: 2px solid grey;
     font-size: 2rem;
 }
+
+.menuHeader{
+    font-size:4rem;
+}
+
+select {
+    text-overflow:ellipsis;
+}
+.menuFilter{
+    display:flex;
+    flex-flow:column nowrap;
+    justify-content: center;
+    align-content: center;
+    text-align:center;
+    margin:auto;
+}
+
+.bottomBorder{
+    border-bottom: 2px solid black;
+}
