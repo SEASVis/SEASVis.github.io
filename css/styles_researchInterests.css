@@ -1,7 +1,6 @@
 h1, h3, p {
 	text-align: center;
 }
-
 h1 {
 	font-size:52px;
 	font-family: 'Open Sans', sans-serif;
@@ -59,6 +58,11 @@ select.custom-select option[disabled]{
 	height: 7vh;
 }
 
+#faculty-interest-table{
+	display:block;
+	overflow-x:scroll;
+}
+
 #researchInterestsTooltip {
 	width: 400px;
 }
@@ -93,4 +97,27 @@ select.custom-select option[disabled]{
 
 .no-match-message{
 	font-size: 1.5em;
+}
+
+::-webkit-scrollbar {
+	width: 8px;
+	height:8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 3px rgb(145,145,145);
+	border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: rgb(0,130,101);
+	border:1px solid black;
+	border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #b30000;
 }

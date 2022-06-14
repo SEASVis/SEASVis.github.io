@@ -2,9 +2,13 @@
 <head>
     <meta charset="utf-8">
     <title>Arc Visualization: Faculty-Faculty Collaborations</title>
+    <script src="https://kit.fontawesome.com/9593bd7a92.js"></script>
     <link rel="stylesheet" type="text/css" href="./inspector.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <!-- Bootstrap-->
     <link rel="stylesheet" href="css/bootstrap.css">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
@@ -50,7 +54,7 @@
                 <h4 class="justify-content-left"> Filter: </h4>
                 <select id="selectFilter" onChange="changeSort()">
                     <option value="all" selected>All</option>
-                    <option value="AppliedMath">Applied Mathematics</option>
+                    <option value="AppliedMath"> <span class="fa-cog">&#xf111;</span> Applied Mathematics</option>
                     <option value="AppliedPhysics">Applied Physics</option>
                     <option value="Bioengineering">Bioengineering</option>
                     <option value="ComputerScience">Computer Science</option>
@@ -59,6 +63,7 @@
                     <option value="MatSciMechEng">Material Science & Mechanical Engineering</option>
                 </select>
             </div>
+
             <div class="row justify-content-center bottomBorder" style="height: 10vh"></div>
             <div class="row justify-content-center " style="height: 5vh;margin-top:2vh;">
                 <div class="facultyInfo" id="facultyInfoBox"></div>

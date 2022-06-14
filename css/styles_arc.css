@@ -1,7 +1,17 @@
+root{
+    --pretty--color-default:#bb89ca;
+    --pretty--color-primary:#00aaad;
+    --pretty--color-info:#cbdb2a;
+    --pretty--color-success:#fcb315;
+    --pretty--color-warning:#4e88c7;
+    --pretty--color-danger:#ffde2d;
+    --pretty--color-dark:#77ced9;
+}
 .menu{
     border-left: 2px solid grey;
     font-size: 2rem;
 }
+
 
 .menuHeader{
     font-size:4rem;
@@ -10,6 +20,13 @@
 select {
     text-overflow:ellipsis;
 }
+
+#selectFilter,option{
+    font-family: 'Arial', 'Font Awesome 5 Pro';
+    /*font-weight: 900;*/
+}
+
+
 .menuFilter{
     display:flex;
     flex-flow:column nowrap;
@@ -22,3 +39,4 @@ select {
 .bottomBorder{
     border-bottom: 2px solid black;
 }
+

@@ -6,7 +6,20 @@ class visResearchInterests {
     constructor(parentElement, latestPeopleInfo){
         this.parentElement = parentElement;
         // this.peopleInfo = peopleInfo; //remove all instances and replace with latest People Info
-        this.peopleInfo = latestPeopleInfo;
+        this.peopleInfo = latestPeopleInfo.sort((a,b)=>{
+            let splitA = a.Title.split(" ");
+            let splitB = b.Title.split(" ");
+            let lastA = splitA[splitA.length - 1];
+            let lastB = splitB[splitB.length - 1];
+
+            if (lastA < lastB) return -1;
+            if (lastA > lastB) return 1;
+            });
+        // })
+
+
+        console.log(this.peopleInfo)
+
 
         // this.peopleInfo.forEach(x=>console.log(x))
 
@@ -40,8 +53,8 @@ class visResearchInterests {
         //     "Electrical Engineering":"#FFDE2D","Environmental Science & Engineering":"#B7E5EA", "Material Science & Mechanical Engineering":"#B379E8"}
         vis.cbColors = ['#01D9DC',"#41A23D","#FCB315","#0D5AAF", "#FFDE2D","#B7E5EA", "#B379E8"]
 
-        vis.areaLoc = [{x: 0, y:-20},{x: vis.width/20*2+vis.areaList[2].length, y:-20},{x: vis.width/20*4+vis.areaList[3].length, y:-20},{x: 500, y:-20},{x: 700, y:-20},
-            {x: 150, y:0},{x: 450, y:0},]
+        vis.areaLoc = [{x: 20, y:-20},{x: 175+vis.areaList[2].length, y:-20},{x: 375+vis.areaList[3].length, y:-20},{x: 600, y:-20},{x: 800, y:-20},
+            {x: 200, y:0},{x: 500, y:0},]
 
         vis.legendScale = d3.scaleOrdinal()
             .domain(vis.areaList)
@@ -83,11 +96,15 @@ class visResearchInterests {
 
         // intrinsic properties of the adjacency matrix
         //vis.cellWidth = 2;
-        vis.yShift = 150;
-        vis.xShift = 400;
+        vis.yShift = 175;
+        vis.xShift = 150;
         vis.originalYShift = vis.yShift;
         vis.originalXShift = vis.xShift;
         vis.ySquareShift = 10;
+
+        // var maxScroll = d3.select("#"+vis.parentElement).node().scrollWidth
+
+
 
         vis.cellScalar =1; //0.85;
         vis.cellPadding = 1;
@@ -394,7 +411,7 @@ class visResearchInterests {
         //let tempScaleShift = vis.cellScalar * d3.min([((vis.width - vis.xShift) / vis.displayFaculty.length), ((vis.height - vis.yShift) / vis.displayResearchInterests.length)]);
         if (vis.displayFaculty.length == vis.allFaculty.length) {
             //tempScaleShift = vis.cellScalar * d3.min([((vis.width) / vis.displayFaculty.length), ((vis.height) / vis.displayResearchInterests.length)]);
-            vis.xShift = -0.8 * vis.margin.left;
+            vis.xShift = -1.2 * vis.margin.left;
             //vis.yShift = -0.8 * vis.margin.top;
         } else {
             vis.xShift = vis.originalXShift;

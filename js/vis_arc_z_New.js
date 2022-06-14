@@ -3,7 +3,7 @@ class visArc {
         this.parentElement = parentElement;
         this.data = Object.assign(data);
 
-        // console.log(data, this.data)
+        console.log(this.data)
 
 
         this.initVis();
@@ -12,7 +12,7 @@ class visArc {
     initVis() {
         let vis = this;
 
-        vis.margin = {top: 20, right: 5, bottom: 0, left: 0};
+        vis.margin = {top: 50, right: 20, bottom: 0, left: 0};
         vis.width = $("#" + vis.parentElement).width() ;
         vis.height = $("#" + vis.parentElement).height();
 
@@ -28,7 +28,7 @@ class visArc {
 
         vis.svg
             .append("rect")
-            .attr("width", vis.width+50)
+            .attr("width", vis.width)
             .attr("height", vis.height*3)
             .attr("x", -300)
             .attr("y", -50)
@@ -92,7 +92,7 @@ class visArc {
         // .cornerRadius(1)
 
         vis.arcBuilder.setRadii = function(d){
-            vis.arcHeight = 0.5 * Math.abs(d.y2-d.y1);
+            vis.arcHeight = 0.4 * Math.abs(d.y2-d.y1);
             this
                 .innerRadius(vis.arcHeight - d.thickness/2)
                 .outerRadius(vis.arcHeight + d.thickness/2);
@@ -476,7 +476,12 @@ class visArc {
         if (sortMethod == 'academicArea') {
             // GROUP
             vis.sortFunction = function (a, b) {
-                return a.group - b.group || d3.ascending(a.id, b.id)
+                let splitA = a.id.split(" ");
+                let splitB = b.id.split(" ");
+                let lastA = splitA[splitA.length - 1];
+                let lastB = splitB[splitB.length - 1];
+
+                return a.group - b.group || d3.ascending(lastA, lastB)
             };
         } else if (sortMethod == 'numCollab') {
             // FREQUENCY
@@ -486,7 +491,13 @@ class visArc {
         } else if (sortMethod == 'alphabetical') {
             // ALPHABETICAL
             vis.sortFunction = function (a, b) {
-                return d3.ascending(a.id, b.id)
+                    let splitA = a.id.split(" ");
+                    let splitB = b.id.split(" ");
+                    let lastA = splitA[splitA.length - 1];
+                    let lastB = splitB[splitB.length - 1];
+
+
+                return d3.ascending(lastA, lastB)
             };
         }
 
@@ -508,8 +519,20 @@ class visArc {
             vis.filteredLinks[i].doT = indexK
         })
 
+        // console.log(vis.filteredNodes.sort((a,b)=>{
+        //     let splitA = a.id.split(" ");
+        //     let splitB = b.id.split(" ");
+        //     let lastA = splitA[splitA.length - 1];
+        //     let lastB = splitB[splitB.length - 1];
+        //
+        //     if (lastA < lastB) return -1;
+        //     if (lastA > lastB) return 1;
+        // }))
+
         vis.displayNodes = vis.filteredNodes
         vis.displayLinks = vis.filteredLinks
+
+        console.log(vis.displayLinks)
         vis.updateVis()
     }
 
