@@ -12,23 +12,23 @@ class visArc {
     initVis() {
         let vis = this;
 
-        vis.margin = {top: 50, right: 20, bottom: 0, left: 0};
+        vis.margin = {top: 50, right: 50, bottom: 0, left: 50};
         vis.width = $("#" + vis.parentElement).width() ;
         vis.height = $("#" + vis.parentElement).height();
 
         vis.minDim = d3.min([vis.width, vis.height]);
         // init drawing area
         vis.svg = d3.select("#" + vis.parentElement).append("svg")
-            .attr("width", vis.width + vis.margin.left + vis.margin.right)
+            .attr("width", vis.width )
             .attr("height", vis.height*3 + vis.margin.top + vis.margin.bottom)
             .append('g')
-            .attr('transform', `translate (${vis.width / 6}, ${vis.margin.top})`)
+            .attr('transform', `translate (${vis.width / 5}, ${vis.margin.top})`)
 
         // .attr('transform', 'rotate(45deg)');
 
         vis.svg
             .append("rect")
-            .attr("width", vis.width)
+            .attr("width", vis.width-vis.margin.right-vis.margin.left)
             .attr("height", vis.height*3)
             .attr("x", -300)
             .attr("y", -50)
@@ -92,7 +92,7 @@ class visArc {
         // .cornerRadius(1)
 
         vis.arcBuilder.setRadii = function(d){
-            vis.arcHeight = 0.4 * Math.abs(d.y2-d.y1);
+            vis.arcHeight = 0.5 * Math.abs(d.y2-d.y1);
             this
                 .innerRadius(vis.arcHeight - d.thickness/2)
                 .outerRadius(vis.arcHeight + d.thickness/2);
