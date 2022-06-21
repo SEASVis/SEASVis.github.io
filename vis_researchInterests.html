@@ -23,15 +23,21 @@
 
 	<div class="container-fluid" style="height: 100vh; padding-top: 1vh">
 
-		<div class="row justify-content-center header">
-			<div class="col-9">
-				<h1> Faculty Research Area Comparison</h1>
-			</div>
-		</div>
+<!--		<div class="row justify-content-center header">-->
+<!--			<div class="col-9">-->
+<!--				<h1> Faculty Research Area Comparison</h1>-->
+<!--			</div>-->
+<!--		</div>-->
 		<div class="row options">
 			<div class="col-3 justify-content-center">
 				<select  id='faculty-table-filter-academic-selector' class="custom-select align-self-center" onchange="filterChangeFacultyTableAA()">
 					<option value="All">All Academic Areas</option>
+				</select>
+			</div>
+
+			<div class="col-3 justify-content-center">
+				<select  id='faculty-table-filter-research-selector' class="custom-select align-self-center" onchange="filterChangeFacultyTableRI()">
+					<option value="All">All Research Interests</option>
 				</select>
 			</div>
 
@@ -74,15 +80,11 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-3 justify-content-center">
-				<select  id='faculty-table-filter-research-selector' class="custom-select align-self-center" onchange="filterChangeFacultyTableRI()">
-					<option value="All">All Research Interests</option>
-				</select>
-			</div>
+
 		</div>
 		<hr/>
 
-		<div class="row justify-content-center" style="height: 95vh; margin-top: 0vh;">
+		<div class="row justify-content-center blab" style="height: 95vh; margin-top: 0vh;">
 			<div class="col-12">
 				<div id="faculty-interest-table" style="height: 100%; width:100%;"></div>
 			</div>

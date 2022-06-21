@@ -2,13 +2,9 @@
 <head>
     <meta charset="utf-8">
     <title>Arc Visualization: Faculty-Faculty Collaborations</title>
-    <script src="https://kit.fontawesome.com/9593bd7a92.js"></script>
     <link rel="stylesheet" type="text/css" href="./inspector.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <!-- Bootstrap-->
     <link rel="stylesheet" href="css/bootstrap.css">
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
@@ -23,26 +19,14 @@
 
 <body>
 
-<div class="container-fluid" style="height: 100vh; padding-top: 1vh">
+<div class="container-fluid" style="height: 100vh; width: 100vw; padding-top: 1vh">
     <div class="row">
-        <div class="col-10 justify-content-center" style="min-height: 100vh; margin-top: 0vh;">
-            <div id="arc-vis-bin" style="height: 100%; width:100%;"></div>
-        </div>
-        <div class="col-2 justify-content-center menu">
-            <div class="row justify-content-center">
-                <h3 class=" menuHeader"> MENU </h3>
-            </div>
-            <div class="row justify-content-center" style="height: 2vh"></div>
-            <div class="row justify-content-center color-switch cbf-switch" style="height: 5vh">
-                <div class="pretty p-switch p-fill" >
-                    <input type="checkbox" value="false" onChange="changeColorPaletteArc()" />
-                    <div class="state" >
-                        <label>Color-Blind Colors</label>
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-center" style="height: 2vh"></div>
-            <div class="row justify-content-center color-switch cbf-switch menuFilter" style="height: 5vh">
+        <div class="col-12 justify-content-center menu">
+<!--            <div class="row justify-content-center">-->
+<!--                <h3> Menu </h3>-->
+<!--            </div>-->
+            <div class="col-4 justify-content-center" style="height: 2vh"></div>
+            <div class="col-4 justify-content-center color-switch cbf-switch" style="height: 5vh">
                 <h4 class="justify-content-left"> Sort By: </h4>
                 <select id="selectSort" onChange="changeSort()">
                     <option value="academicArea">by Academic Area</option>
@@ -50,27 +34,23 @@
                     <option value="alphabetical" selected>by Name</option>
                 </select>
             </div>
-            <div class="row justify-content-center color-switch cbf-switch menuFilter" style="height: 5vh;margin-top:2vh;">
-                <h4 class="justify-content-left"> Filter: </h4>
-                <select id="selectFilter" onChange="changeSort()">
-                    <option value="all" selected>All</option>
-                    <option value="AppliedMath"> <span class="fa-cog">&#xf111;</span> Applied Mathematics</option>
-                    <option value="AppliedPhysics">Applied Physics</option>
-                    <option value="Bioengineering">Bioengineering</option>
-                    <option value="ComputerScience">Computer Science</option>
-                    <option value="ElectricalEngineering">Electrical Engineering</option>
-                    <option value="EnvSciEng">Environmental Science & Engineering</option>
-                    <option value="MatSciMechEng">Material Science & Mechanical Engineering</option>
-                </select>
+
+            <div class="col-4 justify-content-center" style="height: 2vh"></div>
+            <div class="col-4 justify-content-center color-switch cbf-switch" style="height: 5vh">
+                <div class="pretty p-switch p-fill" >
+                    <input type="checkbox" value="false" onChange="changeColorPaletteArc()" />
+                    <div class="state" >
+                        <label>Color-Blind Friendly</label>
+                    </div>
+                </div>
             </div>
-
-            <div class="row justify-content-center bottomBorder" style="height: 10vh"></div>
-            <div class="row justify-content-center " style="height: 5vh;margin-top:2vh;">
-                <div class="facultyInfo" id="facultyInfoBox"></div>
-            </div>
-
-
-
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+                <div id="arc-vis-bin-h" style="height: 40vh; width:100vw;"></div>
+        </div>
+    </div>
 <!--            <div class="row justify-content-center color-switch cbf-switch">-->
 
 <!--                <div class="pretty p-default p-round">-->
@@ -113,8 +93,8 @@
 
 <!-- our custom scripts-->
 
-<script src="js/vis_arc_z_New.js"></script>
-<script src="js/main_arc.js"></script>
+<script src="js/vis_arc_z_Horizontal.js"></script>
+<script src="js/main_arc_horizontal.js"></script>
 
 </body>
 
